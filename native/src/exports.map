@@ -1,0 +1,6 @@
+{
+  global:
+    avu_*;
+  local:
+    *;
+};

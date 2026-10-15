@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type Window}" TargetType="Window">
+    <Setter Property="union:Union.Type" Value="applicationwindow" />
+    <Setter Property="Background" Value="{union:Style Background.Color}" />
+    <Setter Property="TransparencyBackgroundFallback" Value="{union:Style Background.Color}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="FontSize" Value="{DynamicResource UnionFontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource UnionFontFamily}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+          <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+          <Panel Background="Transparent" Margin="{TemplateBinding WindowDecorationMargin}" />
+          <VisualLayerManager Name="PART_VisualLayerManager">
+            <ContentPresenter Name="PART_ContentPresenter"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              Content="{TemplateBinding Content}"
+                              Margin="{TemplateBinding Padding}"
+                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+          </VisualLayerManager>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

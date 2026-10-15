@@ -1,0 +1,40 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="using:System"
+             x:Class="AvaUnion.Gallery.Pages.ListsPage">
+  <StackPanel Spacing="12">
+    <Label Content="List box" FontWeight="Bold" />
+    <ListBox Width="260" Height="220" HorizontalAlignment="Left" SelectedIndex="1">
+      <ListBoxItem Content="Ardennes" />
+      <ListBoxItem Content="Black Forest" />
+      <ListBoxItem Content="Carpathians" />
+      <ListBoxItem Content="Dolomites" />
+      <ListBoxItem Content="Eifel" />
+      <ListBoxItem Content="Fichtelgebirge" />
+      <ListBoxItem Content="Giant Mountains" />
+      <ListBoxItem Content="Harz" />
+      <ListBoxItem Content="Disabled" IsEnabled="False" />
+    </ListBox>
+    <Label Content="Tree view" FontWeight="Bold" />
+    <TreeView Width="260" Height="180" HorizontalAlignment="Left">
+      <TreeViewItem Header="Documents" IsExpanded="True">
+        <TreeViewItem Header="report.odt" />
+        <TreeViewItem Header="Archive">
+          <TreeViewItem Header="old.txt" />
+        </TreeViewItem>
+      </TreeViewItem>
+      <TreeViewItem Header="Music" />
+      <TreeViewItem Header="Pictures" />
+    </TreeView>
+    <Label Content="Combo box" FontWeight="Bold" />
+    <ComboBox SelectedIndex="0" Width="200">
+      <ComboBoxItem Content="Kate" />
+      <ComboBoxItem Content="Konsole" />
+      <ComboBoxItem Content="Dolphin" />
+    </ComboBox>
+    <ComboBox IsEditable="True" Text="Editable" Width="200">
+      <ComboBoxItem Content="One" />
+      <ComboBoxItem Content="Two" />
+    </ComboBox>
+  </StackPanel>
+</UserControl>

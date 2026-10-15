@@ -1,0 +1,383 @@
+button,
+toolbutton,
+combobox,
+roundbutton,
+delaybutton,
+toolbutton.raised {
+    width: var(--avaunion-demo-control-height);
+    height: var(--avaunion-demo-control-height);
+    spacing: var(--avaunion-demo-gap-m);
+    padding-top: var(--avaunion-demo-gap-m);
+    padding-bottom: var(--avaunion-demo-gap-m);
+    padding-left: var(--avaunion-demo-gap-xl);
+    padding-right: var(--avaunion-demo-gap-xl);
+    border-radius: var(--avaunion-demo-round-m);
+
+    layout-alignment: content fill fill 0;
+    text-alignment-horizontal: center;
+    icon-alignment-horizontal: center;
+
+    color: var(--avaunion-demo-btn-fg);
+    background-color: var(--avaunion-demo-tint-2);
+    border: none;
+
+    &:hovered {
+        background-color: var(--avaunion-demo-tint-3);
+    }
+
+    &:pressed {
+        background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.42);
+    }
+
+    &:checked {
+        background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.3);
+    }
+
+    &:checked:hovered {
+        background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.38);
+    }
+
+    &:visual-focus {
+        outline: var(--avaunion-demo-accent-ring);
+    }
+
+    &:disabled {
+        color: var(--avaunion-demo-btn-fg-off);
+        background-color: var(--avaunion-demo-tint-1);
+        outline: none;
+        box-shadow: none;
+    }
+
+    &.with-menu > indicator {
+        visibility: visible;
+        layout-alignment: content end center 0;
+        width: var(--avaunion-demo-icon-s);
+        height: var(--avaunion-demo-icon-s);
+        padding-left: var(--avaunion-demo-gap-s);
+        icon-name: "arrow-down";
+        icon-color: var(--avaunion-demo-btn-fg);
+    }
+
+    &.with-inline-arrow > indicator {
+        visibility: visible;
+        layout-alignment: content end end 0;
+        width: 8px;
+        height: 8px;
+        padding: 1px;
+        icon-name: "arrow-down";
+        icon-color: var(--avaunion-demo-btn-fg);
+    }
+
+    &.with-menu-button > indicator {
+        visibility: visible;
+        width: var(--avaunion-demo-icon-s);
+        height: var(--avaunion-demo-icon-s);
+        padding-left: var(--avaunion-demo-gap-m);
+        padding-right: var(--avaunion-demo-gap-m);
+        layout-alignment: content end fill 0;
+        icon-name: "arrow-down";
+        icon-color: var(--avaunion-demo-btn-fg);
+        border-left: 1px solid var(--avaunion-demo-soft-line);
+    }
+
+    &.menu-open {
+        background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.3);
+
+        & > indicator {
+            icon-color: var(--avaunion-demo-accent);
+            background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.45);
+            border-radius: var(--avaunion-demo-round-m);
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+        }
+    }
+
+    &[display="icon-only"] {
+        padding: var(--avaunion-demo-gap-m);
+    }
+
+    &[display="icon-only"].with-menu > indicator {
+        visibility: hidden;
+    }
+
+    &[display="text-under-icon"] {
+        text-alignment-vertical: stack-center;
+        icon-alignment-vertical: stack-center;
+    }
+}
+
+button:highlighted,
+button.default {
+    color: var(--avaunion-demo-on-accent);
+    background-color: var(--avaunion-demo-accent);
+    box-shadow: var(--avaunion-demo-lift);
+
+    &:hovered {
+        background-color: mix(var(--avaunion-demo-accent), var(--avaunion-demo-on-accent), 0.14);
+    }
+
+    &:pressed {
+        background-color: mix(var(--avaunion-demo-accent), var(--avaunion-demo-win-fg), 0.25);
+    }
+
+    &:visual-focus {
+        outline: 2px solid mix(var(--avaunion-demo-accent), var(--avaunion-demo-win-fg), 0.35);
+    }
+
+    &.with-menu > indicator,
+    &.with-menu-button > indicator {
+        icon-color: var(--avaunion-demo-on-accent);
+    }
+
+    &:disabled {
+        color: var(--avaunion-demo-btn-fg-off);
+        background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.2);
+        box-shadow: none;
+    }
+}
+
+toolbutton,
+button.flat,
+combobox.flat,
+roundbutton.flat {
+    background: none;
+    box-shadow: none;
+
+    &:hovered {
+        background-color: var(--avaunion-demo-tint-1);
+    }
+
+    &:pressed {
+        background-color: var(--avaunion-demo-accent-soft);
+    }
+
+    &:checked {
+        color: var(--avaunion-demo-accent);
+        background-color: var(--avaunion-demo-accent-soft);
+    }
+
+    &:disabled {
+        background: none;
+    }
+
+    &.with-menu-button > indicator {
+        border-left: none;
+    }
+
+    toolbar.header &:checked,
+    applicationheader &:checked {
+        color: var(--avaunion-demo-accent);
+        background-color: var(--avaunion-demo-accent-soft);
+    }
+
+    &[colorset="window"],
+    [colorset="window"] & {
+        color: var(--avaunion-demo-win-fg);
+
+        &:disabled {
+            color: var(--avaunion-demo-win-fg-off);
+        }
+    }
+
+    &[colorset="view"],
+    [colorset="view"] & {
+        color: var(--avaunion-demo-view-fg);
+
+        &:disabled {
+            color: var(--avaunion-demo-view-fg-off);
+        }
+    }
+
+    &[colorset="complementary"],
+    [colorset="complementary"] & {
+        color: var(--avaunion-demo-comp-fg);
+
+        &:disabled {
+            color: var(--avaunion-demo-comp-fg-off);
+        }
+    }
+
+    &[colorset="header"],
+    [colorset="header"] & {
+        color: var(--avaunion-demo-head-fg);
+
+        &:disabled {
+            color: var(--avaunion-demo-head-fg-off);
+        }
+    }
+}
+
+toolbutton {
+    icon-size: 22px;
+    padding-top: var(--avaunion-demo-gap-s);
+    padding-bottom: var(--avaunion-demo-gap-s);
+    padding-left: var(--avaunion-demo-gap-m);
+    padding-right: var(--avaunion-demo-gap-m);
+}
+
+toolbutton.raised {
+    icon-size: var(--avaunion-demo-icon-s);
+    padding-top: var(--avaunion-demo-gap-m);
+    padding-bottom: var(--avaunion-demo-gap-m);
+    padding-left: var(--avaunion-demo-gap-xl);
+    padding-right: var(--avaunion-demo-gap-xl);
+    background-color: var(--avaunion-demo-tint-2);
+}
+
+roundbutton {
+    border-radius: var(--avaunion-demo-round-pill);
+}
+
+combobox {
+    layout-alignment: content fill center 0;
+    text-alignment: content fill center 0;
+    icon-alignment: content start center 0;
+    padding-top: var(--avaunion-demo-gap-m);
+    padding-bottom: var(--avaunion-demo-gap-m);
+    padding-left: var(--avaunion-demo-gap-l);
+    padding-right: var(--avaunion-demo-gap-l);
+    text-wrap-mode: no-wrap;
+    text-elide: right;
+
+    & > indicator {
+        layout-alignment: content end center 0;
+        width: var(--avaunion-demo-icon-s);
+        height: var(--avaunion-demo-icon-s);
+        icon-name: "arrow-down-symbolic";
+        icon-color: var(--avaunion-demo-accent);
+        visibility: visible;
+    }
+
+    &.editable,
+    &.flat.editable {
+        color: var(--avaunion-demo-view-fg);
+        background-color: var(--avaunion-demo-view-bg);
+        border: 1px solid var(--avaunion-demo-soft-line);
+
+        &:hovered {
+            border-color: var(--avaunion-demo-tint-4);
+        }
+
+        &:pressed {
+            border-color: var(--avaunion-demo-accent);
+        }
+
+        &:visual-focus {
+            border-color: var(--avaunion-demo-accent);
+            outline: var(--avaunion-demo-accent-ring);
+        }
+
+        &:disabled {
+            color: var(--avaunion-demo-view-fg-off);
+            background-color: var(--avaunion-demo-view-bg-off);
+        }
+    }
+}
+
+popup.combobox {
+    padding: var(--avaunion-demo-gap-s);
+    border-radius: var(--avaunion-demo-round-l);
+    background-color: var(--avaunion-demo-view-bg);
+
+    itemviewitem,
+    itemdelegate,
+    menuitem {
+        padding-top: var(--avaunion-demo-gap-m);
+        padding-bottom: var(--avaunion-demo-gap-m);
+        padding-left: var(--avaunion-demo-gap-l);
+        padding-right: var(--avaunion-demo-gap-l);
+        inset: var(--avaunion-demo-gap-xs);
+        border-radius: var(--avaunion-demo-round-m);
+    }
+
+    itemviewitem:hovered,
+    itemdelegate:hovered {
+        color: var(--avaunion-demo-view-fg);
+        background-color: var(--avaunion-demo-accent-soft);
+        border: none;
+    }
+
+    itemviewitem:highlighted,
+    itemdelegate:highlighted {
+        color: var(--avaunion-demo-on-accent);
+        background-color: var(--avaunion-demo-accent);
+        border: none;
+    }
+}
+
+toolseparator {
+    background-color: var(--avaunion-demo-soft-line);
+
+    &.horizontal {
+        width: var(--avaunion-demo-size-l);
+        height: 1px;
+        inset-top: 0px;
+        inset-bottom: 0px;
+        inset-left: var(--avaunion-demo-gap-m);
+        inset-right: var(--avaunion-demo-gap-m);
+    }
+
+    &.vertical {
+        width: 1px;
+        height: var(--avaunion-demo-size-l);
+        inset-top: var(--avaunion-demo-gap-m);
+        inset-bottom: var(--avaunion-demo-gap-m);
+        inset-left: 0px;
+        inset-right: 0px;
+    }
+}
+
+delaybutton {
+    & > fill {
+        border-radius: var(--avaunion-demo-round-m);
+        background-color: var(--avaunion-demo-accent);
+    }
+}
+
+tumbler {
+    width: 64px;
+    height: 200px;
+    background-color: var(--avaunion-demo-view-bg);
+    border-radius: var(--avaunion-demo-round-m);
+
+    text {
+        text-alignment-horizontal: center;
+        color: mix(var(--avaunion-demo-view-bg), var(--avaunion-demo-view-fg), 0.6);
+
+        &:highlighted {
+            color: var(--avaunion-demo-accent);
+            font-weight: 700;
+        }
+    }
+}
+
+button.changed,
+toolbutton.changed,
+combobox.changed,
+roundbutton.changed,
+delaybutton.changed {
+    background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-warn), 0.25);
+    border: 1px solid var(--avaunion-demo-warn);
+}
+
+tabscrollbutton {
+    icon-alignment: content fill fill 0;
+    layout-alignment: content center center 0;
+    icon-size: 16px;
+    width: 28px;
+    height: 28px;
+    border-radius: var(--avaunion-demo-round-pill);
+    color: var(--avaunion-demo-win-fg);
+
+    &:hovered {
+        background-color: var(--avaunion-demo-tint-2);
+    }
+
+    &:pressed {
+        background-color: var(--avaunion-demo-accent-soft);
+    }
+
+    &:disabled {
+        color: var(--avaunion-demo-win-fg-off);
+    }
+}

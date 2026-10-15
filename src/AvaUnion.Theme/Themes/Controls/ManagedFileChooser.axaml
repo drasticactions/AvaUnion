@@ -1,0 +1,173 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    xmlns:dialogs="using:Avalonia.Dialogs"
+                    xmlns:markup="using:AvaUnion.Markup"
+                    xmlns:converters="clr-namespace:Avalonia.Controls.Converters;assembly=Avalonia.Controls"
+                    xmlns:internal="using:Avalonia.Dialogs.Internal"
+                    x:ClassModifier="internal">
+  <x:String x:Key="StringManagedFileChooserFileNamePlaceholder">File name</x:String>
+  <x:String x:Key="StringManagedFileChooserShowHiddenFilesText">Show hidden files</x:String>
+  <x:String x:Key="StringManagedFileChooserOkText">OK</x:String>
+  <x:String x:Key="StringManagedFileChooserCancelText">Cancel</x:String>
+  <x:String x:Key="StringManagedFileChooserNameColumn">Name</x:String>
+  <x:String x:Key="StringManagedFileChooserDateModifiedColumn">Date Modified</x:String>
+  <x:String x:Key="StringManagedFileChooserTypeColumn">Type</x:String>
+  <x:String x:Key="StringManagedFileChooserSizeColumn">Size</x:String>
+  <x:String x:Key="StringManagedFileChooserOverwritePromptFileAlreadyExistsText">{0} already exists. Do you want to replace it?</x:String>
+  <x:String x:Key="StringManagedFileChooserOverwritePromptConfirmText">Replace</x:String>
+  <x:String x:Key="StringManagedFileChooserOverwritePromptCancelText">Cancel</x:String>
+
+  <internal:FileSizeStringConverter x:Key="UnionFileSize" />
+
+  <ControlTheme x:Key="{x:Type dialogs:ManagedFileChooser}" TargetType="dialogs:ManagedFileChooser">
+    <Setter Property="Template" x:DataType="internal:ManagedFileChooserViewModel">
+      <ControlTemplate>
+        <DockPanel>
+          <ListBox Name="PART_QuickLinks"
+                   DockPanel.Dock="Left"
+                   Width="200"
+                   Margin="8,8,0,8"
+                   ItemsSource="{Binding QuickLinks}"
+                   SelectedIndex="{Binding QuickLinksSelectedIndex}"
+                   Focusable="False">
+            <ListBox.ItemTemplate>
+              <DataTemplate x:DataType="internal:ManagedFileChooserItemViewModel">
+                <StackPanel Spacing="6" Orientation="Horizontal">
+                  <union:UnionIcon IconName="{Binding IconKey, Converter={x:Static markup:FileChooserConverters.IconName}}" Width="16" Height="16" />
+                  <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center" />
+                </StackPanel>
+              </DataTemplate>
+            </ListBox.ItemTemplate>
+          </ListBox>
+          <DockPanel Name="NavBar" DockPanel.Dock="Top" Margin="8,8,8,4">
+            <Button Theme="{StaticResource UnionToolButton}" Command="{Binding GoUp}" DockPanel.Dock="Left" Margin="0,0,4,0" ToolTip.Tip="Up">
+              <union:UnionIcon IconName="go-up" Width="16" Height="16" />
+            </Button>
+            <Button Theme="{StaticResource UnionToolButton}" Command="{Binding Refresh}" DockPanel.Dock="Right" Margin="4,0,0,0" ToolTip.Tip="Refresh">
+              <union:UnionIcon IconName="view-refresh" Width="16" Height="16" />
+            </Button>
+            <TextBox Name="Location" Text="{Binding Location}">
+              <TextBox.KeyBindings>
+                <KeyBinding Command="{Binding EnterPressed}" Gesture="Enter" />
+              </TextBox.KeyBindings>
+            </TextBox>
+          </DockPanel>
+          <DockPanel DockPanel.Dock="Bottom" Margin="8,4,8,8">
+            <DockPanel DockPanel.Dock="Top" Margin="0,0,0,8">
+              <ComboBox DockPanel.Dock="Right"
+                        Margin="8,0,0,0"
+                        IsVisible="{Binding ShowFilters}"
+                        ItemsSource="{Binding Filters}"
+                        SelectedItem="{Binding SelectedFilter}" />
+              <TextBox Text="{Binding FileName}"
+                       PlaceholderText="{DynamicResource StringManagedFileChooserFileNamePlaceholder}"
+                       IsVisible="{Binding !SelectingFolder}" />
+            </DockPanel>
+            <CheckBox IsChecked="{Binding ShowHiddenFiles}" Content="{DynamicResource StringManagedFileChooserShowHiddenFilesText}" DockPanel.Dock="Left" />
+            <StackPanel Name="Finalize" HorizontalAlignment="Right" Orientation="Horizontal" Spacing="6">
+              <Button Command="{Binding Ok}" MinWidth="80" IsDefault="True">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                  <union:UnionIcon IconName="dialog-ok" Width="16" Height="16" />
+                  <TextBlock Text="{DynamicResource StringManagedFileChooserOkText}" />
+                </StackPanel>
+              </Button>
+              <Button Command="{Binding Cancel}" MinWidth="80" IsCancel="True">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                  <union:UnionIcon IconName="dialog-cancel" Width="16" Height="16" />
+                  <TextBlock Text="{DynamicResource StringManagedFileChooserCancelText}" />
+                </StackPanel>
+              </Button>
+            </StackPanel>
+          </DockPanel>
+          <Panel Margin="8,4,8,4" Grid.IsSharedSizeScope="True"
+                 union:Union.Type="scrollview"
+                 union:Union.Hints="framed-background"
+                 union:Union.ColorSet="View"
+                 union:Union.StateSource="None">
+            <union:UnionBox Margin="{union:Style Layout.Inset}" />
+            <DockPanel Margin="{union:Style Layout.Padding}">
+              <Grid DockPanel.Dock="Top" union:Union.Type="headerview" union:Union.Hints="horizontal">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="28" SharedSizeGroup="Icon" />
+                  <ColumnDefinition Width="275" SharedSizeGroup="Name" />
+                  <ColumnDefinition Width="160" SharedSizeGroup="Modified" />
+                  <ColumnDefinition Width="120" SharedSizeGroup="Type" />
+                  <ColumnDefinition Width="100" SharedSizeGroup="Size" />
+                </Grid.ColumnDefinitions>
+                <Grid.Styles>
+                  <Style Selector="TextBlock.header">
+                    <Setter Property="Padding" Value="6,4" />
+                    <Setter Property="FontWeight" Value="Bold" />
+                  </Style>
+                </Grid.Styles>
+                <TextBlock Classes="header" Grid.Column="1" Text="{DynamicResource StringManagedFileChooserNameColumn}" />
+                <TextBlock Classes="header" Grid.Column="2" Text="{DynamicResource StringManagedFileChooserDateModifiedColumn}" />
+                <TextBlock Classes="header" Grid.Column="3" Text="{DynamicResource StringManagedFileChooserTypeColumn}" />
+                <TextBlock Classes="header" Grid.Column="4" Text="{DynamicResource StringManagedFileChooserSizeColumn}" HorizontalAlignment="Right" />
+              </Grid>
+              <ListBox Name="PART_Files"
+                       Theme="{StaticResource UnionPopupList}"
+                       ItemsSource="{Binding Items}"
+                       SelectionMode="{Binding SelectionMode}"
+                       SelectedItems="{Binding SelectedItems}"
+                       ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                  <DataTemplate x:DataType="internal:ManagedFileChooserItemViewModel">
+                    <Grid>
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition SharedSizeGroup="Icon" />
+                        <ColumnDefinition SharedSizeGroup="Name" />
+                        <ColumnDefinition SharedSizeGroup="Modified" />
+                        <ColumnDefinition SharedSizeGroup="Type" />
+                        <ColumnDefinition SharedSizeGroup="Size" />
+                      </Grid.ColumnDefinitions>
+                      <union:UnionIcon IconName="{Binding IconKey, Converter={x:Static markup:FileChooserConverters.IconName}}" Width="16" Height="16" HorizontalAlignment="Left" />
+                      <TextBlock Grid.Column="1" Text="{Binding DisplayName}" TextTrimming="CharacterEllipsis" />
+                      <TextBlock Grid.Column="2" Text="{Binding Modified}" TextTrimming="CharacterEllipsis" />
+                      <TextBlock Grid.Column="3" Text="{Binding Type}" TextTrimming="CharacterEllipsis" />
+                      <TextBlock Grid.Column="4" Text="{Binding Size, Converter={StaticResource UnionFileSize}}" HorizontalAlignment="Right" />
+                    </Grid>
+                  </DataTemplate>
+                </ListBox.ItemTemplate>
+              </ListBox>
+            </DockPanel>
+          </Panel>
+        </DockPanel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type dialogs:ManagedFileChooserOverwritePrompt}" TargetType="dialogs:ManagedFileChooserOverwritePrompt">
+    <Setter Property="MinWidth" Value="270" />
+    <Setter Property="MaxWidth" Value="400" />
+    <Setter Property="Padding" Value="12" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <StackPanel Margin="{TemplateBinding Padding}" Spacing="12">
+          <TextBlock TextWrapping="Wrap">
+            <TextBlock.Text>
+              <MultiBinding>
+                <MultiBinding.Converter>
+                  <converters:StringFormatConverter />
+                </MultiBinding.Converter>
+                <DynamicResource ResourceKey="StringManagedFileChooserOverwritePromptFileAlreadyExistsText" />
+                <Binding Path="FileName" RelativeSource="{RelativeSource TemplatedParent}" />
+              </MultiBinding>
+            </TextBlock.Text>
+          </TextBlock>
+          <StackPanel HorizontalAlignment="Right" Spacing="6" Orientation="Horizontal">
+            <Button Content="{DynamicResource StringManagedFileChooserOverwritePromptConfirmText}"
+                    MinWidth="80"
+                    IsDefault="True"
+                    Command="{Binding Confirm, RelativeSource={RelativeSource TemplatedParent}}" />
+            <Button Content="{DynamicResource StringManagedFileChooserOverwritePromptCancelText}"
+                    MinWidth="80"
+                    IsCancel="True"
+                    Command="{Binding Cancel, RelativeSource={RelativeSource TemplatedParent}}" />
+          </StackPanel>
+        </StackPanel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

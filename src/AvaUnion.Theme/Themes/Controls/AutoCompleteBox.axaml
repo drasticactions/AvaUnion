@@ -1,0 +1,44 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type AutoCompleteBox}" TargetType="AutoCompleteBox">
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="MaxDropDownHeight" Value="504" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid Name="PART_LayoutRoot">
+          <TextBox Name="PART_TextBox"
+                   PlaceholderText="{TemplateBinding PlaceholderText}"
+                   Width="{TemplateBinding Width}"
+                   CaretIndex="{TemplateBinding CaretIndex, Mode=TwoWay}"
+                   ClearSelectionOnLostFocus="{TemplateBinding ClearSelectionOnLostFocus}"
+                   DataValidationErrors.Errors="{TemplateBinding (DataValidationErrors.Errors)}"
+                   MaxLength="{TemplateBinding MaxLength}"
+                   InnerLeftContent="{TemplateBinding InnerLeftContent}"
+                   InnerRightContent="{TemplateBinding InnerRightContent}" />
+          <Popup Name="PART_Popup"
+                 WindowManagerAddShadowHint="False"
+                 MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                 IsLightDismissEnabled="True"
+                 PlacementTarget="{TemplateBinding}">
+            <Border MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                      Name="PART_SuggestionsContainer"
+                    union:Union.Type="popup"
+                    union:Union.Hints="combobox"
+                    union:Union.StateSource="None">
+              <Panel>
+                <union:UnionBox Margin="{union:Style Layout.Inset}" />
+                <ListBox Name="PART_SelectingItemsControl"
+                         Theme="{StaticResource UnionPopupList}"
+                         Margin="{union:Style Layout.Padding}"
+                         ItemTemplate="{TemplateBinding ItemTemplate}"
+                         ScrollViewer.IsScrollChainingEnabled="False" />
+              </Panel>
+            </Border>
+          </Popup>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

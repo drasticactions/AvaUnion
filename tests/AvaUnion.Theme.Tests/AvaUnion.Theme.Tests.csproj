@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Headless.XUnit" />
+    <PackageReference Include="Avalonia.Skia" />
+    <PackageReference Include="Avalonia.HarfBuzz" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AvaUnion.Theme\AvaUnion.Theme.csproj" />
+    <ProjectReference Include="..\..\src\AvaUnion.DataGrid\AvaUnion.DataGrid.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <AssemblyMetadata Include="AvaUnionUnionVersion" Value="$(AvaUnionUnionVersion)" />
+  </ItemGroup>
+  <ItemGroup>
+    <UnionStylePackage Include="..\Data\styles\avaunion-test" Snapshot="..\Data\styles\avaunion-test.union.bin" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="..\Data\**\*" Link="Data\%(RecursiveDir)%(Filename)%(Extension)" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+  <Import Project="..\..\src\AvaUnion.Theme\buildTransitive\AvaUnion.Theme.targets" />
+</Project>

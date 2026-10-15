@@ -1,0 +1,38 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type ContentPage}" TargetType="ContentPage">
+    <Setter Property="union:Union.Type" Value="page" />
+    <Setter Property="Background" Value="{union:Style Background.Color}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DockPanel>
+          <ContentPresenter Name="PART_TopCommandBar"
+                            DockPanel.Dock="Top"
+                            union:Union.Type="toolbar"
+                            union:Union.Hints="header"
+                            union:Union.StateSource="None"
+                            Background="{union:Style Background.Color}"
+                            HorizontalContentAlignment="Stretch"
+                            IsVisible="False" />
+          <ContentPresenter Name="PART_BottomCommandBar"
+                            DockPanel.Dock="Bottom"
+                            union:Union.Type="toolbar"
+                            union:Union.Hints="footer"
+                            union:Union.StateSource="None"
+                            Background="{union:Style Background.Color}"
+                            HorizontalContentAlignment="Stretch"
+                            IsVisible="False" />
+          <ContentPresenter Name="PART_ContentPresenter"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Background="{TemplateBinding Background}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}" />
+        </DockPanel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

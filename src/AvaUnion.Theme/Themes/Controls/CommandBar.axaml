@@ -1,0 +1,184 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type CommandBarButton}" TargetType="CommandBarButton">
+    <Setter Property="union:Union.Type" Value="toolbutton" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="MinWidth" Value="{union:Style Layout.Width, Fallback=32}" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+          <StackPanel Name="PART_LayoutRoot"
+                      Margin="{TemplateBinding Padding}"
+                      Spacing="{union:Style Layout.Spacing, Fallback=4}"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+            <ContentPresenter Name="PART_IconPresenter"
+                              Content="{TemplateBinding Icon}"
+                              IsVisible="{TemplateBinding Icon, Converter={x:Static ObjectConverters.IsNotNull}}"
+                              Width="{union:Style Icon.Width, Fallback=24}"
+                              Height="{union:Style Icon.Height, Fallback=24}"
+                              HorizontalAlignment="Center" />
+            <TextBlock Name="PART_Label"
+                       Text="{TemplateBinding Label}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis" />
+          </StackPanel>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^[IsCompact=True] /template/ TextBlock#PART_Label">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^[LabelPosition=Collapsed] /template/ TextBlock#PART_Label">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^[LabelPosition=Right] /template/ StackPanel#PART_LayoutRoot">
+      <Setter Property="Orientation" Value="Horizontal" />
+    </Style>
+    <Style Selector="^[IsInOverflow=True]">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+    <Style Selector="^[IsInOverflow=True] /template/ StackPanel#PART_LayoutRoot">
+      <Setter Property="Orientation" Value="Horizontal" />
+      <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+    <Style Selector="^[IsInOverflow=True] /template/ ContentPresenter#PART_IconPresenter">
+      <Setter Property="Width" Value="16" />
+      <Setter Property="Height" Value="16" />
+    </Style>
+    <Style Selector="^[IsInOverflow=True] /template/ TextBlock#PART_Label">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type CommandBarToggleButton}" TargetType="CommandBarToggleButton">
+    <Setter Property="union:Union.Type" Value="toolbutton" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="MinWidth" Value="{union:Style Layout.Width, Fallback=32}" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+          <StackPanel Name="PART_LayoutRoot"
+                      Margin="{TemplateBinding Padding}"
+                      Spacing="{union:Style Layout.Spacing, Fallback=4}"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
+            <ContentPresenter Name="PART_IconPresenter"
+                              Content="{TemplateBinding Icon}"
+                              IsVisible="{TemplateBinding Icon, Converter={x:Static ObjectConverters.IsNotNull}}"
+                              Width="{union:Style Icon.Width, Fallback=24}"
+                              Height="{union:Style Icon.Height, Fallback=24}"
+                              HorizontalAlignment="Center" />
+            <TextBlock Name="PART_Label"
+                       Text="{TemplateBinding Label}"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       TextTrimming="CharacterEllipsis" />
+          </StackPanel>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^[IsCompact=True] /template/ TextBlock#PART_Label">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^[LabelPosition=Collapsed] /template/ TextBlock#PART_Label">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^[LabelPosition=Right] /template/ StackPanel#PART_LayoutRoot">
+      <Setter Property="Orientation" Value="Horizontal" />
+    </Style>
+    <Style Selector="^[IsInOverflow=True]">
+      <Setter Property="HorizontalAlignment" Value="Stretch" />
+    </Style>
+    <Style Selector="^[IsInOverflow=True] /template/ StackPanel#PART_LayoutRoot">
+      <Setter Property="Orientation" Value="Horizontal" />
+      <Setter Property="HorizontalAlignment" Value="Left" />
+    </Style>
+    <Style Selector="^[IsInOverflow=True] /template/ ContentPresenter#PART_IconPresenter">
+      <Setter Property="Width" Value="16" />
+      <Setter Property="Height" Value="16" />
+    </Style>
+    <Style Selector="^[IsInOverflow=True] /template/ TextBlock#PART_Label">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type CommandBarSeparator}" TargetType="CommandBarSeparator" BasedOn="{StaticResource {x:Type Separator}}" />
+
+  <ControlTheme x:Key="{x:Type CommandBar}" TargetType="CommandBar">
+    <Setter Property="union:Union.Type" Value="toolbar" />
+    <Setter Property="union:Union.Hints" Value="header" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="MinHeight" Value="{union:Style Layout.Height, Fallback=46}" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="ItemWidthBottom" Value="70" />
+    <Setter Property="ItemWidthRight" Value="102" />
+    <Setter Property="ItemWidthCollapsed" Value="42" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <DockPanel Margin="{TemplateBinding Padding}" KeyboardNavigation.TabNavigation="Cycle">
+            <Button Name="PART_OverflowButton"
+                    Theme="{StaticResource UnionToolButton}"
+                    DockPanel.Dock="Right"
+                    VerticalAlignment="Stretch"
+                    IsVisible="{TemplateBinding IsOverflowButtonVisible}">
+              <union:UnionIcon IconName="overflow-menu" Width="16" Height="16" />
+            </Button>
+            <ContentPresenter Name="PART_ContentPresenter"
+                              Content="{TemplateBinding Content}"
+                              DockPanel.Dock="Left"
+                              VerticalAlignment="Center" />
+            <ItemsControl Name="PART_PrimaryCommands"
+                          ItemsSource="{Binding VisiblePrimaryCommands, RelativeSource={RelativeSource TemplatedParent}}"
+                          HorizontalAlignment="Right"
+                          VerticalAlignment="Stretch"
+                          ClipToBounds="True">
+              <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                  <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+              </ItemsControl.ItemsPanel>
+            </ItemsControl>
+          </DockPanel>
+          <Popup Name="PART_OverflowPopup"
+                 IsOpen="{TemplateBinding IsOpen, Mode=TwoWay}"
+                 PlacementTarget="{Binding #PART_OverflowButton}"
+                 Placement="BottomEdgeAlignedRight"
+                 IsLightDismissEnabled="True"
+                 WindowManagerAddShadowHint="False">
+            <Border union:Union.Type="menu" union:Union.StateSource="None" MinWidth="160">
+              <Panel>
+                <union:UnionBox Margin="{union:Style Layout.Inset}" />
+                <ItemsControl Name="PART_OverflowPresenter"
+                              Margin="{union:Style Layout.Padding}"
+                              ItemsSource="{Binding OverflowItems, RelativeSource={RelativeSource TemplatedParent}}">
+                  <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <StackPanel />
+                    </ItemsPanelTemplate>
+                  </ItemsControl.ItemsPanel>
+                </ItemsControl>
+              </Panel>
+            </Border>
+          </Popup>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

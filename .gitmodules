@@ -1,0 +1,3 @@
+[submodule "external/union"]
+	path = external/union
+	url = https://github.com/KDE/union.git

@@ -1,0 +1,26 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaUnion.Gallery.Pages.TogglesPage">
+  <StackPanel Spacing="16">
+    <Label Content="Check boxes" FontWeight="Bold" />
+    <StackPanel Spacing="4">
+      <CheckBox Content="Unchecked" />
+      <CheckBox Content="Checked" IsChecked="True" />
+      <CheckBox Content="Indeterminate" IsThreeState="True" IsChecked="{x:Null}" />
+      <CheckBox Content="Disabled" IsEnabled="False" />
+      <CheckBox Content="Disabled and checked" IsEnabled="False" IsChecked="True" />
+    </StackPanel>
+    <Label Content="Radio buttons" FontWeight="Bold" />
+    <StackPanel Spacing="4">
+      <RadioButton Content="First" GroupName="demo" IsChecked="True" />
+      <RadioButton Content="Second" GroupName="demo" />
+      <RadioButton Content="Disabled" GroupName="demo" IsEnabled="False" />
+    </StackPanel>
+    <Label Content="Switches" FontWeight="Bold" />
+    <StackPanel Spacing="4">
+      <ToggleSwitch Content="Off" />
+      <ToggleSwitch Content="On" IsChecked="True" />
+      <ToggleSwitch Content="Disabled" IsEnabled="False" />
+    </StackPanel>
+  </StackPanel>
+</UserControl>

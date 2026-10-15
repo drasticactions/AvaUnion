@@ -1,0 +1,79 @@
+:root {
+    --avaunion-demo-gap-xs: 2px;
+    --avaunion-demo-gap-s: 4px;
+    --avaunion-demo-gap-m: 6px;
+    --avaunion-demo-gap-l: 10px;
+    --avaunion-demo-gap-xl: 14px;
+
+    --avaunion-demo-round-s: 6px;
+    --avaunion-demo-round-m: 9px;
+    --avaunion-demo-round-l: 14px;
+    --avaunion-demo-round-pill: 100px;
+
+    --avaunion-demo-icon-s: 16px;
+    --avaunion-demo-icon-sm: 22px;
+    --avaunion-demo-icon-m: 32px;
+    --avaunion-demo-icon-l: 48px;
+
+    --avaunion-demo-size-s: 16px;
+    --avaunion-demo-size-m: 26px;
+    --avaunion-demo-size-l: 34px;
+    --avaunion-demo-control-height: 34px;
+    --avaunion-demo-field-width: 220px;
+    --avaunion-demo-menu-width: 170px;
+    --avaunion-demo-scroll-size: 14px;
+
+    --avaunion-demo-accent: custom-color("kcolorscheme", "active", "selection", "background", "normal");
+    --avaunion-demo-on-accent: custom-color("kcolorscheme", "active", "selection", "foreground", "text");
+    --avaunion-demo-accent-soft: modify-color(var(--avaunion-demo-accent) set-alpha 0.18);
+    --avaunion-demo-accent-faint: modify-color(var(--avaunion-demo-accent) set-alpha 0.1);
+    --avaunion-demo-accent-ring: 2px solid var(--avaunion-demo-accent);
+
+    --avaunion-demo-win-bg: custom-color("kcolorscheme", "active", "window", "background", "normal");
+    --avaunion-demo-win-bg-alt: custom-color("kcolorscheme", "active", "window", "background", "alternate");
+    --avaunion-demo-win-fg: custom-color("kcolorscheme", "active", "window", "foreground", "text");
+    --avaunion-demo-win-line: custom-color("kcolorscheme", "active", "window", "decoration", "frame");
+    --avaunion-demo-win-bg-inactive: custom-color("kcolorscheme", "inactive", "window", "background", "normal");
+    --avaunion-demo-win-fg-inactive: custom-color("kcolorscheme", "inactive", "window", "foreground", "text");
+    --avaunion-demo-win-fg-off: custom-color("kcolorscheme", "disabled", "window", "foreground", "text");
+    --avaunion-demo-win-bg-off: custom-color("kcolorscheme", "disabled", "window", "background", "normal");
+
+    --avaunion-demo-view-bg: custom-color("kcolorscheme", "active", "view", "background", "normal");
+    --avaunion-demo-view-bg-alt: custom-color("kcolorscheme", "active", "view", "background", "alternate");
+    --avaunion-demo-view-fg: custom-color("kcolorscheme", "active", "view", "foreground", "text");
+    --avaunion-demo-view-line: custom-color("kcolorscheme", "active", "view", "decoration", "frame");
+    --avaunion-demo-view-fg-off: custom-color("kcolorscheme", "disabled", "view", "foreground", "text");
+    --avaunion-demo-view-bg-off: custom-color("kcolorscheme", "disabled", "view", "background", "normal");
+
+    --avaunion-demo-btn-bg: custom-color("kcolorscheme", "active", "button", "background", "normal");
+    --avaunion-demo-btn-fg: custom-color("kcolorscheme", "active", "button", "foreground", "text");
+    --avaunion-demo-btn-fg-off: custom-color("kcolorscheme", "disabled", "button", "foreground", "text");
+
+    --avaunion-demo-head-bg: custom-color("kcolorscheme", "active", "header", "background", "normal");
+    --avaunion-demo-head-bg-inactive: custom-color("kcolorscheme", "inactive", "header", "background", "normal");
+    --avaunion-demo-head-fg: custom-color("kcolorscheme", "active", "header", "foreground", "text");
+    --avaunion-demo-head-fg-off: custom-color("kcolorscheme", "disabled", "header", "foreground", "text");
+    --avaunion-demo-head-line: custom-color("kcolorscheme", "active", "header", "decoration", "frame");
+
+    --avaunion-demo-comp-bg: custom-color("kcolorscheme", "active", "complementary", "background", "normal");
+    --avaunion-demo-comp-fg: custom-color("kcolorscheme", "active", "complementary", "foreground", "text");
+    --avaunion-demo-comp-fg-off: custom-color("kcolorscheme", "disabled", "complementary", "foreground", "text");
+
+    --avaunion-demo-tip-bg: custom-color("kcolorscheme", "active", "tooltip", "background", "normal");
+    --avaunion-demo-tip-fg: custom-color("kcolorscheme", "active", "tooltip", "foreground", "text");
+
+    --avaunion-demo-good: custom-color("kcolorscheme", "active", "view", "foreground", "positive");
+    --avaunion-demo-warn: custom-color("kcolorscheme", "active", "view", "foreground", "neutral");
+    --avaunion-demo-bad: custom-color("kcolorscheme", "active", "view", "foreground", "negative");
+
+    --avaunion-demo-tint-1: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-win-fg), 0.07);
+    --avaunion-demo-tint-2: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-win-fg), 0.13);
+    --avaunion-demo-tint-3: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-win-fg), 0.22);
+    --avaunion-demo-tint-4: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-win-fg), 0.4);
+    --avaunion-demo-view-tint: mix(var(--avaunion-demo-view-bg), var(--avaunion-demo-view-fg), 0.06);
+    --avaunion-demo-soft-line: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-win-fg), 0.16);
+    --avaunion-demo-muted-fg: mix(var(--avaunion-demo-win-fg), var(--avaunion-demo-win-bg), 0.4);
+
+    --avaunion-demo-lift: 0px 1px 3px 0px rgba(0, 0, 0, 0.12);
+    --avaunion-demo-float: 0px 6px 24px 0px rgba(0, 0, 0, 0.22);
+}

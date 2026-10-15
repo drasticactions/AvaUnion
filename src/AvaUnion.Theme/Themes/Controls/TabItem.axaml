@@ -1,0 +1,38 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type TabItem}" TargetType="TabItem" BasedOn="{StaticResource UnionTabButton}">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+          <LayoutTransformControl Name="PART_HeaderTransform">
+            <union:UnionPositioner>
+              <union:UnionIcon union:PositionedItem.Source="Icon" />
+              <ContentPresenter Name="PART_ContentPresenter"
+                                union:PositionedItem.Source="Text"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                RecognizesAccessKey="True"
+                                TextWrapping="NoWrap"
+                                VerticalContentAlignment="Center" />
+            </union:UnionPositioner>
+          </LayoutTransformControl>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^[TabStripPlacement=Left] /template/ LayoutTransformControl#PART_HeaderTransform">
+      <Setter Property="LayoutTransform" Value="rotate(-90deg)" />
+    </Style>
+    <Style Selector="^[TabStripPlacement=Left] /template/ union|UnionPositioner">
+      <Setter Property="Turned" Value="True" />
+    </Style>
+    <Style Selector="^[TabStripPlacement=Right] /template/ LayoutTransformControl#PART_HeaderTransform">
+      <Setter Property="LayoutTransform" Value="rotate(90deg)" />
+    </Style>
+    <Style Selector="^[TabStripPlacement=Right] /template/ union|UnionPositioner">
+      <Setter Property="Turned" Value="True" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

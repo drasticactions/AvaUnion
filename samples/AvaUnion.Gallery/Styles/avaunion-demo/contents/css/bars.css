@@ -1,0 +1,216 @@
+:root {
+    --avaunion-demo-groove: 8px;
+    --avaunion-demo-groove-bg: var(--avaunion-demo-tint-2);
+    --avaunion-demo-knob: 20px;
+}
+
+busyindicator {
+    width: 40px;
+    height: 40px;
+    icon-name: "process-working-symbolic";
+    icon-color: var(--avaunion-demo-accent);
+}
+
+progressbar {
+    padding-top: var(--avaunion-demo-gap-l);
+    padding-bottom: var(--avaunion-demo-gap-l);
+    inset-top: var(--avaunion-demo-gap-l);
+    inset-bottom: var(--avaunion-demo-gap-l);
+    text-alignment: content center center 0;
+    color: var(--avaunion-demo-win-fg);
+
+    background-color: var(--avaunion-demo-groove-bg);
+    border: none;
+    border-radius: 4px;
+
+    &.horizontal {
+        width: 200px;
+        height: var(--avaunion-demo-groove);
+    }
+
+    &.vertical {
+        width: var(--avaunion-demo-groove);
+        height: 200px;
+    }
+
+    & > track,
+    & > chunk {
+        background-color: var(--avaunion-demo-accent);
+        border: none;
+        border-radius: 4px;
+    }
+
+    & > chunk {
+        width: 48px;
+    }
+
+    &:disabled {
+        background-color: var(--avaunion-demo-tint-1);
+
+        & > track,
+        & > chunk {
+            background-color: var(--avaunion-demo-tint-3);
+        }
+    }
+}
+
+slider,
+rangeslider,
+dial {
+    background-color: var(--avaunion-demo-groove-bg);
+    border: none;
+    border-radius: 4px;
+
+    & > fill {
+        background-color: var(--avaunion-demo-accent);
+        border: none;
+        border-radius: 4px;
+    }
+
+    & > handle {
+        width: var(--avaunion-demo-knob);
+        height: var(--avaunion-demo-knob);
+        border-radius: 10px;
+        background-color: var(--avaunion-demo-view-bg);
+        border: 5px solid var(--avaunion-demo-accent);
+        box-shadow: var(--avaunion-demo-lift);
+
+        &:hovered {
+            border-width: 4px;
+            background-color: mix(var(--avaunion-demo-view-bg), var(--avaunion-demo-accent), 0.2);
+        }
+
+        &:pressed {
+            border-width: 6px;
+            box-shadow: none;
+        }
+    }
+
+    & > tickmark {
+        background-color: var(--avaunion-demo-tint-3);
+
+        &.active {
+            background-color: var(--avaunion-demo-accent);
+        }
+    }
+
+    &.horizontal {
+        width: 200px;
+        height: var(--avaunion-demo-groove);
+
+        & > tickmark {
+            width: 2px;
+            height: 6px;
+            margin-top: 3px;
+        }
+    }
+
+    &.vertical {
+        width: var(--avaunion-demo-groove);
+        height: 200px;
+
+        & > tickmark {
+            width: 6px;
+            height: 2px;
+            margin-left: 3px;
+        }
+    }
+
+    &:disabled {
+        background-color: var(--avaunion-demo-tint-1);
+
+        & > fill {
+            background-color: var(--avaunion-demo-tint-3);
+        }
+
+        & > handle {
+            background-color: var(--avaunion-demo-win-bg-off);
+            border-color: var(--avaunion-demo-tint-3);
+            box-shadow: none;
+        }
+
+        & > tickmark,
+        & > tickmark.active {
+            background-color: var(--avaunion-demo-tint-2);
+        }
+    }
+}
+
+slider:visual-focus > handle,
+rangeslider > handle:active-focus {
+    outline: 3px solid mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.4);
+}
+
+scrollbar {
+    width: var(--avaunion-demo-scroll-size);
+    height: var(--avaunion-demo-scroll-size);
+    padding: 3px;
+    border: none;
+
+    & > handle {
+        background-color: var(--avaunion-demo-tint-3);
+        border: none;
+        border-radius: 4px;
+
+        &:hovered {
+            background-color: var(--avaunion-demo-tint-4);
+        }
+
+        &:pressed {
+            background-color: var(--avaunion-demo-accent);
+        }
+
+        &:disabled {
+            background-color: var(--avaunion-demo-tint-1);
+        }
+    }
+
+    &.noninteractive {
+        width: 8px;
+        padding: 2px;
+
+        & > handle {
+            background-color: var(--avaunion-demo-tint-2);
+        }
+    }
+}
+
+dial {
+    width: 128px;
+    height: 128px;
+    border-radius: 64px;
+    background-color: var(--avaunion-demo-tint-1);
+    border: 6px solid var(--avaunion-demo-tint-2);
+
+    &:hovered {
+        border-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.4);
+    }
+
+    &:pressed {
+        border-color: var(--avaunion-demo-accent);
+    }
+
+    &:disabled {
+        background-color: var(--avaunion-demo-win-bg-off);
+        border-color: var(--avaunion-demo-tint-1);
+    }
+
+    & > handle {
+        background-color: var(--avaunion-demo-accent);
+        border: none;
+
+        &:disabled {
+            background-color: var(--avaunion-demo-tint-3);
+        }
+    }
+}
+
+slider.changed {
+    & > fill {
+        background-color: var(--avaunion-demo-warn);
+    }
+
+    & > tickmark.active {
+        background-color: var(--avaunion-demo-warn);
+    }
+}

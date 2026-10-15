@@ -1,0 +1,169 @@
+textfield,
+textarea,
+spinbox,
+searchfield {
+    height: var(--avaunion-demo-control-height);
+    padding-top: var(--avaunion-demo-gap-m);
+    padding-bottom: var(--avaunion-demo-gap-m);
+    padding-left: var(--avaunion-demo-gap-l);
+    padding-right: var(--avaunion-demo-gap-l);
+    border-radius: var(--avaunion-demo-round-m);
+
+    color: var(--avaunion-demo-view-fg);
+    background-color: var(--avaunion-demo-view-bg);
+    border: 1px solid var(--avaunion-demo-soft-line);
+
+    &:hovered {
+        border-color: var(--avaunion-demo-tint-4);
+    }
+
+    &:active-focus {
+        border-color: var(--avaunion-demo-accent);
+    }
+
+    &:visual-focus {
+        border-color: var(--avaunion-demo-accent);
+        outline: var(--avaunion-demo-accent-ring);
+    }
+
+    & > .placeholder {
+        color: mix(var(--avaunion-demo-view-fg), var(--avaunion-demo-view-bg), 0.45);
+    }
+
+    &:disabled {
+        color: var(--avaunion-demo-view-fg-off);
+        background-color: var(--avaunion-demo-view-bg-off);
+        border-color: var(--avaunion-demo-tint-1);
+
+        & > .placeholder {
+            color: mix(var(--avaunion-demo-view-fg), var(--avaunion-demo-view-bg), 0.75);
+        }
+    }
+}
+
+textfield,
+searchfield {
+    text-alignment: content start center 0;
+    width: var(--avaunion-demo-field-width);
+
+    &.inside-table {
+        border: none;
+        border-radius: 0px;
+        outline: none;
+        background-color: var(--avaunion-demo-view-bg-alt);
+    }
+}
+
+textarea {
+    text-alignment: content start start 0;
+    width: var(--avaunion-demo-field-width);
+}
+
+spinbox {
+    width: var(--avaunion-demo-size-m);
+    height: var(--avaunion-demo-control-height);
+    layout-alignment: content fill fill 0;
+    text-alignment: content center fill 0;
+    padding: var(--avaunion-demo-gap-xs);
+
+    & > indicator {
+        width: 30px;
+        height: 28px;
+        border-radius: 7px;
+        color: var(--avaunion-demo-accent);
+        background-color: var(--avaunion-demo-tint-1);
+
+        layout-alignment-container: item;
+        layout-alignment-vertical: fill;
+
+        &:hovered {
+            background-color: var(--avaunion-demo-accent-soft);
+        }
+
+        &:pressed {
+            color: var(--avaunion-demo-on-accent);
+            background-color: var(--avaunion-demo-accent);
+        }
+
+        &:disabled {
+            color: var(--avaunion-demo-btn-fg-off);
+            background-color: transparent;
+        }
+
+        &.decrease {
+            layout-alignment-horizontal: start;
+            icon-name: "spinbox-decrease";
+        }
+
+        &.increase {
+            layout-alignment-horizontal: end;
+            icon-name: "spinbox-increase";
+        }
+    }
+
+    &.constrained {
+        layout-alignment: item start fill 0;
+        text-alignment: item start fill 0;
+        padding-left: var(--avaunion-demo-gap-l);
+    }
+
+    &.constrained > indicator {
+        layout-alignment: item end stack-fill 0;
+        width: 26px;
+        height: 14px;
+        margin: 0px;
+        margin-right: var(--avaunion-demo-gap-xs);
+        background: none;
+
+        &:hovered,
+        &:pressed {
+            background: none;
+            color: var(--avaunion-demo-accent);
+            icon-color: var(--avaunion-demo-accent);
+        }
+
+        &.decrease {
+            layout-alignment-order: 1;
+            icon-name: "arrow-down";
+        }
+
+        &.increase {
+            icon-name: "arrow-up";
+        }
+    }
+}
+
+searchfield {
+    layout-alignment: content fill fill 1;
+    text-alignment: content fill center 0;
+    border-radius: var(--avaunion-demo-round-pill);
+    padding-top: var(--avaunion-demo-gap-m);
+    padding-bottom: var(--avaunion-demo-gap-m);
+    padding-left: var(--avaunion-demo-gap-xl);
+    padding-right: var(--avaunion-demo-gap-xl);
+
+    & > searchindicator,
+    & > clearindicator {
+        width: var(--avaunion-demo-icon-s);
+        height: var(--avaunion-demo-icon-s);
+    }
+
+    & > searchindicator {
+        layout-alignment: content start center 0;
+        icon-name: "search";
+        margin-right: var(--avaunion-demo-gap-m);
+    }
+
+    & > clearindicator {
+        layout-alignment: content end center 2;
+        icon-name: "edit-clear";
+        margin-left: var(--avaunion-demo-gap-m);
+    }
+}
+
+textfield.changed,
+textarea.changed,
+spinbox.changed {
+    background-color: mix(var(--avaunion-demo-view-bg), var(--avaunion-demo-warn), 0.2);
+    border: 1px solid var(--avaunion-demo-warn);
+}

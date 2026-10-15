@@ -1,0 +1,52 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type CalendarDatePicker}" TargetType="CalendarDatePicker">
+    <Setter Property="union:Union.Type" Value="textfield" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DataValidationErrors>
+          <Panel Name="LayoutRoot">
+            <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+            <Grid ColumnDefinitions="*,Auto">
+              <TextBox Name="PART_TextBox"
+                       Theme="{StaticResource UnionInnerTextBox}"
+                       Foreground="{TemplateBinding Foreground}"
+                       Margin="{TemplateBinding Padding}"
+                       PlaceholderText="{TemplateBinding PlaceholderText}"
+                       HorizontalAlignment="Stretch"
+                       VerticalAlignment="Stretch"
+                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}" />
+              <Button Name="PART_Button" Grid.Column="1" Theme="{StaticResource UnionToolButton}" Focusable="False">
+                <union:UnionIcon IconName="view-calendar" Width="16" Height="16" />
+              </Button>
+              <Popup Name="PART_Popup" PlacementTarget="{TemplateBinding}" IsLightDismissEnabled="True">
+                <Border union:Union.Type="popup" union:Union.StateSource="None">
+                  <Panel>
+                    <union:UnionBox Margin="{union:Style Layout.Inset}" />
+                    <Calendar Name="PART_Calendar"
+                              Margin="{union:Style Layout.Padding}"
+                              FirstDayOfWeek="{TemplateBinding FirstDayOfWeek}"
+                              IsTodayHighlighted="{TemplateBinding IsTodayHighlighted}"
+                              SelectedDate="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedDate, Mode=TwoWay}"
+                              DisplayDate="{TemplateBinding DisplayDate}"
+                              DisplayDateStart="{TemplateBinding DisplayDateStart}"
+                              DisplayDateEnd="{TemplateBinding DisplayDateEnd}" />
+                  </Panel>
+                </Border>
+              </Popup>
+            </Grid>
+          </Panel>
+        </DataValidationErrors>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

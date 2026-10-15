@@ -1,0 +1,77 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionSplitPrimary" TargetType="Button">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionPositioner>
+            <union:UnionIcon union:PositionedItem.Source="Icon" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              union:PositionedItem.Source="Text"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              RecognizesAccessKey="True"
+                              TextWrapping="NoWrap"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center" />
+          </union:UnionPositioner>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionSplitIndicator" TargetType="Button">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="indicator" />
+    <Setter Property="union:Union.StateSource" Value="TemplatedParent" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox ImplicitSize="True" />
+          <union:UnionIcon HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{union:Style Layout.Padding}" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type SplitButton}" TargetType="SplitButton">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="button" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <Grid ColumnDefinitions="*,Auto">
+            <Button Name="PART_PrimaryButton"
+                    Theme="{StaticResource UnionSplitPrimary}"
+                    Padding="{TemplateBinding Padding}"
+                    Content="{TemplateBinding Content}"
+                    ContentTemplate="{TemplateBinding ContentTemplate}"
+                    Command="{TemplateBinding Command}"
+                    CommandParameter="{TemplateBinding CommandParameter}"
+                    IsEnabled="{TemplateBinding IsEnabled}" />
+            <Button Name="PART_SecondaryButton"
+                    Grid.Column="1"
+                    Theme="{StaticResource UnionSplitIndicator}"
+                    IsEnabled="{TemplateBinding IsEnabled}" />
+          </Grid>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

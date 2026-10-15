@@ -1,0 +1,36 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionCheckableBase" TargetType="ToggleButton">
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Opacity" Value="{union:Style Display.Opacity, Fallback=1}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <union:UnionPositioner>
+            <union:UnionBox union:Union.Type="indicator" union:PositionedItem.Source="Layout" />
+            <union:UnionIcon union:PositionedItem.Source="Icon" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              union:PositionedItem.Source="Text"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              RecognizesAccessKey="True"
+                              TextWrapping="{union:Style Text.WrapMode, Fallback=NoWrap}"
+                              VerticalContentAlignment="Center" />
+          </union:UnionPositioner>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type CheckBox}" TargetType="CheckBox" BasedOn="{StaticResource UnionCheckableBase}">
+    <Setter Property="union:Union.Type" Value="checkbox" />
+  </ControlTheme>
+</ResourceDictionary>

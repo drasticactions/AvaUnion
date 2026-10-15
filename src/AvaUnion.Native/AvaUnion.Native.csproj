@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>AvaUnion.Native</PackageId>
+    <Description>Native shim for AvaUnion.</Description>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <NoWarn>$(NoWarn);NU5128</NoWarn>
+    <IsTrimmable>false</IsTrimmable>
+    <IsAotCompatible>false</IsAotCompatible>
+    <AvaUnionNativeArtifacts>$(AvaUnionRepoRoot)native/artifacts/</AvaUnionNativeArtifacts>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(AvaUnionNativeArtifacts)linux-x64/*.so" Pack="true" PackagePath="runtimes/linux-x64/native/" Visible="false" />
+    <None Include="$(AvaUnionNativeArtifacts)linux-arm64/*.so" Pack="true" PackagePath="runtimes/linux-arm64/native/" Visible="false" />
+  </ItemGroup>
+
+  <Target Name="AvaUnionRequireShims" BeforeTargets="GenerateNuspec">
+    <PropertyGroup>
+      <_AvaUnionShim>libavaunion-native-$(AvaUnionUnionVersion).so</_AvaUnionShim>
+    </PropertyGroup>
+    <Error Condition="!Exists('$(AvaUnionNativeArtifacts)linux-x64/$(_AvaUnionShim)')"
+           Text="AvaUnion.Native needs native/artifacts/linux-x64/$(_AvaUnionShim); run tools/natives/fetch-natives.sh --all or build native/." />
+    <Error Condition="!Exists('$(AvaUnionNativeArtifacts)linux-arm64/$(_AvaUnionShim)')"
+           Text="AvaUnion.Native needs native/artifacts/linux-arm64/$(_AvaUnionShim); run tools/natives/fetch-natives.sh --all." />
+  </Target>
+
+</Project>

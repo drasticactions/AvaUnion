@@ -1,0 +1,76 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type NotificationCard}" TargetType="NotificationCard">
+    <Setter Property="union:Union.Type" Value="inlinemessage" />
+    <Setter Property="UseLayoutRounding" Value="True" />
+    <Setter Property="Width" Value="350" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="RenderTransformOrigin" Value="50%,75%" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <LayoutTransformControl Name="PART_LayoutTransformControl" UseRenderTransform="True">
+          <Panel>
+            <union:UnionBox Margin="{union:Style Layout.Inset}" />
+            <Decorator Margin="{union:Style Border}">
+              <DockPanel Margin="{TemplateBinding Padding}">
+                <union:UnionIcon Name="PART_Icon"
+                                 DockPanel.Dock="Left"
+                                 IconName="emblem-information"
+                                 Width="22"
+                                 Height="22"
+                                 Margin="4,4,0,4"
+                                 VerticalAlignment="Center" />
+                <ContentPresenter Name="PART_ContentPresenter"
+                                  Margin="8,0,0,0"
+                                  Content="{TemplateBinding Content}"
+                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+              </DockPanel>
+            </Decorator>
+          </Panel>
+        </LayoutTransformControl>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:success /template/ union|UnionIcon#PART_Icon">
+      <Setter Property="IconName" Value="emblem-success" />
+    </Style>
+    <Style Selector="^:warning /template/ union|UnionIcon#PART_Icon">
+      <Setter Property="IconName" Value="emblem-warning" />
+    </Style>
+    <Style Selector="^:error /template/ union|UnionIcon#PART_Icon">
+      <Setter Property="IconName" Value="emblem-error" />
+    </Style>
+
+    <ControlTheme.Animations>
+      <Animation Duration="{union:Duration 0:0:0.25}" Easing="QuadraticEaseOut" FillMode="Forward">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0" />
+          <Setter Property="TranslateTransform.Y" Value="12" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+          <Setter Property="TranslateTransform.Y" Value="0" />
+        </KeyFrame>
+      </Animation>
+    </ControlTheme.Animations>
+
+    <Style Selector="^[IsClosing=true]">
+      <Style.Animations>
+        <Animation Duration="{union:Duration 0:0:0.25}" Easing="QuadraticEaseIn" FillMode="Forward">
+          <KeyFrame Cue="0%">
+            <Setter Property="Opacity" Value="1" />
+          </KeyFrame>
+          <KeyFrame Cue="100%">
+            <Setter Property="Opacity" Value="0" />
+            <Setter Property="IsClosed" Value="True" />
+          </KeyFrame>
+        </Animation>
+      </Style.Animations>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

@@ -1,0 +1,8 @@
+:root {
+    --avaunion-test-window-color: custom-color("kcolorscheme", "active", "window", "background", "normal");
+    --avaunion-test-view-color: custom-color("kcolorscheme", "active", "view", "background", "normal");
+    --avaunion-test-button-color: custom-color("kcolorscheme", "active", "button", "background", "normal");
+    --avaunion-test-text-color: custom-color("kcolorscheme", "active", "window", "foreground", "text");
+    --avaunion-test-frame-color: custom-color("kcolorscheme", "active", "window", "decoration", "frame");
+    --avaunion-test-accent-color: #3daee9;
+}

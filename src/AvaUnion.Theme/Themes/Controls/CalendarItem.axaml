@@ -1,0 +1,77 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    xmlns:markup="using:AvaUnion.Markup"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type CalendarItem}" TargetType="CalendarItem">
+    <Setter Property="DayTitleTemplate">
+      <Template x:DataType="x:String">
+        <Border union:Union.Type="dayofweekrow" union:Union.StateSource="None">
+          <Border union:Union.Type="label" union:Union.Hints="current-month" union:Union.StateSource="None" MinWidth="32">
+            <Panel>
+              <union:UnionBox />
+              <TextBlock Text="{Binding Converter={x:Static markup:CalendarConverters.DayName}}"
+                         Foreground="{union:Style Text.Color}"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center" />
+            </Panel>
+          </Border>
+        </Border>
+      </Template>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DockPanel>
+          <Grid DockPanel.Dock="Top" ColumnDefinitions="*,Auto,Auto">
+            <Button Name="PART_HeaderButton"
+                    Theme="{StaticResource UnionToolButton}"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Left" />
+            <Button Name="PART_PreviousButton" Grid.Column="1" Theme="{StaticResource UnionToolButton}">
+              <union:UnionIcon IconName="go-previous" MirrorInRightToLeft="True" Width="16" Height="16" />
+            </Button>
+            <Button Name="PART_NextButton" Grid.Column="2" Theme="{StaticResource UnionToolButton}">
+              <union:UnionIcon IconName="go-next" MirrorInRightToLeft="True" Width="16" Height="16" />
+            </Button>
+          </Grid>
+          <Panel union:Union.Type="monthgrid" union:Union.StateSource="None">
+            <union:UnionBox />
+            <Grid Name="PART_MonthView" IsVisible="False" Margin="{union:Style Border}">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+            </Grid>
+            <Grid Name="PART_YearView" IsVisible="False" Margin="{union:Style Border}">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+            </Grid>
+          </Panel>
+        </DockPanel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

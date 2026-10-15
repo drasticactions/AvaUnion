@@ -1,0 +1,21 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/AvaUnion.Native/AvaUnion.Native.csproj" />
+    <Project Path="src/AvaUnion.DataGrid/AvaUnion.DataGrid.csproj" />
+    <Project Path="src/AvaUnion.Theme/AvaUnion.Theme.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/AvaUnion.Theme.Tests/AvaUnion.Theme.Tests.csproj" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/AvaUnion.Gallery/AvaUnion.Gallery.csproj" />
+    <Project Path="samples/AvaUnion.Gallery.Desktop/AvaUnion.Gallery.Desktop.csproj" />
+    <Project Path="samples/AvaUnion.Gallery.Browser/AvaUnion.Gallery.Browser.csproj" />
+  </Folder>
+  <Folder Name="/solution-items/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="global.json" />
+    <File Path="NOTICE.md" />
+  </Folder>
+</Solution>

@@ -1,0 +1,47 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type DataGridColumnHeader}" TargetType="DataGridColumnHeader">
+    <Setter Property="union:Union.Type" Value="headerviewdelegate" />
+    <Setter Property="union:Union.Hints" Value="horizontal" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="AreSeparatorsVisible" Value="False" />
+    <Setter Property="MinHeight" Value="{union:Style Layout.Height, Fallback=32}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Name="PART_ColumnHeaderRoot">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <union:UnionPositioner>
+            <union:UnionIcon union:PositionedItem.Source="Icon" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              union:PositionedItem.Source="Text"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              TextTrimming="{union:Style Text.Elide, Fallback=CharacterEllipsis}"
+                              VerticalContentAlignment="Center" />
+            <union:UnionIcon Name="PART_SortIndicator"
+                             union:Union.Type="indicator"
+                             union:PositionedItem.Source="Layout" />
+          </union:UnionPositioner>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:dragIndicator">
+      <Setter Property="Opacity" Value="0.5" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionDataGridTopLeftHeader" TargetType="DataGridColumnHeader">
+    <Setter Property="union:Union.Type" Value="headerviewdelegate" />
+    <Setter Property="union:Union.Hints" Value="horizontal" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <union:UnionBox Margin="{union:Style Layout.Inset}" />
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

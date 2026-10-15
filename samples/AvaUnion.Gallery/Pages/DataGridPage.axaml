@@ -1,0 +1,24 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="using:AvaUnion.Gallery.Pages"
+             x:Class="AvaUnion.Gallery.Pages.DataGridPage">
+  <StackPanel Spacing="16">
+    <Label Content="Data grid (AvaUnion.DataGrid)" FontWeight="Bold" />
+    <CheckBox Name="Alternate" Content="Alternating row colors" IsChecked="True" />
+    <DataGrid Name="People" Height="240" HeadersVisibility="All" CanUserReorderColumns="True" CanUserSortColumns="True">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Name" Width="180" Binding="{Binding Name}" x:DataType="pages:Person" />
+        <DataGridTextColumn Header="City" Width="160" Binding="{Binding City}" x:DataType="pages:Person" />
+        <DataGridTextColumn Header="Born" Width="*" Binding="{Binding Born}" x:DataType="pages:Person" />
+      </DataGrid.Columns>
+    </DataGrid>
+    <Label Content="Grouped" FontWeight="Bold" />
+    <DataGrid Name="Grouped" Height="240" IsReadOnly="True">
+      <DataGrid.Columns>
+        <DataGridTextColumn Header="Name" Width="180" Binding="{Binding Name}" x:DataType="pages:Person" />
+        <DataGridTextColumn Header="City" Width="160" Binding="{Binding City}" x:DataType="pages:Person" />
+        <DataGridTextColumn Header="Born" Width="*" Binding="{Binding Born}" x:DataType="pages:Person" />
+      </DataGrid.Columns>
+    </DataGrid>
+  </StackPanel>
+</UserControl>

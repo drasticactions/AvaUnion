@@ -1,0 +1,35 @@
+<Project>
+  <Target Name="AvaUnionStylePackages"
+          BeforeTargets="AssignTargetPaths;PrepareForBuild"
+          Condition="'@(UnionStylePackage)' != ''">
+    <ItemGroup>
+      <_AvaUnionPkg Include="@(UnionStylePackage)">
+        <StyleId Condition="'%(UnionStylePackage.Id)' != ''">%(UnionStylePackage.Id)</StyleId>
+        <StyleId Condition="'%(UnionStylePackage.Id)' == ''">%(UnionStylePackage.Filename)%(UnionStylePackage.Extension)</StyleId>
+      </_AvaUnionPkg>
+    </ItemGroup>
+    <Error Condition="!Exists('%(_AvaUnionPkg.FullPath)/metadata.json')"
+           Text="UnionStylePackage %(_AvaUnionPkg.Identity) has no metadata.json." />
+    <Warning Condition="'%(_AvaUnionPkg.Snapshot)' == ''"
+             Text="UnionStylePackage %(_AvaUnionPkg.StyleId) has no Snapshot. The managed engine will not have this style." />
+    <Error Condition="'%(_AvaUnionPkg.Snapshot)' != '' and !Exists('%(_AvaUnionPkg.Snapshot)')"
+           Text="UnionStylePackage %(_AvaUnionPkg.StyleId): snapshot %(_AvaUnionPkg.Snapshot) not found. Build it with the AvaUnion style-snapshot workflow or tools/build-style-snapshot.sh." />
+    <ItemGroup>
+      <_AvaUnionPkgFile Include="%(_AvaUnionPkg.FullPath)/**/*">
+        <StyleId>%(_AvaUnionPkg.StyleId)</StyleId>
+        <PkgRoot>%(_AvaUnionPkg.FullPath)</PkgRoot>
+      </_AvaUnionPkgFile>
+      <None Include="@(_AvaUnionPkgFile)"
+            Link="union-styles/%(_AvaUnionPkgFile.StyleId)/$([MSBuild]::MakeRelative('%(_AvaUnionPkgFile.PkgRoot)/', '%(_AvaUnionPkgFile.FullPath)'))"
+            CopyToOutputDirectory="PreserveNewest"
+            CopyToPublishDirectory="PreserveNewest" />
+      <EmbeddedResource Include="%(_AvaUnionPkg.Snapshot)"
+                        Condition="'%(_AvaUnionPkg.Snapshot)' != ''"
+                        LogicalName="AvaUnion.Styles.%(_AvaUnionPkg.StyleId).union.bin"
+                        WithCulture="false"
+                        Type="Non-Resx" />
+      <_AvaUnionPkg Remove="@(_AvaUnionPkg)" />
+      <_AvaUnionPkgFile Remove="@(_AvaUnionPkgFile)" />
+    </ItemGroup>
+  </Target>
+</Project>

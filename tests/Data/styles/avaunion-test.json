@@ -1,0 +1,1283 @@
+{
+    "format": 1,
+    "hasErrors": false,
+    "images": {
+        "avaunion-test/contents/images/mark.svg": {
+            "shapes": [
+                {
+                    "d": "M3 8.5 L6.5 12 L13 4.5",
+                    "fill": false,
+                    "kind": "path",
+                    "lineCap": "round",
+                    "lineJoin": "round",
+                    "stroke": true,
+                    "strokeWidth": 2
+                }
+            ],
+            "viewBox": [
+                0,
+                0,
+                16,
+                16
+            ]
+        }
+    },
+    "metadata": {
+        "authors": [
+            "AvaUnion"
+        ],
+        "description": "A small style for the AvaUnion tests.",
+        "input-type": "css",
+        "input-version": 1,
+        "license": "LGPL-2.1-only",
+        "name": "AvaUnion Test",
+        "name[de_DE]": "AvaUnion-Test",
+        "version": "1.0"
+    },
+    "outside": [
+    ],
+    "rules": [
+        {
+            "properties": {
+                "icon.alignment.container": 1,
+                "icon.alignment.horizontal": 1,
+                "icon.alignment.order": 0,
+                "icon.alignment.vertical": 2,
+                "layout.alignment.container": 0,
+                "layout.alignment.horizontal": 1,
+                "layout.alignment.order": 0,
+                "layout.alignment.vertical": 2,
+                "text.alignment.container": 1,
+                "text.alignment.horizontal": 1,
+                "text.alignment.order": 1,
+                "text.alignment.vertical": 2
+            },
+            "selectors": [
+                {
+                    "kind": "AnyElement",
+                    "weight": 0
+                }
+            ],
+            "weight": 0
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "background",
+                        "normal"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "icon.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "foreground",
+                        "text"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "text.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "foreground",
+                        "text"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "applicationwindow",
+                    "weight": 1
+                }
+            ],
+            "weight": 1
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "args": [
+                        "active",
+                        "button",
+                        "background",
+                        "normal"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.bottom.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.bottom.size": 1,
+                "border.bottom.style": 1,
+                "border.left.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.left.size": 1,
+                "border.left.style": 1,
+                "border.right.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.right.size": 1,
+                "border.right.style": 1,
+                "border.top.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.top.size": 1,
+                "border.top.style": 1,
+                "corners.bottomLeft.radius": 5,
+                "corners.bottomRight.radius": 5,
+                "corners.topLeft.radius": 5,
+                "corners.topRight.radius": 5,
+                "icon.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "foreground",
+                        "text"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "layout.height": 30,
+                "layout.padding.bottom": 6,
+                "layout.padding.left": 6,
+                "layout.padding.right": 6,
+                "layout.padding.top": 6,
+                "layout.spacing": 4,
+                "layout.width": 30,
+                "text.alignment.horizontal": 2,
+                "text.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "foreground",
+                        "text"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "text.font": {
+                    "weight": 600
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "button",
+                    "weight": 1
+                }
+            ],
+            "weight": 1
+        },
+        {
+            "properties": {
+                "border.bottom.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "border.left.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "border.right.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "border.top.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "button",
+                    "weight": 1
+                },
+                {
+                    "kind": "State",
+                    "state": 1,
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "a": {
+                        "args": [
+                            "active",
+                            "button",
+                            "background",
+                            "normal"
+                        ],
+                        "source": "kcolorscheme",
+                        "type": "custom"
+                    },
+                    "b": {
+                        "a": 255,
+                        "b": 224,
+                        "g": 224,
+                        "r": 224,
+                        "type": "rgba"
+                    },
+                    "type": "multiply"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "button",
+                    "weight": 1
+                },
+                {
+                    "kind": "State",
+                    "state": 8,
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "a": {
+                        "args": [
+                            "active",
+                            "button",
+                            "background",
+                            "normal"
+                        ],
+                        "source": "kcolorscheme",
+                        "type": "custom"
+                    },
+                    "b": {
+                        "a": 255,
+                        "b": 32,
+                        "g": 32,
+                        "r": 32,
+                        "type": "rgba"
+                    },
+                    "type": "subtract"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "button",
+                    "weight": 1
+                },
+                {
+                    "kind": "State",
+                    "state": 16,
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "icon.color": {
+                    "a": 127,
+                    "b": null,
+                    "color": {
+                        "args": [
+                            "active",
+                            "window",
+                            "foreground",
+                            "text"
+                        ],
+                        "source": "kcolorscheme",
+                        "type": "custom"
+                    },
+                    "g": null,
+                    "r": null,
+                    "type": "set"
+                },
+                "text.color": {
+                    "a": 127,
+                    "b": null,
+                    "color": {
+                        "args": [
+                            "active",
+                            "window",
+                            "foreground",
+                            "text"
+                        ],
+                        "source": "kcolorscheme",
+                        "type": "custom"
+                    },
+                    "g": null,
+                    "r": null,
+                    "type": "set"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "button",
+                    "weight": 1
+                },
+                {
+                    "kind": "State",
+                    "state": 32,
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "a": 0,
+                    "b": 0,
+                    "g": 0,
+                    "r": 0,
+                    "type": "rgba"
+                },
+                "border.bottom.size": 0,
+                "border.left.size": 0,
+                "border.right.size": 0,
+                "border.top.size": 0
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "button",
+                    "weight": 1
+                },
+                {
+                    "kind": "Hint",
+                    "value": "flat",
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "args": [
+                        "active",
+                        "button",
+                        "background",
+                        "normal"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.bottom.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.bottom.size": 1,
+                "border.bottom.style": 1,
+                "border.left.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.left.size": 1,
+                "border.left.style": 1,
+                "border.right.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.right.size": 1,
+                "border.right.style": 1,
+                "border.top.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.top.size": 1,
+                "border.top.style": 1,
+                "corners.bottomLeft.radius": 5,
+                "corners.bottomRight.radius": 5,
+                "corners.topLeft.radius": 5,
+                "corners.topRight.radius": 5,
+                "icon.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "foreground",
+                        "text"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "layout.height": 30,
+                "layout.padding.bottom": 6,
+                "layout.padding.left": 6,
+                "layout.padding.right": 6,
+                "layout.padding.top": 6,
+                "layout.spacing": 4,
+                "layout.width": 30,
+                "text.alignment.horizontal": 2,
+                "text.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "foreground",
+                        "text"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "text.font": {
+                    "weight": 600
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "toolbutton",
+                    "weight": 1
+                }
+            ],
+            "weight": 1
+        },
+        {
+            "properties": {
+                "border.bottom.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "border.left.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "border.right.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "border.top.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "toolbutton",
+                    "weight": 1
+                },
+                {
+                    "kind": "State",
+                    "state": 1,
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "a": {
+                        "args": [
+                            "active",
+                            "button",
+                            "background",
+                            "normal"
+                        ],
+                        "source": "kcolorscheme",
+                        "type": "custom"
+                    },
+                    "b": {
+                        "a": 255,
+                        "b": 224,
+                        "g": 224,
+                        "r": 224,
+                        "type": "rgba"
+                    },
+                    "type": "multiply"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "toolbutton",
+                    "weight": 1
+                },
+                {
+                    "kind": "State",
+                    "state": 8,
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "a": {
+                        "args": [
+                            "active",
+                            "button",
+                            "background",
+                            "normal"
+                        ],
+                        "source": "kcolorscheme",
+                        "type": "custom"
+                    },
+                    "b": {
+                        "a": 255,
+                        "b": 32,
+                        "g": 32,
+                        "r": 32,
+                        "type": "rgba"
+                    },
+                    "type": "subtract"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "toolbutton",
+                    "weight": 1
+                },
+                {
+                    "kind": "State",
+                    "state": 16,
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "icon.color": {
+                    "a": 127,
+                    "b": null,
+                    "color": {
+                        "args": [
+                            "active",
+                            "window",
+                            "foreground",
+                            "text"
+                        ],
+                        "source": "kcolorscheme",
+                        "type": "custom"
+                    },
+                    "g": null,
+                    "r": null,
+                    "type": "set"
+                },
+                "text.color": {
+                    "a": 127,
+                    "b": null,
+                    "color": {
+                        "args": [
+                            "active",
+                            "window",
+                            "foreground",
+                            "text"
+                        ],
+                        "source": "kcolorscheme",
+                        "type": "custom"
+                    },
+                    "g": null,
+                    "r": null,
+                    "type": "set"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "toolbutton",
+                    "weight": 1
+                },
+                {
+                    "kind": "State",
+                    "state": 32,
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "a": 0,
+                    "b": 0,
+                    "g": 0,
+                    "r": 0,
+                    "type": "rgba"
+                },
+                "border.bottom.size": 0,
+                "border.left.size": 0,
+                "border.right.size": 0,
+                "border.top.size": 0
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "toolbutton",
+                    "weight": 1
+                },
+                {
+                    "kind": "Hint",
+                    "value": "flat",
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "outline.bottom.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "outline.bottom.size": 2,
+                "outline.bottom.style": 1,
+                "outline.left.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "outline.left.size": 2,
+                "outline.left.style": 1,
+                "outline.right.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "outline.right.size": 2,
+                "outline.right.style": 1,
+                "outline.top.color": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "outline.top.size": 2,
+                "outline.top.style": 1
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "button",
+                    "weight": 1
+                },
+                {
+                    "kind": "State",
+                    "state": 4,
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "layout.padding.bottom": 4,
+                "layout.padding.left": 4,
+                "layout.padding.right": 4,
+                "layout.padding.top": 4
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "toolbutton",
+                    "weight": 1
+                },
+                {
+                    "kind": "AttributeEquals",
+                    "name": "display",
+                    "value": "icon-only",
+                    "valueType": "string",
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "layout.margins.bottom": 1,
+                "layout.margins.left": 1,
+                "layout.margins.right": 1,
+                "layout.margins.top": 1
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "applicationwindow",
+                    "weight": 1
+                },
+                {
+                    "kind": "ChildCombinator",
+                    "weight": 0
+                },
+                {
+                    "kind": "Type",
+                    "value": "button",
+                    "weight": 1
+                }
+            ],
+            "weight": 2
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "a": {
+                        "args": [
+                            "active",
+                            "button",
+                            "background",
+                            "normal"
+                        ],
+                        "source": "kcolorscheme",
+                        "type": "custom"
+                    },
+                    "b": {
+                        "a": 255,
+                        "b": 16,
+                        "g": 16,
+                        "r": 16,
+                        "type": "rgba"
+                    },
+                    "type": "add"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "applicationwindow",
+                    "weight": 1
+                },
+                {
+                    "kind": "DescendantCombinator",
+                    "weight": 0
+                },
+                {
+                    "kind": "Type",
+                    "value": "button",
+                    "weight": 1
+                },
+                {
+                    "kind": "Hint",
+                    "value": "flat",
+                    "weight": 10
+                },
+                {
+                    "kind": "State",
+                    "state": 1,
+                    "weight": 10
+                }
+            ],
+            "weight": 22
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "a": 127,
+                    "b": 30,
+                    "g": 20,
+                    "r": 10,
+                    "type": "rgba"
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "tabbutton",
+                    "weight": 1
+                },
+                {
+                    "kind": "AttributeEquals",
+                    "name": "colorset",
+                    "value": "header",
+                    "valueType": "string",
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "args": [
+                        "active",
+                        "view",
+                        "background",
+                        "normal"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.bottom.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.bottom.size": 1,
+                "border.bottom.style": 1,
+                "border.left.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.left.size": 1,
+                "border.left.style": 1,
+                "border.right.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.right.size": 1,
+                "border.right.style": 1,
+                "border.top.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.top.size": 1,
+                "border.top.style": 1,
+                "corners.bottomLeft.radius": 3,
+                "corners.bottomRight.radius": 3,
+                "corners.topLeft.radius": 3,
+                "corners.topRight.radius": 3,
+                "layout.padding.bottom": 5,
+                "layout.padding.left": 5,
+                "layout.padding.right": 5,
+                "layout.padding.top": 5,
+                "text.font": {
+                    "pointSize": 11
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "textfield",
+                    "weight": 1
+                }
+            ],
+            "weight": 1
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "a": 255,
+                    "b": 128,
+                    "g": 128,
+                    "r": 128,
+                    "type": "rgba"
+                },
+                "layout.height": 1
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "frame",
+                    "weight": 1
+                },
+                {
+                    "kind": "AttributeSubstringMatch",
+                    "name": "shape",
+                    "value": "hori",
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "border.bottom.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.bottom.size": 1,
+                "border.bottom.style": 1,
+                "border.left.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.left.size": 1,
+                "border.left.style": 1,
+                "border.right.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.right.size": 1,
+                "border.right.style": 1,
+                "border.top.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.top.size": 1,
+                "border.top.style": 1
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "frame",
+                    "weight": 1
+                },
+                {
+                    "kind": "AttributeExists",
+                    "value": "shape",
+                    "weight": 10
+                }
+            ],
+            "weight": 11
+        },
+        {
+            "properties": {
+                "layout.width": 42
+            },
+            "selectors": [
+                {
+                    "kind": "Id",
+                    "value": "avaunion-test-id",
+                    "weight": 100
+                }
+            ],
+            "weight": 100
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "args": [
+                        "active",
+                        "view",
+                        "background",
+                        "normal"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.bottom.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.bottom.size": 1,
+                "border.bottom.style": 1,
+                "border.left.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.left.size": 1,
+                "border.left.style": 1,
+                "border.right.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.right.size": 1,
+                "border.right.style": 1,
+                "border.top.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "decoration",
+                        "frame"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "border.top.size": 1,
+                "border.top.style": 1,
+                "corners.bottomLeft.radius": 3,
+                "corners.bottomRight.radius": 3,
+                "corners.topLeft.radius": 3,
+                "corners.topRight.radius": 3,
+                "layout.height": 18,
+                "layout.width": 18
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "checkbox",
+                    "weight": 1
+                },
+                {
+                    "kind": "ChildCombinator",
+                    "weight": 0
+                },
+                {
+                    "kind": "Type",
+                    "value": "indicator",
+                    "weight": 1
+                }
+            ],
+            "weight": 2
+        },
+        {
+            "properties": {
+                "background.image.flags": 16,
+                "background.image.maskColor": {
+                    "a": 255,
+                    "b": 233,
+                    "g": 174,
+                    "r": 61,
+                    "type": "rgba"
+                },
+                "background.image.source": "avaunion-test/contents/images/mark.svg"
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "checkbox",
+                    "weight": 1
+                },
+                {
+                    "kind": "State",
+                    "state": 16,
+                    "weight": 10
+                },
+                {
+                    "kind": "ChildCombinator",
+                    "weight": 0
+                },
+                {
+                    "kind": "Type",
+                    "value": "indicator",
+                    "weight": 1
+                }
+            ],
+            "weight": 12
+        },
+        {
+            "properties": {
+                "background.color": {
+                    "a": {
+                        "args": [
+                            "active",
+                            "button",
+                            "background",
+                            "normal"
+                        ],
+                        "source": "kcolorscheme",
+                        "type": "custom"
+                    },
+                    "amount": 0.25,
+                    "b": {
+                        "a": 255,
+                        "b": 233,
+                        "g": 174,
+                        "r": 61,
+                        "type": "rgba"
+                    },
+                    "type": "mix"
+                },
+                "corners.bottomLeft.radius": 8,
+                "corners.bottomRight.radius": 8,
+                "corners.topLeft.radius": 8,
+                "corners.topRight.radius": 8,
+                "layout.height": 16,
+                "layout.width": 16
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "slider",
+                    "weight": 1
+                },
+                {
+                    "kind": "ChildCombinator",
+                    "weight": 0
+                },
+                {
+                    "kind": "Type",
+                    "value": "handle",
+                    "weight": 1
+                }
+            ],
+            "weight": 2
+        },
+        {
+            "properties": {
+                "icon.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "foreground",
+                        "text"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "text.color": {
+                    "args": [
+                        "active",
+                        "window",
+                        "foreground",
+                        "text"
+                    ],
+                    "source": "kcolorscheme",
+                    "type": "custom"
+                },
+                "text.font": {
+                    "pointSize": 12
+                }
+            },
+            "selectors": [
+                {
+                    "kind": "Type",
+                    "value": "label",
+                    "weight": 1
+                }
+            ],
+            "weight": 1
+        }
+    ],
+    "schema": "ad753af7ae55c9e21618671529f9bb81163b75eb7bde3ff886bde9e4e0413e2e",
+    "sharedVariables": [
+    ],
+    "style": "avaunion-test",
+    "union": "6.8.0"
+}

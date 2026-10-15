@@ -1,0 +1,87 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionExpanderHeader" TargetType="ToggleButton">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="toolbutton" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="Transparent">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <union:UnionPositioner>
+            <union:UnionIcon Name="PART_Arrow" union:PositionedItem.Source="Icon" IconName="{TemplateBinding Tag}" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              union:PositionedItem.Source="Text"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              RecognizesAccessKey="True"
+                              TextWrapping="NoWrap"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center" />
+          </union:UnionPositioner>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type Expander}" TargetType="Expander">
+    <Setter Property="Foreground" Value="{DynamicResource Union.Active.Window.Foreground.TextBrush}" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DockPanel>
+          <ToggleButton Name="ExpanderHeader"
+                        DockPanel.Dock="Top"
+                        Theme="{StaticResource UnionExpanderHeader}"
+                        Content="{TemplateBinding Header}"
+                        ContentTemplate="{TemplateBinding HeaderTemplate}"
+                        IsChecked="{TemplateBinding IsExpanded, Mode=TwoWay}"
+                        IsEnabled="{TemplateBinding IsEnabled}" />
+          <Border Name="ExpanderContent" union:Union.Type="frame" union:Union.StateSource="None" IsVisible="{TemplateBinding IsExpanded}">
+            <Panel>
+              <union:UnionBox Margin="{union:Style Layout.Inset}" />
+              <ContentPresenter Name="PART_ContentPresenter"
+                                Margin="{TemplateBinding Padding}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Panel>
+          </Border>
+        </DockPanel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^ /template/ ToggleButton#ExpanderHeader">
+      <Setter Property="Tag" Value="arrow-right" />
+    </Style>
+    <Style Selector="^:expanded /template/ ToggleButton#ExpanderHeader">
+      <Setter Property="Tag" Value="arrow-down" />
+    </Style>
+    <Style Selector="^:up:expanded /template/ ToggleButton#ExpanderHeader">
+      <Setter Property="Tag" Value="arrow-up" />
+    </Style>
+    <Style Selector="^:left:expanded /template/ ToggleButton#ExpanderHeader">
+      <Setter Property="Tag" Value="arrow-left" />
+    </Style>
+    <Style Selector="^:right /template/ ToggleButton#ExpanderHeader">
+      <Setter Property="Tag" Value="arrow-left" />
+    </Style>
+    <Style Selector="^:right:expanded /template/ ToggleButton#ExpanderHeader">
+      <Setter Property="Tag" Value="arrow-right" />
+    </Style>
+    <Style Selector="^:up /template/ ToggleButton#ExpanderHeader">
+      <Setter Property="DockPanel.Dock" Value="Bottom" />
+    </Style>
+    <Style Selector="^:left /template/ ToggleButton#ExpanderHeader">
+      <Setter Property="DockPanel.Dock" Value="Right" />
+    </Style>
+    <Style Selector="^:right /template/ ToggleButton#ExpanderHeader">
+      <Setter Property="DockPanel.Dock" Value="Left" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

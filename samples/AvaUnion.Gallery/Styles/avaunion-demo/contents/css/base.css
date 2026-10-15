@@ -1,0 +1,111 @@
+* {
+    icon-size: var(--avaunion-demo-icon-s);
+}
+
+label {
+    color: var(--avaunion-demo-win-fg);
+
+    &:disabled {
+        color: var(--avaunion-demo-win-fg-off);
+    }
+
+    &[colorset="complementary"],
+    [colorset="complementary"] & {
+        color: var(--avaunion-demo-comp-fg);
+    }
+}
+
+heading {
+    color: var(--avaunion-demo-win-fg);
+
+    &.primary {
+        font-weight: 700;
+    }
+
+    &.level-1 {
+        font-size: 150%;
+        font-weight: 300;
+    }
+
+    &.primary.level-1 {
+        font-size: 150%;
+        font-weight: 700;
+    }
+
+    &.level-2 {
+        font-size: 128%;
+    }
+
+    &.primary.level-2 {
+        font-size: 128%;
+        font-weight: 700;
+    }
+
+    &.level-3 {
+        font-size: 116%;
+    }
+
+    &.primary.level-3 {
+        font-size: 116%;
+        font-weight: 700;
+    }
+
+    &.level-4 {
+        font-size: 106%;
+    }
+
+    &.primary.level-4 {
+        font-size: 106%;
+        font-weight: 700;
+    }
+
+    &.secondary {
+        color: var(--avaunion-demo-muted-fg);
+    }
+}
+
+indicatorarrowup {
+    icon-name: "arrow-up-symbolic";
+    color: var(--avaunion-demo-win-fg);
+}
+
+indicatorarrowdown {
+    icon-name: "arrow-down-symbolic";
+    color: var(--avaunion-demo-win-fg);
+}
+
+indicatorarrowleft {
+    icon-name: "arrow-left-symbolic";
+    color: var(--avaunion-demo-win-fg);
+}
+
+indicatorarrowright {
+    icon-name: "arrow-right-symbolic";
+    color: var(--avaunion-demo-win-fg);
+}
+
+indicatorbuttondropdown {
+    icon-name: "arrow-down-symbolic";
+    color: var(--avaunion-demo-win-fg);
+}
+
+smalliconsize {
+    width: var(--avaunion-demo-icon-s);
+}
+
+listviewiconsize {
+    width: var(--avaunion-demo-icon-sm);
+}
+
+iconviewiconsize {
+    width: var(--avaunion-demo-icon-m);
+}
+
+largeiconsize,
+messageboxiconsize {
+    width: var(--avaunion-demo-icon-l);
+}
+
+textcursorwidth {
+    width: 2px;
+}

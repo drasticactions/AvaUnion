@@ -1,0 +1,157 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    xmlns:conv="using:Avalonia.Controls.Converters"
+                    x:ClassModifier="internal">
+  <conv:PlatformKeyGestureConverter x:Key="UnionKeyGestureConverter" />
+  <ControlTheme x:Key="{x:Type MenuItem}" TargetType="MenuItem">
+    <Setter Property="union:Union.Type" Value="menuitem" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="MinWidth" Value="{union:Style Layout.Width, Fallback=0}" />
+    <Setter Property="MinHeight" Value="{union:Style Layout.Height, Fallback=0}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=View.Foreground.Text}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <Grid Margin="{TemplateBinding Padding}" MinHeight="{union:Style Icon.Height}">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" SharedSizeGroup="UnionMenuIndicator" />
+              <ColumnDefinition Width="Auto" SharedSizeGroup="UnionMenuIcon" />
+              <ColumnDefinition Width="*" />
+              <ColumnDefinition Width="Auto" SharedSizeGroup="UnionMenuShortcut" />
+              <ColumnDefinition Width="Auto" SharedSizeGroup="UnionMenuArrow" />
+            </Grid.ColumnDefinitions>
+            <Border Name="PART_IndicatorSlot" Grid.Column="0" Padding="{union:Style Layout.Spacing, Sides=Right}" IsVisible="False">
+              <union:UnionBox Name="PART_Indicator" union:Union.Type="indicator" VerticalAlignment="Center" />
+            </Border>
+            <Border Name="PART_IconSlot" Grid.Column="1" Padding="{union:Style Layout.Spacing, Sides=Right}" IsVisible="False">
+              <ContentPresenter Name="PART_IconPresenter"
+                                Content="{TemplateBinding Icon}"
+                                Width="{union:Style Icon.Width}"
+                                Height="{union:Style Icon.Height}"
+                                VerticalAlignment="Center" />
+            </Border>
+            <ContentPresenter Name="PART_HeaderPresenter"
+                              Grid.Column="2"
+                              Content="{TemplateBinding Header}"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              RecognizesAccessKey="True"
+                              VerticalAlignment="Center" />
+            <TextBlock Name="PART_InputGestureText"
+                       Grid.Column="3"
+                       union:Union.Type="shortcuttext"
+                       Margin="{union:Style Layout.Spacing, Sides=Left}"
+                       Foreground="{union:Style Text.Color, FallbackColor=View.Foreground.Text}"
+                       Text="{TemplateBinding InputGesture, Converter={StaticResource UnionKeyGestureConverter}}"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center" />
+            <union:UnionIcon Name="PART_Arrow"
+                             Grid.Column="4"
+                             union:Union.Type="arrow"
+                             Margin="{union:Style Layout.Spacing, Sides=Left}"
+                             VerticalAlignment="Center"
+                             IconName="{union:Style Icon.Name, Fallback=arrow-right-symbolic}" />
+          </Grid>
+          <Popup Name="PART_Popup"
+                 WindowManagerAddShadowHint="False"
+                 Placement="RightEdgeAlignedTop"
+                 IsLightDismissEnabled="False"
+                 IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}">
+            <Border union:Union.Type="menu"
+                    union:Union.StateSource="None"
+                    MaxWidth="456"
+                    TextElement.Foreground="{union:Style Text.Color}"
+                    TextElement.FontSize="{DynamicResource UnionMenuFontSize}">
+              <Panel>
+                <union:UnionBox Margin="{union:Style Layout.Inset}" />
+                <ScrollViewer Theme="{StaticResource UnionPlainScrollViewer}"
+                              Margin="{union:Style Layout.Padding}"
+                              HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                  <ItemsPresenter Name="PART_ItemsPresenter"
+                                  ItemsPanel="{TemplateBinding ItemsPanel}"
+                                  Grid.IsSharedSizeScope="True" />
+                </ScrollViewer>
+              </Panel>
+            </Border>
+          </Popup>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:icon /template/ Border#PART_IconSlot">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:toggle /template/ Border#PART_IndicatorSlot">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:radio /template/ Border#PART_IndicatorSlot">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:empty /template/ union|UnionIcon#PART_Arrow">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:separator">
+      <Setter Property="union:Union.Type" Value="menuseparator" />
+      <Setter Property="Focusable" Value="False" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+        </ControlTemplate>
+      </Setter>
+    </Style>
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=Disabled.View.Foreground.Text}" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionMenuBarItem" TargetType="MenuItem">
+    <Setter Property="union:Union.Type" Value="menubaritem" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <union:UnionPositioner>
+            <union:UnionIcon union:PositionedItem.Source="Icon" />
+            <ContentPresenter Name="PART_HeaderPresenter"
+                              union:PositionedItem.Source="Text"
+                              Content="{TemplateBinding Header}"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              RecognizesAccessKey="True"
+                              VerticalContentAlignment="Center" />
+          </union:UnionPositioner>
+          <Popup Name="PART_Popup"
+                 WindowManagerAddShadowHint="False"
+                 Placement="BottomEdgeAlignedLeft"
+                 IsLightDismissEnabled="True"
+                 OverlayInputPassThroughElement="{Binding $parent[Menu]}"
+                 IsOpen="{TemplateBinding IsSubMenuOpen, Mode=TwoWay}">
+            <Border union:Union.Type="menu"
+                    union:Union.StateSource="None"
+                    MaxWidth="456"
+                    TextElement.Foreground="{union:Style Text.Color}"
+                    TextElement.FontSize="{DynamicResource UnionMenuFontSize}">
+              <Panel>
+                <union:UnionBox Margin="{union:Style Layout.Inset}" />
+                <ScrollViewer Theme="{StaticResource UnionPlainScrollViewer}"
+                              Margin="{union:Style Layout.Padding}"
+                              HorizontalScrollBarVisibility="Disabled"
+                              VerticalScrollBarVisibility="Auto">
+                  <ItemsPresenter Name="PART_ItemsPresenter"
+                                  ItemsPanel="{TemplateBinding ItemsPanel}"
+                                  Grid.IsSharedSizeScope="True" />
+                </ScrollViewer>
+              </Panel>
+            </Border>
+          </Popup>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

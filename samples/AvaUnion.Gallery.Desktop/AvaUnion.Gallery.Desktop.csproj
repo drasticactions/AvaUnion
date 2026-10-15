@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>AvaUnion.Gallery.Desktop</RootNamespace>
+    <IsAotCompatible>true</IsAotCompatible>
+    <NoWarn>$(NoWarn);IL2104;IL3053</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Desktop" />
+    <PackageReference Include="Avalonia.Wayland" />
+    <PackageReference Include="Avalonia.Headless" />
+    <PackageReference Include="AvaloniaUI.DiagnosticsSupport" Condition="'$(Configuration)' == 'Debug'" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AvaUnion.Gallery\AvaUnion.Gallery.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="Exists('$(AvaUnionRepoRoot)native/build/libavaunion-native-$(AvaUnionUnionVersion).so')">
+    <None Include="$(AvaUnionRepoRoot)native/build/libavaunion-native-$(AvaUnionUnionVersion).so" CopyToOutputDirectory="PreserveNewest" Link="libavaunion-native-$(AvaUnionUnionVersion).so" />
+  </ItemGroup>
+
+</Project>

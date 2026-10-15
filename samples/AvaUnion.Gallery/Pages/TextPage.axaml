@@ -1,0 +1,18 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaUnion.Gallery.Pages.TextPage">
+  <StackPanel Spacing="12" Width="420" HorizontalAlignment="Left">
+    <Label Content="Text fields" FontWeight="Bold" />
+    <TextBox Text="Editable text" />
+    <TextBox PlaceholderText="Placeholder text" />
+    <TextBox Text="Read only" IsReadOnly="True" />
+    <TextBox Text="Disabled" IsEnabled="False" />
+    <TextBox PasswordChar="●" Text="secret" />
+    <Label Content="Spin boxes" FontWeight="Bold" />
+    <NumericUpDown Value="5" Minimum="0" Maximum="10" />
+    <NumericUpDown Value="10" Minimum="0" Maximum="10" />
+    <Label Content="Text area" FontWeight="Bold" />
+    <TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="100"
+             Text="A text area accepts returns.&#x0a;It uses Union's textarea element." />
+  </StackPanel>
+</UserControl>

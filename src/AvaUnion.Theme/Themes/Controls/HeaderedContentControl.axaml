@@ -1,0 +1,35 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type HeaderedContentControl}" TargetType="HeaderedContentControl">
+    <Setter Property="union:Union.Type" Value="groupbox" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+          <Grid RowDefinitions="Auto,*" Margin="{TemplateBinding Padding}">
+            <union:UnionPositioner>
+              <ContentPresenter Name="PART_HeaderPresenter"
+                                union:PositionedItem.Source="Text"
+                                union:Union.Type="header"
+                                union:Union.StateSource="None"
+                                Foreground="{union:Style Text.Color, FallbackColor=View.Foreground.Text}"
+                                FontWeight="{union:Style Text.Font, Fallback=Normal}"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}" />
+            </union:UnionPositioner>
+            <ContentPresenter Name="PART_ContentPresenter"
+                              Grid.Row="1"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+          </Grid>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

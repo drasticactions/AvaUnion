@@ -1,0 +1,298 @@
+applicationwindow {
+    color: var(--avaunion-demo-win-fg);
+    background-color: var(--avaunion-demo-win-bg);
+
+    &.inactive {
+        color: var(--avaunion-demo-win-fg-inactive);
+        background-color: var(--avaunion-demo-win-bg-inactive);
+    }
+}
+
+page,
+widget {
+    color: var(--avaunion-demo-win-fg);
+    background-color: var(--avaunion-demo-win-bg);
+}
+
+.inactive page {
+    color: var(--avaunion-demo-win-fg-inactive);
+    background-color: var(--avaunion-demo-win-bg-inactive);
+}
+
+pane {
+    padding: var(--avaunion-demo-gap-l);
+    background-color: var(--avaunion-demo-win-bg);
+}
+
+toolbar {
+    height: 46px;
+    padding-top: var(--avaunion-demo-gap-m);
+    padding-bottom: var(--avaunion-demo-gap-m);
+    padding-left: var(--avaunion-demo-gap-l);
+    padding-right: var(--avaunion-demo-gap-l);
+    spacing: var(--avaunion-demo-gap-s);
+    color: var(--avaunion-demo-win-fg);
+    background-color: var(--avaunion-demo-win-bg-alt);
+    border-radius: var(--avaunion-demo-round-l);
+
+    &.header,
+    &.footer {
+        border-radius: 0px;
+    }
+
+    &.header {
+        border-bottom: 1px solid var(--avaunion-demo-soft-line);
+    }
+
+    &.footer {
+        border-top: 1px solid var(--avaunion-demo-soft-line);
+    }
+
+    .inactive & {
+        background-color: var(--avaunion-demo-win-bg-inactive);
+    }
+
+    &[colorset="header"],
+    [colorset="header"] & {
+        color: var(--avaunion-demo-head-fg);
+        background-color: var(--avaunion-demo-head-bg);
+        border-color: var(--avaunion-demo-head-line);
+
+        .inactive & {
+            background-color: var(--avaunion-demo-head-bg-inactive);
+        }
+    }
+
+    &.header[colorset="window"] {
+        color: var(--avaunion-demo-win-fg);
+        background-color: var(--avaunion-demo-win-bg);
+    }
+
+    &[colorset="complementary"],
+    [colorset="complementary"] &,
+    &.header[colorset="complementary"] {
+        color: var(--avaunion-demo-comp-fg);
+        background-color: var(--avaunion-demo-comp-bg);
+    }
+
+    & > separator {
+        width: 1px;
+        height: 1px;
+        border: none;
+        border-radius: 0px;
+        padding: 0px;
+        background-color: var(--avaunion-demo-soft-line);
+    }
+
+    & > handle {
+        width: 6px;
+        height: 6px;
+        border: none;
+        border-radius: 3px;
+        padding: 0px;
+        background-color: var(--avaunion-demo-tint-2);
+    }
+}
+
+applicationheader {
+    color: var(--avaunion-demo-head-fg);
+    background-color: var(--avaunion-demo-head-bg);
+
+    &[colorset="window"] {
+        color: var(--avaunion-demo-win-fg);
+        background-color: var(--avaunion-demo-win-bg);
+    }
+
+    &.with-separator {
+        border-bottom: 1px solid var(--avaunion-demo-soft-line);
+    }
+
+    .inactive & {
+        background-color: var(--avaunion-demo-head-bg-inactive);
+    }
+}
+
+drawer {
+    color: var(--avaunion-demo-view-fg);
+    background-color: var(--avaunion-demo-view-bg);
+
+    &.modal {
+        color: var(--avaunion-demo-win-fg);
+        background-color: var(--avaunion-demo-win-bg);
+        box-shadow: var(--avaunion-demo-float);
+    }
+}
+
+overlaydrawer {
+    color: var(--avaunion-demo-view-fg);
+    background-color: var(--avaunion-demo-view-bg);
+
+    &.modal {
+        color: var(--avaunion-demo-win-fg);
+        background-color: var(--avaunion-demo-win-bg);
+    }
+
+    itemdelegate {
+        width: var(--avaunion-demo-icon-m);
+        height: var(--avaunion-demo-icon-m);
+    }
+
+    &[colorset="window"] {
+        color: var(--avaunion-demo-win-fg);
+        background-color: var(--avaunion-demo-win-bg);
+    }
+}
+
+splitview handle {
+    width: 4px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--avaunion-demo-tint-2);
+}
+
+splitview.horizontal handle {
+    margin-left: var(--avaunion-demo-gap-s);
+    margin-right: var(--avaunion-demo-gap-s);
+}
+
+splitview.vertical handle {
+    margin-top: var(--avaunion-demo-gap-s);
+    margin-bottom: var(--avaunion-demo-gap-s);
+}
+
+splitter {
+    width: 4px;
+    border-radius: 2px;
+    background-color: var(--avaunion-demo-tint-2);
+
+    &:hovered {
+        background-color: var(--avaunion-demo-accent);
+    }
+}
+
+statusbar {
+    padding-top: var(--avaunion-demo-gap-xs);
+    padding-bottom: var(--avaunion-demo-gap-xs);
+    padding-left: var(--avaunion-demo-gap-l);
+    padding-right: var(--avaunion-demo-gap-l);
+    color: var(--avaunion-demo-muted-fg);
+    background-color: var(--avaunion-demo-win-bg-alt);
+}
+
+dockwidget {
+    width: var(--avaunion-demo-size-s);
+    height: var(--avaunion-demo-size-s);
+    padding-top: var(--avaunion-demo-gap-s);
+    padding-bottom: var(--avaunion-demo-gap-s);
+    padding-left: var(--avaunion-demo-gap-m);
+    padding-right: var(--avaunion-demo-gap-m);
+    color: var(--avaunion-demo-head-fg);
+    background-color: var(--avaunion-demo-head-bg);
+    icon-alignment: content center center 0;
+    text-alignment: content center center 1;
+    border-radius: var(--avaunion-demo-round-s);
+
+    &:visual-focus,
+    &:active-focus {
+        outline: var(--avaunion-demo-accent-ring);
+    }
+
+    floatbutton,
+    closebutton {
+        width: var(--avaunion-demo-size-s);
+        height: var(--avaunion-demo-size-s);
+    }
+
+    floatbutton {
+        layout-alignment: content start center 0;
+        icon-name: "window-restore";
+    }
+
+    closebutton {
+        layout-alignment: content end center 0;
+        icon-name: "window-close-symbolic";
+    }
+}
+
+titlebar {
+    width: var(--avaunion-demo-size-s);
+    height: var(--avaunion-demo-size-s);
+    color: var(--avaunion-demo-head-fg);
+    background-color: var(--avaunion-demo-head-bg);
+    icon-alignment: content center fill 0;
+    text-alignment: content center fill 1;
+    icon-size: var(--avaunion-demo-icon-s);
+    font-weight: 700;
+
+    .inactive & {
+        color: mix(var(--avaunion-demo-head-fg), var(--avaunion-demo-head-bg), 0.4);
+        background-color: var(--avaunion-demo-head-bg-inactive);
+    }
+
+    systemmenu,
+    minimizebutton,
+    maximizebutton,
+    closebutton,
+    normalbutton,
+    shadebutton,
+    helpbutton {
+        width: var(--avaunion-demo-size-s);
+        height: var(--avaunion-demo-size-s);
+        border-radius: var(--avaunion-demo-round-pill);
+    }
+
+    minimizebutton:hovered,
+    maximizebutton:hovered,
+    normalbutton:hovered,
+    shadebutton:hovered,
+    helpbutton:hovered {
+        background-color: mix(var(--avaunion-demo-head-bg), var(--avaunion-demo-head-fg), 0.15);
+    }
+
+    closebutton:hovered {
+        color: var(--avaunion-demo-on-accent);
+        background-color: var(--avaunion-demo-bad);
+    }
+
+    systemmenu {
+        layout-alignment: content start fill 0;
+        icon-name: "application-menu-symbolic";
+    }
+
+    minimizebutton {
+        layout-alignment: content end fill 0;
+        icon-name: "window-minimize-symbolic";
+    }
+
+    maximizebutton {
+        layout-alignment: content end fill 1;
+        icon-name: "window-maximize-symbolic";
+    }
+
+    closebutton {
+        layout-alignment: content end fill 2;
+        icon-name: "window-close-symbolic";
+    }
+
+    shadebutton {
+        layout-alignment: content start fill 2;
+        icon-name: "window-shade-symbolic";
+    }
+
+    helpbutton {
+        layout-alignment: content start fill -1;
+        icon-name: "help-contextual-symbolic";
+    }
+
+    normalbutton {
+        layout-alignment: content start fill 1;
+    }
+
+    &.maximized maximizebutton {
+        icon-name: "window-restore-symbolic";
+    }
+
+    &.minimized minimizebutton {
+        icon-name: "empty";
+    }
+}

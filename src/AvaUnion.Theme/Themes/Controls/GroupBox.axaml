@@ -1,0 +1,6 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type GroupBox}" TargetType="GroupBox" BasedOn="{StaticResource {x:Type HeaderedContentControl}}" />
+</ResourceDictionary>

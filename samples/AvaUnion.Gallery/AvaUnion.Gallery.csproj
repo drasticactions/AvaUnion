@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AvaUnion.Gallery</RootNamespace>
+    <IsAotCompatible>true</IsAotCompatible>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\AvaUnion.Theme\AvaUnion.Theme.csproj" />
+    <ProjectReference Include="..\..\src\AvaUnion.DataGrid\AvaUnion.DataGrid.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UnionStylePackage Include="Styles\avaunion-demo" Snapshot="Styles\avaunion-demo.union.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AvaUnion.Gallery.Desktop" />
+    <InternalsVisibleTo Include="AvaUnion.Gallery.Browser" />
+    <InternalsVisibleTo Include="AvaUnion.Theme.Tests" />
+  </ItemGroup>
+
+  <Import Project="$(AvaUnionRepoRoot)src/AvaUnion.Theme/buildTransitive/AvaUnion.Theme.targets" />
+
+</Project>

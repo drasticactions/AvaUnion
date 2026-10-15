@@ -1,0 +1,84 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type ComboBox}" TargetType="ComboBox">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="combobox" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=View.Foreground.Text}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="MaxDropDownHeight" Value="504" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DataValidationErrors>
+          <Panel Name="PART_Root">
+            <union:UnionBox Name="PART_Background" ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+            <union:UnionPositioner>
+              <Panel union:PositionedItem.Source="Text">
+                <TextBlock Name="PlaceholderTextBlock"
+                           Text="{TemplateBinding PlaceholderText}"
+                           Foreground="{TemplateBinding PlaceholderForeground}"
+                           VerticalAlignment="Center">
+                  <TextBlock.IsVisible>
+                    <MultiBinding Converter="{x:Static BoolConverters.And}">
+                      <Binding Path="SelectionBoxItem" RelativeSource="{RelativeSource TemplatedParent}" Converter="{x:Static ObjectConverters.IsNull}" />
+                      <Binding Path="!IsEditable" RelativeSource="{RelativeSource TemplatedParent}" />
+                    </MultiBinding>
+                  </TextBlock.IsVisible>
+                </TextBlock>
+                <ContentControl Name="ContentPresenter"
+                                Content="{TemplateBinding SelectionBoxItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                IsVisible="{TemplateBinding IsEditable, Converter={x:Static BoolConverters.Not}}" />
+                <TextBox Name="PART_EditableTextBox"
+                         Theme="{StaticResource UnionInnerTextBox}"
+                         Foreground="{TemplateBinding Foreground}"
+                         Text="{TemplateBinding Text, Mode=TwoWay}"
+                         PlaceholderText="{TemplateBinding PlaceholderText}"
+                         IsVisible="{TemplateBinding IsEditable}" />
+              </Panel>
+              <union:UnionIcon union:Union.Type="indicator"
+                               union:PositionedItem.Source="Layout"
+                               IsVisible="{union:Style Display.Visible, Fallback=True}" />
+            </union:UnionPositioner>
+            <Popup Name="PART_Popup"
+                   WindowManagerAddShadowHint="False"
+                   IsOpen="{TemplateBinding IsDropDownOpen, Mode=TwoWay}"
+                   MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                   PlacementTarget="PART_Background"
+                   IsLightDismissEnabled="True"
+                   InheritsTransform="True">
+              <Border MinWidth="{Binding Bounds.Width, RelativeSource={RelativeSource TemplatedParent}}"
+                      union:Union.Type="popup"
+                      union:Union.Hints="combobox"
+                      union:Union.StateSource="None">
+                <Panel>
+                  <union:UnionBox Margin="{union:Style Layout.Inset}" />
+                  <ScrollViewer Theme="{StaticResource UnionPlainScrollViewer}"
+                                Margin="{union:Style Layout.Padding}"
+                                HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                                VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+                                IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}">
+                    <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" />
+                  </ScrollViewer>
+                </Panel>
+              </Border>
+            </Popup>
+          </Panel>
+        </DataValidationErrors>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=Disabled.View.Foreground.Text}" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

@@ -1,0 +1,8 @@
+[Desktop Entry]
+Type=Application
+Name=AvaUnion Gallery
+Comment=Avalonia controls styled by KDE Union
+Exec=AvaUnion.Gallery.Desktop
+Icon=avaunion-gallery
+Categories=Development;
+Terminal=false

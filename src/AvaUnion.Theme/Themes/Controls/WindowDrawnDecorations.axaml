@@ -1,0 +1,162 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionCaptionButton" TargetType="Button">
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Width" Value="30" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="(WindowDecorationProperties.ElementRole)" Value="DecorationsElement" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <Border Name="PART_Hover" CornerRadius="15" Margin="3" />
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <union:UnionIcon HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:pointerover /template/ Border#PART_Hover">
+      <Setter Property="Background" Value="{DynamicResource Union.Active.Window.Decoration.HoverBrush}" />
+      <Setter Property="Opacity" Value="0.4" />
+    </Style>
+    <Style Selector="^:pressed /template/ Border#PART_Hover">
+      <Setter Property="Opacity" Value="0.7" />
+    </Style>
+    <Style Selector="^:disabled">
+      <Setter Property="Opacity" Value="0.4" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type WindowDrawnDecorations}" TargetType="WindowDrawnDecorations">
+    <Setter Property="DefaultTitleBarHeight" Value="30" />
+    <Setter Property="DefaultFrameThickness" Value="1" />
+    <Setter Property="DefaultShadowThickness" Value="8" />
+    <Setter Property="Template">
+      <WindowDrawnDecorationsTemplate>
+        <WindowDrawnDecorationsContent>
+          <WindowDrawnDecorationsContent.Underlay>
+            <Panel Name="PART_UnderlayWrapper">
+              <Border Name="PART_WindowBorder"
+                      BorderThickness="{TemplateBinding FrameThickness}"
+                      BorderBrush="{DynamicResource Union.Active.Window.Decoration.FrameBrush}"
+                      IsHitTestVisible="False" />
+              <Panel Name="PART_TitleBar" union:Union.Type="titlebar" union:Union.StateSource="TemplatedParent"
+                     VerticalAlignment="Top"
+                     Height="{TemplateBinding TitleBarHeight}"
+                     Background="{union:Style Background.Color}"
+                     IsVisible="{TemplateBinding HasTitleBar}"
+                     WindowDecorationProperties.ElementRole="TitleBar" />
+            </Panel>
+          </WindowDrawnDecorationsContent.Underlay>
+          <WindowDrawnDecorationsContent.Overlay>
+            <Panel Name="PART_OverlayWrapper">
+              <Panel Name="PART_TitleTextPanel" union:Union.Type="titlebar" union:Union.StateSource="TemplatedParent"
+                     VerticalAlignment="Top"
+                     Height="{TemplateBinding TitleBarHeight}"
+                     IsHitTestVisible="False"
+                     IsVisible="{TemplateBinding HasTitleBar}">
+                <TextBlock Text="{TemplateBinding Title}"
+                           Foreground="{union:Style Text.Color}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           TextTrimming="CharacterEllipsis"
+                           Margin="100,0" />
+              </Panel>
+              <StackPanel Name="PART_OverlayPanel" union:Union.Type="titlebar" union:Union.StateSource="TemplatedParent"
+                          VerticalAlignment="Top"
+                          HorizontalAlignment="Right"
+                          Height="{TemplateBinding TitleBarHeight}"
+                          IsVisible="{TemplateBinding HasTitleBar}"
+                          Orientation="Horizontal"
+                          Margin="0,0,4,0">
+                <Button Name="PART_FullScreenButton" Theme="{StaticResource UnionCaptionButton}"
+                        WindowDecorationProperties.ElementRole="FullScreenButton">
+                  <Button.Template>
+                    <ControlTemplate>
+                      <Panel Background="Transparent">
+                        <union:UnionIcon IconName="view-fullscreen" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                      </Panel>
+                    </ControlTemplate>
+                  </Button.Template>
+                </Button>
+                <Button Name="PART_MinimizeButton" Theme="{StaticResource UnionCaptionButton}"
+                        union:Union.Type="minimizebutton"
+                        WindowDecorationProperties.ElementRole="MinimizeButton" />
+                <Button Name="PART_MaximizeButton" Theme="{StaticResource UnionCaptionButton}"
+                        union:Union.Type="maximizebutton"
+                        WindowDecorationProperties.ElementRole="MaximizeButton" />
+                <Button Name="PART_CloseButton" Theme="{StaticResource UnionCaptionButton}"
+                        union:Union.Type="closebutton"
+                        WindowDecorationProperties.ElementRole="CloseButton" />
+              </StackPanel>
+            </Panel>
+          </WindowDrawnDecorationsContent.Overlay>
+          <WindowDrawnDecorationsContent.FullscreenPopover>
+            <Panel union:Union.Type="titlebar" union:Union.StateSource="TemplatedParent" Height="{TemplateBinding DefaultTitleBarHeight}"
+                   VerticalAlignment="Top"
+                   Background="{union:Style Background.Color}"
+                   WindowDecorationProperties.ElementRole="DecorationsElement">
+              <TextBlock Text="{TemplateBinding Title}" Foreground="{union:Style Text.Color}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+              <StackPanel HorizontalAlignment="Right" Orientation="Horizontal" Margin="0,0,4,0">
+                <Button Name="PART_PopoverFullScreenButton" Theme="{StaticResource UnionCaptionButton}"
+                        WindowDecorationProperties.ElementRole="FullScreenButton">
+                  <Button.Template>
+                    <ControlTemplate>
+                      <Panel Background="Transparent">
+                        <union:UnionIcon IconName="view-restore" Width="16" Height="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                      </Panel>
+                    </ControlTemplate>
+                  </Button.Template>
+                </Button>
+                <Button Name="PART_PopoverCloseButton" Theme="{StaticResource UnionCaptionButton}"
+                        union:Union.Type="closebutton"
+                        WindowDecorationProperties.ElementRole="CloseButton" />
+              </StackPanel>
+            </Panel>
+          </WindowDrawnDecorationsContent.FullscreenPopover>
+        </WindowDrawnDecorationsContent>
+      </WindowDrawnDecorationsTemplate>
+    </Setter>
+    <Style Selector="^:has-shadow /template/ Panel#PART_UnderlayWrapper">
+      <Setter Property="Margin" Value="{TemplateBinding ShadowThickness}" />
+    </Style>
+    <Style Selector="^:has-shadow /template/ Border#PART_WindowBorder">
+      <Setter Property="BoxShadow" Value="0 2 10 2 #80000000" />
+    </Style>
+    <Style Selector="^:has-shadow /template/ Panel#PART_OverlayWrapper">
+      <Setter Property="Margin" Value="{TemplateBinding ShadowThickness}" />
+    </Style>
+    <Style Selector="^:has-border /template/ Panel#PART_TitleTextPanel">
+      <Setter Property="Margin" Value="1,1,1,0" />
+    </Style>
+    <Style Selector="^:has-border /template/ Panel#PART_TitleBar">
+      <Setter Property="Margin" Value="1,1,1,0" />
+    </Style>
+    <Style Selector="^:has-border /template/ StackPanel#PART_OverlayPanel">
+      <Setter Property="Margin" Value="0,1,5,0" />
+    </Style>
+    <Style Selector="^:not(:has-minimize) /template/ Button#PART_MinimizeButton">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:not(:has-maximize) /template/ Button#PART_MaximizeButton">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:not(:has-fullscreen) /template/ Button#PART_FullScreenButton">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:not(:has-fullscreen) /template/ Button#PART_PopoverFullScreenButton">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:fullscreen /template/ Panel#PART_TitleTextPanel">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:fullscreen /template/ StackPanel#PART_OverlayPanel">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:fullscreen /template/ Panel#PART_TitleBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

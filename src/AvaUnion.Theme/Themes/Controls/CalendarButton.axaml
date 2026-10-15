@@ -1,0 +1,9 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type CalendarButton}" TargetType="CalendarButton" BasedOn="{StaticResource UnionCalendarCell}">
+    <Setter Property="MinWidth" Value="56" />
+    <Setter Property="MinHeight" Value="48" />
+  </ControlTheme>
+</ResourceDictionary>

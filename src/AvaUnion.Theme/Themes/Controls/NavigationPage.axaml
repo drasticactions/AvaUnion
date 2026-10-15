@@ -1,0 +1,86 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type NavigationPage}" TargetType="NavigationPage">
+    <Setter Property="union:Union.Type" Value="page" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="PageTransition">
+      <Setter.Value>
+        <PageSlide Duration="{union:Duration 0:0:0.25}" Orientation="Horizontal" FillMode="Forward" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="ModalTransition">
+      <Setter.Value>
+        <PageSlide Duration="{union:Duration 0:0:0.25}" Orientation="Vertical" FillMode="Forward" />
+      </Setter.Value>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel ClipToBounds="True">
+          <DockPanel>
+            <Border Name="PART_NavBarSpacer"
+                    Height="{TemplateBinding EffectiveBarHeight}"
+                    IsVisible="False"
+                    DockPanel.Dock="Top" />
+            <ContentPresenter Name="PART_BottomCommandBar"
+                              DockPanel.Dock="Bottom"
+                              HorizontalContentAlignment="Stretch"
+                              Content="{Binding CurrentPage?.(NavigationPage.BottomCommandBar), RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}" />
+            <Grid Name="PART_ContentHost" Background="{TemplateBinding Background}" ClipToBounds="True">
+              <ContentPresenter Name="PART_PageBackPresenter" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+              <ContentPresenter Name="PART_PagePresenter" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            </Grid>
+          </DockPanel>
+          <Border Name="PART_NavigationBar"
+                  ZIndex="1"
+                  VerticalAlignment="Top"
+                  ClipToBounds="True"
+                  union:Union.Type="toolbar"
+                  union:Union.Hints="header"
+                  union:Union.StateSource="None"
+                  Height="{TemplateBinding EffectiveBarHeight}">
+            <Panel>
+              <union:UnionBox Margin="{union:Style Layout.Inset}" />
+              <Grid Margin="{union:Style Layout.Padding}" ColumnDefinitions="Auto, *, Auto">
+                <Button Name="PART_BackButton"
+                        Grid.Column="0"
+                        Theme="{StaticResource UnionToolButton}"
+                        IsVisible="{TemplateBinding IsBackButtonEffectivelyVisible}"
+                        VerticalAlignment="Stretch"
+                        ToolTip.Tip="{x:Null}">
+                  <Panel>
+                    <union:UnionIcon Name="PART_BackButtonDefaultIcon" IconName="go-previous" MirrorInRightToLeft="True" Width="16" Height="16" />
+                    <ContentPresenter Name="PART_BackButtonContentPresenter" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                  </Panel>
+                </Button>
+                <ContentPresenter Name="PART_Header"
+                                  Grid.Column="1"
+                                  Foreground="{union:Style Text.Color}"
+                                  FontSize="{DynamicResource UnionFontSize}"
+                                  FontWeight="SemiBold"
+                                  Content="{Binding CurrentPage?.Header, RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}"
+                                  ContentTemplate="{Binding CurrentPage?.HeaderTemplate, RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}"
+                                  VerticalAlignment="Center"
+                                  HorizontalContentAlignment="Stretch"
+                                  Margin="{union:Style Layout.Padding, Sides=Left}" />
+                <ContentPresenter Name="PART_TopCommandBar"
+                                  Grid.Column="2"
+                                  HorizontalAlignment="Right"
+                                  VerticalContentAlignment="Stretch"
+                                  Content="{Binding CurrentPage?.(NavigationPage.TopCommandBar), RelativeSource={RelativeSource TemplatedParent}, FallbackValue={x:Null}}" />
+              </Grid>
+            </Panel>
+          </Border>
+          <Border Name="PART_NavBarShadow" ZIndex="1" VerticalAlignment="Top" IsVisible="False" Height="0" IsHitTestVisible="False" />
+          <ContentPresenter Name="PART_ModalBackPresenter" ZIndex="99" IsVisible="False" Background="{TemplateBinding Background}" />
+          <ContentPresenter Name="PART_ModalPresenter" ZIndex="100" IsVisible="False" Background="{TemplateBinding Background}" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:nav-bar-inset /template/ Border#PART_NavBarSpacer">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

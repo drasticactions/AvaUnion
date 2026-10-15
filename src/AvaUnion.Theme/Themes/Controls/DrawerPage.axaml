@@ -1,0 +1,193 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type DrawerPage}" TargetType="DrawerPage">
+    <Setter Property="union:Union.Type" Value="page" />
+    <Setter Property="Background" Value="{union:Style Background.Color}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <SplitView Name="PART_SplitView"
+                   DisplayMode="{TemplateBinding DisplayMode}"
+                   OpenPaneLength="{TemplateBinding DrawerLength}"
+                   CompactPaneLength="{TemplateBinding CompactDrawerLength}"
+                   IsPaneOpen="{Binding IsOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
+          <SplitView.Pane>
+            <DockPanel>
+              <ToggleButton Name="PART_CompactPaneToggle"
+                            DockPanel.Dock="Top"
+                            Theme="{StaticResource UnionToolButton}"
+                            IsChecked="{Binding #PART_SplitView.IsPaneOpen, Mode=TwoWay}"
+                            IsVisible="False"
+                            HorizontalAlignment="Left"
+                            AutomationProperties.Name="Toggle navigation drawer">
+                <Panel>
+                  <union:UnionIcon IconName="application-menu-symbolic" Width="16" Height="16"
+                                   IsVisible="{Binding DrawerIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNull}}" />
+                  <ContentPresenter Name="PART_CompactPaneIconPresenter"
+                                    Content="{TemplateBinding DrawerIcon}"
+                                    ContentTemplate="{TemplateBinding DrawerIconTemplate}"
+                                    IsVisible="{Binding DrawerIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                </Panel>
+              </ToggleButton>
+              <ContentPresenter Name="PART_DrawerHeader"
+                                DockPanel.Dock="Top"
+                                Content="{TemplateBinding DrawerHeader}"
+                                ContentTemplate="{TemplateBinding DrawerHeaderTemplate}"
+                                IsVisible="{TemplateBinding DrawerHeader, Converter={x:Static ObjectConverters.IsNotNull}}" />
+              <ContentPresenter Name="PART_DrawerFooter"
+                                DockPanel.Dock="Bottom"
+                                Content="{TemplateBinding DrawerFooter}"
+                                ContentTemplate="{TemplateBinding DrawerFooterTemplate}"
+                                IsVisible="{TemplateBinding DrawerFooter, Converter={x:Static ObjectConverters.IsNotNull}}" />
+              <ContentPresenter Name="PART_DrawerPresenter"
+                                HorizontalContentAlignment="Stretch"
+                                VerticalContentAlignment="Stretch"
+                                Content="{TemplateBinding Drawer}"
+                                ContentTemplate="{TemplateBinding DrawerTemplate}" />
+            </DockPanel>
+          </SplitView.Pane>
+          <Grid>
+            <DockPanel Name="PART_ContentDock">
+              <Border Name="PART_TopBar"
+                      DockPanel.Dock="Top"
+                      union:Union.Type="toolbar"
+                      union:Union.Hints="header"
+                      union:Union.StateSource="None">
+                <Panel>
+                  <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+                  <DockPanel Margin="{union:Style Layout.Padding}">
+                    <ToggleButton Name="PART_PaneButton"
+                                  Theme="{StaticResource UnionToolButton}"
+                                  IsChecked="{Binding #PART_SplitView.IsPaneOpen, Mode=TwoWay}"
+                                  DockPanel.Dock="Left"
+                                  AutomationProperties.Name="Toggle navigation drawer">
+                      <Panel>
+                        <union:UnionIcon IconName="application-menu-symbolic" Width="16" Height="16"
+                                         IsVisible="{Binding DrawerIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNull}}" />
+                        <ContentPresenter Name="PART_PaneIconPresenter"
+                                          Content="{TemplateBinding DrawerIcon}"
+                                          ContentTemplate="{TemplateBinding DrawerIconTemplate}"
+                                          IsVisible="{Binding DrawerIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                      </Panel>
+                    </ToggleButton>
+                    <ContentPresenter Name="PART_TitlePresenter"
+                                      Content="{TemplateBinding Header}"
+                                      ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                      VerticalAlignment="Center"
+                                      FontWeight="SemiBold"
+                                      Margin="{union:Style Layout.Padding, Sides=Left}"
+                                      IsVisible="{TemplateBinding Header, Converter={x:Static ObjectConverters.IsNotNull}}" />
+                  </DockPanel>
+                </Panel>
+              </Border>
+              <Border Name="PART_BottomBar"
+                      DockPanel.Dock="Bottom"
+                      union:Union.Type="toolbar"
+                      union:Union.Hints="footer"
+                      union:Union.StateSource="None"
+                      IsVisible="False">
+                <Panel>
+                  <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+                  <DockPanel Margin="{union:Style Layout.Padding}">
+                    <ToggleButton Name="PART_BottomPaneButton"
+                                  Theme="{StaticResource UnionToolButton}"
+                                  IsChecked="{Binding #PART_SplitView.IsPaneOpen, Mode=TwoWay}"
+                                  DockPanel.Dock="Left">
+                      <Panel>
+                        <union:UnionIcon IconName="application-menu-symbolic" Width="16" Height="16" />
+                        <ContentPresenter Name="PART_BottomPaneIconPresenter"
+                                          Content="{TemplateBinding DrawerIcon}"
+                                          ContentTemplate="{TemplateBinding DrawerIconTemplate}" />
+                      </Panel>
+                    </ToggleButton>
+                    <ContentPresenter Name="PART_BottomTitlePresenter"
+                                      Content="{TemplateBinding Header}"
+                                      ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                      VerticalAlignment="Center"
+                                      FontWeight="SemiBold" />
+                  </DockPanel>
+                </Panel>
+              </Border>
+              <ContentPresenter Name="PART_ContentPresenter"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Background="{TemplateBinding Background}"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}" />
+            </DockPanel>
+            <Border Name="PART_Backdrop"
+                    union:Union.Type="overlay"
+                    union:Union.Hints="modal"
+                    union:Union.StateSource="None"
+                    Background="{union:Style Background.Color}"
+                    IsVisible="False"
+                    IsHitTestVisible="False" />
+          </Grid>
+        </SplitView>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:placement-right /template/ ToggleButton#PART_PaneButton">
+      <Setter Property="DockPanel.Dock" Value="Right" />
+    </Style>
+
+    <Style Selector="^:placement-bottom /template/ Border#PART_TopBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:placement-bottom /template/ Border#PART_BottomBar">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+
+    <Style Selector="^:placement-bottom[DisplayMode=CompactOverlay] /template/ Border#PART_BottomBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:placement-bottom[DisplayMode=CompactInline] /template/ Border#PART_BottomBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="^:placement-bottom /template/ ToggleButton#PART_CompactPaneToggle">
+      <Setter Property="DockPanel.Dock" Value="Left" />
+    </Style>
+    <Style Selector="^:placement-top /template/ ToggleButton#PART_CompactPaneToggle">
+      <Setter Property="DockPanel.Dock" Value="Left" />
+    </Style>
+
+    <Style Selector="^[DrawerBehavior=Locked] /template/ Border#PART_TopBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="^[DrawerBehavior=Disabled] /template/ Border#PART_TopBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="^:detail-is-navpage /template/ Border#PART_TopBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="^[DisplayMode=CompactOverlay] /template/ Border#PART_TopBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="^[DisplayMode=CompactOverlay] /template/ ToggleButton#PART_CompactPaneToggle">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+
+    <Style Selector="^[DisplayMode=CompactInline] /template/ Border#PART_TopBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="^[DisplayMode=CompactInline] /template/ ToggleButton#PART_CompactPaneToggle">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+
+    <Style Selector="^[IsInNavigationPage=True] /template/ Border#PART_TopBar">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+    <Style Selector="^:detail-is-navpage /template/ ToggleButton#PART_CompactPaneToggle">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+
+  </ControlTheme>
+</ResourceDictionary>

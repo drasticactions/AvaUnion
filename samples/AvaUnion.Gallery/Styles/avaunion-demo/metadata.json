@@ -1,0 +1,12 @@
+{
+    "input-type": "css",
+    "input-version": 1,
+    "name": "AvaUnion Demo",
+    "description": "A flat, rounded demo style that the AvaUnion gallery ships for itself.",
+    "version": "6.8.0",
+    "license": "LGPL-2.1-only",
+    "url": "https://github.com/drasticactions/avaunion",
+    "authors": [
+        "AvaUnion"
+    ]
+}

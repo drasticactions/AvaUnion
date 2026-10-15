@@ -1,0 +1,50 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type ScrollBar}" TargetType="ScrollBar">
+    <Setter Property="union:Union.Type" Value="scrollbar" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Cursor" Value="Arrow" />
+    <Setter Property="AllowAutoHide" Value="False" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <Track Name="PART_Track"
+                 Margin="{TemplateBinding Padding}"
+                 Minimum="{TemplateBinding Minimum}"
+                 Maximum="{TemplateBinding Maximum}"
+                 Value="{TemplateBinding Value, Mode=TwoWay}"
+                 ViewportSize="{TemplateBinding ViewportSize}"
+                 Orientation="{TemplateBinding Orientation}"
+                 DeferThumbDrag="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                 IsDirectionReversed="False">
+            <Track.DecreaseButton>
+              <RepeatButton Name="PART_PageUpButton" Theme="{StaticResource UnionInvisibleRepeatButton}" />
+            </Track.DecreaseButton>
+            <Track.IncreaseButton>
+              <RepeatButton Name="PART_PageDownButton" Theme="{StaticResource UnionInvisibleRepeatButton}" />
+            </Track.IncreaseButton>
+            <Thumb Theme="{StaticResource UnionBoxThumb}"
+                   union:Union.Type="handle"
+                   union:Union.StateSource="TemplatedParent" />
+          </Track>
+          <RepeatButton Name="PART_LineUpButton" IsVisible="False" Theme="{StaticResource UnionInvisibleRepeatButton}" />
+          <RepeatButton Name="PART_LineDownButton" IsVisible="False" Theme="{StaticResource UnionInvisibleRepeatButton}" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:vertical">
+      <Setter Property="Width" Value="{union:Style Layout.Width}" />
+      <Setter Property="MinHeight" Value="{union:Style Layout.Height}" />
+    </Style>
+    <Style Selector="^:horizontal">
+      <Setter Property="Height" Value="{union:Style Layout.Height}" />
+      <Setter Property="MinWidth" Value="{union:Style Layout.Width}" />
+    </Style>
+    <Style Selector="^:vertical /template/ Track#PART_Track">
+      <Setter Property="IsDirectionReversed" Value="True" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>AvaUnion.DataGrid</RootNamespace>
+    <PackageId>AvaUnion.DataGrid</PackageId>
+    <Description>KDE Union ControlThemes for Avalonia's DataGrid: Use with AvaUnion.Theme.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia.Controls.DataGrid" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AvaUnion.Theme\AvaUnion.Theme.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AvaUnion.Theme.Tests" />
+  </ItemGroup>
+
+  <Import Project="..\SharedThemes.targets" />
+
+</Project>

@@ -1,0 +1,147 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    xmlns:markup="using:AvaUnion.Markup"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionSliderFill" TargetType="RepeatButton">
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <Panel Name="PART_Groove" Height="{union:Style Layout.Height}" VerticalAlignment="Center">
+            <Panel.Margin>
+              <MultiBinding Converter="{x:Static markup:SliderConverters.HorizontalFillReach}">
+                <Binding Path="$parent[Track].Thumb.Bounds.Width" />
+                <Binding Path="$parent[Track].IsDirectionReversed" />
+              </MultiBinding>
+            </Panel.Margin>
+            <union:UnionBox union:Union.Type="fill" union:Union.StateSource="None" />
+          </Panel>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionSliderFillVertical" TargetType="RepeatButton" BasedOn="{StaticResource UnionSliderFill}">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <Panel Name="PART_Groove" Width="{union:Style Layout.Width}" HorizontalAlignment="Center">
+            <Panel.Margin>
+              <MultiBinding Converter="{x:Static markup:SliderConverters.VerticalFillReach}">
+                <Binding Path="$parent[Track].Thumb.Bounds.Height" />
+                <Binding Path="$parent[Track].IsDirectionReversed" />
+              </MultiBinding>
+            </Panel.Margin>
+            <union:UnionBox union:Union.Type="fill" union:Union.StateSource="None" />
+          </Panel>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionSliderHandle" TargetType="Thumb" BasedOn="{StaticResource UnionBoxThumb}">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="handle" />
+    <Setter Property="union:Union.StateSource" Value="TemplatedParent" />
+    <Setter Property="Width" Value="{union:Style Layout.Width}" />
+    <Setter Property="Height" Value="{union:Style Layout.Height}" />
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type Slider}" TargetType="Slider">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="slider" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid Background="{TemplateBinding Background}" RowDefinitions="Auto,Auto,Auto">
+          <union:UnionTickmarks Name="TopTicks" Grid.Row="0" IsVisible="False"
+                                Orientation="Horizontal"
+                                Minimum="{TemplateBinding Minimum}"
+                                Maximum="{TemplateBinding Maximum}"
+                                Value="{TemplateBinding Value}"
+                                TickFrequency="{TemplateBinding TickFrequency}"
+                                Ticks="{TemplateBinding Ticks}"
+                                IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                HandleLength="{Binding #thumb.Bounds.Width}" />
+          <union:UnionTickmarks Name="BottomTicks" Grid.Row="2" IsVisible="False"
+                                Orientation="Horizontal"
+                                Minimum="{TemplateBinding Minimum}"
+                                Maximum="{TemplateBinding Maximum}"
+                                Value="{TemplateBinding Value}"
+                                TickFrequency="{TemplateBinding TickFrequency}"
+                                Ticks="{TemplateBinding Ticks}"
+                                IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                HandleLength="{Binding #thumb.Bounds.Width}" />
+          <union:UnionBox Name="PART_Groove" Grid.Row="1" ImplicitSize="True" Height="{union:Style Layout.Height}" VerticalAlignment="Center" />
+          <Track Name="PART_Track" Grid.Row="1"
+                 Minimum="{TemplateBinding Minimum}"
+                 Maximum="{TemplateBinding Maximum}"
+                 Value="{TemplateBinding Value, Mode=TwoWay}"
+                 IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                 Orientation="Horizontal">
+            <Track.DecreaseButton>
+              <RepeatButton Name="PART_DecreaseButton" Theme="{StaticResource UnionSliderFill}" />
+            </Track.DecreaseButton>
+            <Track.IncreaseButton>
+              <RepeatButton Name="PART_IncreaseButton" Theme="{StaticResource UnionInvisibleRepeatButton}" />
+            </Track.IncreaseButton>
+            <Thumb Name="thumb" Theme="{StaticResource UnionSliderHandle}" />
+          </Track>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^[TickPlacement=TopLeft] /template/ union|UnionTickmarks#TopTicks">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^[TickPlacement=BottomRight] /template/ union|UnionTickmarks#BottomTicks">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^[TickPlacement=Outside] /template/ union|UnionTickmarks">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:vertical">
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid Background="{TemplateBinding Background}" ColumnDefinitions="Auto,Auto,Auto">
+            <union:UnionTickmarks Name="TopTicks" Grid.Column="0" IsVisible="False"
+                                Orientation="Vertical"
+                                Minimum="{TemplateBinding Minimum}"
+                                Maximum="{TemplateBinding Maximum}"
+                                Value="{TemplateBinding Value}"
+                                TickFrequency="{TemplateBinding TickFrequency}"
+                                Ticks="{TemplateBinding Ticks}"
+                                IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                HandleLength="{Binding #thumb.Bounds.Height}" />
+            <union:UnionTickmarks Name="BottomTicks" Grid.Column="2" IsVisible="False"
+                                Orientation="Vertical"
+                                Minimum="{TemplateBinding Minimum}"
+                                Maximum="{TemplateBinding Maximum}"
+                                Value="{TemplateBinding Value}"
+                                TickFrequency="{TemplateBinding TickFrequency}"
+                                Ticks="{TemplateBinding Ticks}"
+                                IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                                HandleLength="{Binding #thumb.Bounds.Height}" />
+            <union:UnionBox Name="PART_Groove" Grid.Column="1" ImplicitSize="True" Width="{union:Style Layout.Width}" HorizontalAlignment="Center" />
+            <Track Name="PART_Track" Grid.Column="1"
+                   Minimum="{TemplateBinding Minimum}"
+                   Maximum="{TemplateBinding Maximum}"
+                   Value="{TemplateBinding Value, Mode=TwoWay}"
+                   IsDirectionReversed="{TemplateBinding IsDirectionReversed}"
+                   Orientation="Vertical">
+              <Track.DecreaseButton>
+                <RepeatButton Name="PART_DecreaseButton" Theme="{StaticResource UnionSliderFillVertical}" />
+              </Track.DecreaseButton>
+              <Track.IncreaseButton>
+                <RepeatButton Name="PART_IncreaseButton" Theme="{StaticResource UnionInvisibleRepeatButton}" />
+              </Track.IncreaseButton>
+              <Thumb Name="thumb" Theme="{StaticResource UnionSliderHandle}" />
+            </Track>
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

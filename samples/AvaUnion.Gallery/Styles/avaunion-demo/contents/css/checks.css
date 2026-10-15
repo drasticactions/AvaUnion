@@ -1,0 +1,173 @@
+checkbox,
+radiobutton,
+switch {
+    icon-alignment-horizontal: start;
+    text-wrap-mode: wrap;
+    text-alignment: content fill center 0;
+    padding-top: var(--avaunion-demo-gap-xs);
+    padding-bottom: var(--avaunion-demo-gap-xs);
+    padding-left: var(--avaunion-demo-gap-s);
+    padding-right: var(--avaunion-demo-gap-s);
+    spacing: var(--avaunion-demo-gap-l);
+    color: var(--avaunion-demo-win-fg);
+}
+
+checkbox,
+checkdelegate,
+menuitem,
+radiobutton,
+radiodelegate {
+    width: var(--avaunion-demo-size-m);
+    height: var(--avaunion-demo-size-m);
+
+    & > indicator {
+        width: 18px;
+        height: 18px;
+
+        layout-alignment-container: content;
+        layout-alignment-horizontal: start;
+        layout-alignment-order: -1;
+
+        color: var(--avaunion-demo-on-accent);
+        background-color: var(--avaunion-demo-view-bg);
+        border: 2px solid var(--avaunion-demo-tint-4);
+        border-radius: var(--avaunion-demo-round-s);
+    }
+
+    &:hovered > indicator {
+        border-color: var(--avaunion-demo-accent);
+        background-color: mix(var(--avaunion-demo-view-bg), var(--avaunion-demo-accent), 0.12);
+    }
+
+    &:checked > indicator {
+        background-color: var(--avaunion-demo-accent);
+        border-color: var(--avaunion-demo-accent);
+    }
+
+    &:visual-focus > indicator {
+        outline: 2px solid mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.5);
+        border-color: var(--avaunion-demo-accent);
+    }
+
+    &:disabled {
+        color: var(--avaunion-demo-win-fg-off);
+
+        & > indicator {
+            border-color: var(--avaunion-demo-tint-2);
+            background-color: var(--avaunion-demo-win-bg-off);
+        }
+    }
+
+    &:checked:disabled > indicator {
+        background-color: var(--avaunion-demo-tint-3);
+        border-color: var(--avaunion-demo-tint-3);
+        background-image-mask-color: var(--avaunion-demo-win-fg-off);
+    }
+}
+
+checkbox,
+checkdelegate,
+menuitem {
+    &:checked > indicator {
+        background-image: url("../images/check.svg") mask var(--avaunion-demo-on-accent);
+    }
+
+    &.indeterminate > indicator {
+        background-color: mix(var(--avaunion-demo-view-bg), var(--avaunion-demo-accent), 0.35);
+        border: 5px solid var(--avaunion-demo-accent);
+    }
+}
+
+radiobutton,
+radiodelegate,
+menuitem.exclusive {
+    & > indicator {
+        border-radius: 9px;
+    }
+
+    &:checked > indicator {
+        background-color: var(--avaunion-demo-view-bg);
+        background-image-mask-color: var(--avaunion-demo-view-bg);
+        border: 5px solid var(--avaunion-demo-accent);
+    }
+
+    &:checked:disabled > indicator {
+        background-color: var(--avaunion-demo-win-bg-off);
+        border: 5px solid var(--avaunion-demo-tint-3);
+    }
+}
+
+switch,
+switchdelegate {
+    & > indicator {
+        layout-alignment-container: content;
+        layout-alignment-horizontal: start;
+
+        width: 44px;
+        height: 24px;
+        border-radius: 12px;
+        background-color: var(--avaunion-demo-tint-3);
+        border: none;
+
+        & > handle {
+            width: 24px;
+            height: 24px;
+            border-radius: 12px;
+            background-color: var(--avaunion-demo-view-bg);
+            border: 3px solid var(--avaunion-demo-tint-3);
+        }
+    }
+
+    &:hovered > indicator {
+        background-color: var(--avaunion-demo-tint-4);
+
+        & > handle {
+            border-color: var(--avaunion-demo-tint-4);
+        }
+    }
+
+    &:checked > indicator {
+        background-color: var(--avaunion-demo-accent);
+
+        & > handle {
+            background-color: var(--avaunion-demo-on-accent);
+            border-color: var(--avaunion-demo-accent);
+        }
+    }
+
+    &:checked:hovered > indicator {
+        background-color: mix(var(--avaunion-demo-accent), var(--avaunion-demo-win-fg), 0.15);
+
+        & > handle {
+            border-color: mix(var(--avaunion-demo-accent), var(--avaunion-demo-win-fg), 0.15);
+        }
+    }
+
+    &:visual-focus > indicator {
+        outline: var(--avaunion-demo-accent-ring);
+    }
+
+    &:disabled {
+        color: var(--avaunion-demo-win-fg-off);
+
+        & > indicator {
+            background-color: var(--avaunion-demo-tint-1);
+
+            & > handle {
+                background-color: var(--avaunion-demo-win-bg-off);
+                border-color: var(--avaunion-demo-tint-1);
+            }
+        }
+    }
+}
+
+radiobutton.changed,
+radiodelegate.changed,
+checkbox.changed,
+checkdelegate.changed,
+switch.changed {
+    indicator {
+        background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-warn), 0.25);
+        border: 2px solid var(--avaunion-demo-warn);
+    }
+}

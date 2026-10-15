@@ -1,0 +1,44 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionCalendarCell" TargetType="Button">
+    <Setter Property="union:Union.Type" Value="label" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="MinWidth" Value="32" />
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="Transparent">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <Border Name="PART_Selection"
+                  IsVisible="False"
+                  Margin="{union:Style Layout.Inset}"
+                  CornerRadius="{union:Style Corners}"
+                  Background="{DynamicResource Union.Active.Selection.Background.NormalBrush}" />
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Padding="{union:Style Layout.Padding}"
+                            HorizontalContentAlignment="Center"
+                            VerticalContentAlignment="Center" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type CalendarDayButton}" TargetType="CalendarDayButton" BasedOn="{StaticResource UnionCalendarCell}">
+    <Style Selector="^:selected">
+      <Setter Property="Foreground" Value="{DynamicResource Union.Active.Selection.Foreground.TextBrush}" />
+    </Style>
+    <Style Selector="^:selected /template/ Border#PART_Selection">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:blackout /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="TextBlock.TextDecorations" Value="Strikethrough" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

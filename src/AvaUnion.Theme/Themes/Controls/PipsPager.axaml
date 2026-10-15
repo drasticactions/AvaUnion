@@ -1,0 +1,61 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionPipItem" TargetType="ListBoxItem">
+    <Setter Property="union:Union.Type" Value="pageindicatordelegate" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="MinWidth" Value="0" />
+    <Setter Property="MinHeight" Value="0" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="Transparent">
+          <union:UnionBox ImplicitSize="True" Margin="{TemplateBinding Padding}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type PipsPager}" TargetType="PipsPager">
+    <Setter Property="union:Union.Type" Value="pageindicator" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="IsTabStop" Value="False" />
+    <Setter Property="PreviousButtonTheme" Value="{StaticResource UnionToolButton}" />
+    <Setter Property="NextButtonTheme" Value="{StaticResource UnionToolButton}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <StackPanel Name="PART_RootPanel" Orientation="{TemplateBinding Orientation}" Background="{TemplateBinding Background}" ClipToBounds="False" Spacing="{union:Style Layout.Spacing, Fallback=4}">
+          <Button Name="PART_PreviousButton" Theme="{TemplateBinding PreviousButtonTheme}" IsVisible="{TemplateBinding IsPreviousButtonVisible}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <union:UnionIcon Name="PreviousButtonIcon" IconName="go-previous" MirrorInRightToLeft="True" Width="16" Height="16" />
+          </Button>
+          <ListBox Name="PART_PipsPagerList"
+                   Theme="{StaticResource UnionPipList}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   ItemsSource="{Binding TemplateSettings.Pips, RelativeSource={RelativeSource TemplatedParent}}"
+                   SelectedIndex="{Binding SelectedPageIndex, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
+                   AutoScrollToSelectedItem="False"
+                   ItemContainerTheme="{StaticResource UnionPipItem}">
+            <ListBox.ItemsPanel>
+              <ItemsPanelTemplate>
+                <StackPanel Orientation="{Binding Orientation, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=PipsPager}}" Spacing="{union:Style Layout.Spacing, Fallback=4}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+              </ItemsPanelTemplate>
+            </ListBox.ItemsPanel>
+          </ListBox>
+          <Button Name="PART_NextButton" Theme="{TemplateBinding NextButtonTheme}" IsVisible="{TemplateBinding IsNextButtonVisible}" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <union:UnionIcon Name="NextButtonIcon" IconName="go-next" MirrorInRightToLeft="True" Width="16" Height="16" />
+          </Button>
+        </StackPanel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:vertical /template/ union|UnionIcon#PreviousButtonIcon">
+      <Setter Property="IconName" Value="go-up" />
+    </Style>
+    <Style Selector="^:vertical /template/ union|UnionIcon#NextButtonIcon">
+      <Setter Property="IconName" Value="go-down" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

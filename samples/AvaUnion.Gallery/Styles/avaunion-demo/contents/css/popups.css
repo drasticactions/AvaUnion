@@ -1,0 +1,308 @@
+:root {
+    --avaunion-demo-shadow-room: 24px;
+}
+
+menu,
+popup {
+    border-radius: var(--avaunion-demo-round-l);
+    color: var(--avaunion-demo-win-fg);
+    background-color: var(--avaunion-demo-view-bg);
+    border: 1px solid var(--avaunion-demo-soft-line);
+    box-shadow: var(--avaunion-demo-float);
+
+    &:disabled {
+        color: var(--avaunion-demo-win-fg-off);
+        background-color: var(--avaunion-demo-win-bg-off);
+    }
+}
+
+menu {
+    padding: var(--avaunion-demo-gap-m);
+    margin: var(--avaunion-demo-shadow-room);
+}
+
+overlay {
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+overlay.modal {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+menuitem {
+    height: 32px;
+    width: var(--avaunion-demo-menu-width);
+    padding-top: var(--avaunion-demo-gap-m);
+    padding-bottom: var(--avaunion-demo-gap-m);
+    padding-left: var(--avaunion-demo-gap-l);
+    padding-right: var(--avaunion-demo-gap-l);
+    spacing: var(--avaunion-demo-gap-l);
+    border-radius: var(--avaunion-demo-round-m);
+    color: var(--avaunion-demo-win-fg);
+
+    icon-alignment: content start center 0;
+    text-alignment: content start center 1;
+
+    &:hovered,
+    &.with-submenu:highlighted {
+        color: var(--avaunion-demo-on-accent);
+        background-color: var(--avaunion-demo-accent);
+
+        & shortcuttext {
+            color: mix(var(--avaunion-demo-on-accent), var(--avaunion-demo-accent), 0.3);
+        }
+
+        & arrow {
+            icon-color: var(--avaunion-demo-on-accent);
+        }
+    }
+
+    &:pressed,
+    &.with-submenu:pressed {
+        color: var(--avaunion-demo-on-accent);
+        background-color: mix(var(--avaunion-demo-accent), var(--avaunion-demo-win-fg), 0.2);
+    }
+
+    &:disabled {
+        background: none;
+        color: var(--avaunion-demo-win-fg-off);
+    }
+
+    arrow {
+        width: var(--avaunion-demo-icon-s);
+        height: var(--avaunion-demo-icon-s);
+        layout-alignment: content end center 1;
+        icon-name: "arrow-right-symbolic";
+        icon-color: var(--avaunion-demo-muted-fg);
+    }
+
+    indicator {
+        width: 18px;
+        height: 18px;
+        layout-alignment: content start center -1;
+    }
+
+    shortcuttext {
+        spacing: 48px;
+        color: var(--avaunion-demo-muted-fg);
+        text-alignment: content end center 0;
+
+        &:disabled {
+            color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-win-fg-off), 0.6);
+        }
+    }
+}
+
+menuseparator {
+    layout-alignment-horizontal: fill;
+    height: 1px;
+    background-color: var(--avaunion-demo-soft-line);
+    inset-top: var(--avaunion-demo-gap-s);
+    inset-bottom: var(--avaunion-demo-gap-s);
+    inset-left: var(--avaunion-demo-gap-l);
+    inset-right: var(--avaunion-demo-gap-l);
+
+    &.with-title {
+        height: var(--avaunion-demo-size-l);
+        text-alignment: content start center 0;
+        layout-alignment-horizontal: end;
+        background-color: transparent;
+        padding-top: var(--avaunion-demo-gap-s);
+        padding-bottom: var(--avaunion-demo-gap-s);
+        padding-left: var(--avaunion-demo-gap-l);
+        padding-right: var(--avaunion-demo-gap-l);
+        inset-left: 0px;
+        inset-right: 0px;
+        font-weight: 700;
+        color: var(--avaunion-demo-accent);
+        border: none;
+
+        &:disabled {
+            color: var(--avaunion-demo-win-fg-off);
+        }
+    }
+}
+
+menubar {
+    background-color: var(--avaunion-demo-tint-1);
+    border-radius: var(--avaunion-demo-round-l);
+    padding: var(--avaunion-demo-gap-xs);
+    spacing: var(--avaunion-demo-gap-xs);
+
+    .inactive & {
+        background-color: var(--avaunion-demo-win-bg-inactive);
+    }
+}
+
+menubaritem {
+    width: var(--avaunion-demo-size-m);
+    height: 28px;
+    padding-top: var(--avaunion-demo-gap-s);
+    padding-bottom: var(--avaunion-demo-gap-s);
+    padding-left: var(--avaunion-demo-gap-l);
+    padding-right: var(--avaunion-demo-gap-l);
+    spacing: var(--avaunion-demo-gap-s);
+    border-radius: var(--avaunion-demo-round-pill);
+    color: var(--avaunion-demo-win-fg);
+
+    text-alignment-horizontal: center;
+    text-alignment-vertical: center;
+
+    &:hovered,
+    &:highlighted {
+        background-color: var(--avaunion-demo-accent-soft);
+    }
+
+    &:pressed {
+        color: var(--avaunion-demo-on-accent);
+        background-color: var(--avaunion-demo-accent);
+    }
+
+    &:disabled {
+        color: var(--avaunion-demo-win-fg-off);
+    }
+}
+
+dialog {
+    spacing: var(--avaunion-demo-gap-m);
+    padding: var(--avaunion-demo-gap-xl);
+    border-radius: var(--avaunion-demo-round-l);
+
+    text-alignment-horizontal: center;
+    icon-alignment-horizontal: center;
+
+    color: var(--avaunion-demo-view-fg);
+    border: 1px solid var(--avaunion-demo-soft-line);
+    background-color: var(--avaunion-demo-view-bg);
+    box-shadow: 0px 8px 40px 0px rgba(0, 0, 0, 0.35);
+
+    .header {
+        font-size: 22px;
+        font-weight: 300;
+        padding: var(--avaunion-demo-gap-l);
+    }
+
+    listview {
+        &.panel-left,
+        &.panel-right {
+            border: none;
+            border-radius: 0px;
+            background-color: var(--avaunion-demo-win-bg-alt);
+        }
+    }
+}
+
+dialogbuttonbox {
+    spacing: var(--avaunion-demo-gap-l);
+    padding: var(--avaunion-demo-gap-l);
+}
+
+tooltip {
+    width: var(--avaunion-demo-size-m);
+    height: var(--avaunion-demo-size-m);
+    padding-top: var(--avaunion-demo-gap-m);
+    padding-bottom: var(--avaunion-demo-gap-m);
+    padding-left: var(--avaunion-demo-gap-l);
+    padding-right: var(--avaunion-demo-gap-l);
+    color: var(--avaunion-demo-tip-fg);
+    background-color: var(--avaunion-demo-tip-bg);
+    border-radius: var(--avaunion-demo-round-m);
+    border: 1px solid var(--avaunion-demo-soft-line);
+    box-shadow: var(--avaunion-demo-float);
+}
+
+inlinemessage {
+    padding-top: var(--avaunion-demo-gap-m);
+    padding-bottom: var(--avaunion-demo-gap-m);
+    padding-left: var(--avaunion-demo-gap-l);
+    padding-right: var(--avaunion-demo-gap-l);
+    spacing: var(--avaunion-demo-gap-l);
+    color: var(--avaunion-demo-win-fg);
+    background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.14);
+    border: none;
+    border-left: 4px solid var(--avaunion-demo-accent);
+    border-radius: var(--avaunion-demo-round-m);
+
+    &[type="positive"] {
+        background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-good), 0.14);
+        border-left-color: var(--avaunion-demo-good);
+    }
+
+    &[type="warning"] {
+        background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-warn), 0.14);
+        border-left-color: var(--avaunion-demo-warn);
+    }
+
+    &[type="error"] {
+        background-color: mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-bad), 0.14);
+        border-left-color: var(--avaunion-demo-bad);
+    }
+
+    &[position="header"],
+    &[position="footer"] {
+        border-radius: 0px;
+        border-left: none;
+    }
+
+    &[position="header"] {
+        border-bottom: 2px solid var(--avaunion-demo-accent);
+    }
+
+    &[position="footer"] {
+        border-top: 2px solid var(--avaunion-demo-accent);
+    }
+}
+
+card {
+    color: var(--avaunion-demo-view-fg);
+    background-color: var(--avaunion-demo-view-bg);
+    border: 1px solid var(--avaunion-demo-soft-line);
+    border-radius: var(--avaunion-demo-round-l);
+    box-shadow: var(--avaunion-demo-lift);
+
+    &:hovered {
+        border-color: var(--avaunion-demo-accent);
+    }
+
+    &:pressed {
+        background-color: mix(var(--avaunion-demo-view-bg), var(--avaunion-demo-accent), 0.15);
+    }
+}
+
+chip {
+    width: var(--avaunion-demo-size-m);
+    height: var(--avaunion-demo-size-m);
+    padding-top: var(--avaunion-demo-gap-s);
+    padding-bottom: var(--avaunion-demo-gap-s);
+    padding-left: var(--avaunion-demo-gap-l);
+    padding-right: var(--avaunion-demo-gap-l);
+    spacing: var(--avaunion-demo-gap-s);
+
+    layout-alignment: content fill fill 0;
+    text-alignment: content fill center 0;
+    icon-alignment: content start center 0;
+
+    color: var(--avaunion-demo-win-fg);
+    background-color: var(--avaunion-demo-tint-1);
+    border: none;
+    border-radius: var(--avaunion-demo-round-pill);
+
+    & > .indicator {
+        width: var(--avaunion-demo-size-s);
+        height: var(--avaunion-demo-size-s);
+        icon-name: "edit-delete-remove";
+        icon-width: var(--avaunion-demo-icon-s);
+        icon-height: var(--avaunion-demo-icon-s);
+        layout-alignment: item end center 0;
+    }
+
+    &:hovered {
+        background-color: var(--avaunion-demo-tint-2);
+    }
+
+    &:pressed,
+    &:checked {
+        color: var(--avaunion-demo-on-accent);
+        background-color: var(--avaunion-demo-accent);
+    }
+}

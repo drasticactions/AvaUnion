@@ -1,0 +1,40 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionButtonBase" TargetType="Button">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="button" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="FontWeight" Value="{union:Style Text.Font, Fallback=Normal}" />
+    <Setter Property="Opacity" Value="{union:Style Display.Opacity, Fallback=1}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="Transparent">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <union:UnionPositioner>
+            <union:UnionIcon union:PositionedItem.Source="Icon" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              union:PositionedItem.Source="Text"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              RecognizesAccessKey="True"
+                              TextWrapping="NoWrap"
+                              TextTrimming="{union:Style Text.Elide, Fallback=CharacterEllipsis}"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center" />
+            <union:UnionIcon union:Union.Type="indicator"
+                             union:PositionedItem.Source="Layout"
+                             IsVisible="{union:Style Display.Visible, Fallback=False}" />
+          </union:UnionPositioner>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type Button}" TargetType="Button" BasedOn="{StaticResource UnionButtonBase}" />
+</ResourceDictionary>

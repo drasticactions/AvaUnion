@@ -1,0 +1,53 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    xmlns:collections="using:Avalonia.Collections"
+                    xmlns:local="using:AvaUnion.DataGrid"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionDataGridGroupExpander" TargetType="ToggleButton">
+    <Setter Property="union:Union.Type" Value="indicator" />
+    <Setter Property="union:Union.StateSource" Value="None" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="Transparent">
+          <union:UnionBox ImplicitSize="True" />
+          <union:UnionIcon HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type DataGridRowGroupHeader}" TargetType="DataGridRowGroupHeader">
+    <Setter Property="union:Union.Type" Value="treeviewdelegate" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="MinHeight" Value="{union:Style Layout.Height, Fallback=24}" />
+    <Setter Property="Template">
+      <ControlTemplate x:DataType="collections:DataGridCollectionViewGroup">
+        <DataGridFrozenGrid Name="PART_Root"
+                            MinHeight="{TemplateBinding MinHeight}"
+                            ColumnDefinitions="Auto,Auto,Auto,Auto,*"
+                            RowDefinitions="*,Auto">
+          <union:UnionBox Grid.Column="1" Grid.ColumnSpan="4" Margin="{union:Style Layout.Inset}" />
+          <Rectangle Name="PART_IndentSpacer" Grid.Column="1" />
+          <ToggleButton Name="PART_ExpanderButton"
+                        Grid.Column="2"
+                        Theme="{StaticResource UnionDataGridGroupExpander}"
+                        IsTabStop="False"
+                        VerticalAlignment="Center" />
+          <StackPanel Grid.Column="3" Orientation="Horizontal" VerticalAlignment="Center"
+                      Margin="{union:Style Layout.Padding}"
+                      Spacing="{union:Style Layout.Spacing, Fallback=4}"
+                      TextElement.FontWeight="{union:Style Text.Font, Fallback=Normal}">
+            <TextBlock Name="PART_PropertyNameElement" IsVisible="{TemplateBinding IsPropertyNameVisible}" />
+            <TextBlock Text="{Binding Key}" />
+            <TextBlock Name="PART_ItemCountElement" IsVisible="{TemplateBinding IsItemCountVisible}" />
+          </StackPanel>
+          <DataGridRowHeader Name="PART_RowHeader" Grid.RowSpan="2" DataGridFrozenGrid.IsFrozen="True" />
+          <Rectangle Name="PART_BottomGridLine" Grid.Row="1" Grid.ColumnSpan="5" Height="1"
+                     IsVisible="{Binding $parent[DataGrid].GridLinesVisibility, Converter={x:Static local:GridLineConverters.ShowsHorizontal}}" />
+        </DataGridFrozenGrid>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

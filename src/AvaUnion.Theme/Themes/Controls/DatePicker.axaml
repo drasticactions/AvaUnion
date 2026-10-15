@@ -1,0 +1,111 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type DatePicker}" TargetType="DatePicker">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="combobox" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="MinWidth" Value="296" />
+    <Setter Property="MaxWidth" Value="456" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DataValidationErrors>
+          <Grid Name="LayoutRoot">
+            <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+            <Button Name="PART_FlyoutButton"
+                    Theme="{StaticResource UnionPickerFace}"
+                    IsEnabled="{TemplateBinding IsEnabled}"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Stretch"
+                    TemplatedControl.IsTemplateFocusTarget="True">
+              <Grid Name="PART_ButtonContentGrid" ColumnDefinitions="78*,Auto,132*,Auto,78*" Margin="{union:Style Layout.Padding}">
+                <TextBlock Name="PART_DayTextBlock" Text="{DynamicResource StringDatePickerDayText}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Name="PART_MonthTextBlock" Text="{DynamicResource StringDatePickerMonthText}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <TextBlock Name="PART_YearTextBlock" Text="{DynamicResource StringDatePickerYearText}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Rectangle Name="PART_FirstSpacer" Fill="{DynamicResource Union.Active.View.Decoration.FrameBrush}" HorizontalAlignment="Center" Width="1" Grid.Column="1" />
+                <Rectangle Name="PART_SecondSpacer" Fill="{DynamicResource Union.Active.View.Decoration.FrameBrush}" HorizontalAlignment="Center" Width="1" Grid.Column="3" />
+              </Grid>
+            </Button>
+            <Popup Name="PART_Popup" WindowManagerAddShadowHint="False" IsLightDismissEnabled="True" PlacementTarget="{TemplateBinding}" Placement="Bottom">
+              <DatePickerPresenter Name="PART_PickerPresenter" />
+            </Popup>
+          </Grid>
+        </DataValidationErrors>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:hasnodate /template/ Button#PART_FlyoutButton TextBlock">
+      <Setter Property="Opacity" Value="0.6" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type DatePickerPresenter}" TargetType="DatePickerPresenter">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="popup" />
+    <Setter Property="union:Union.Hints" Value="combobox" />
+    <Setter Property="union:Union.StateSource" Value="None" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Width" Value="296" />
+    <Setter Property="MinWidth" Value="296" />
+    <Setter Property="MaxHeight" Value="398" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <Grid Name="ContentRoot" RowDefinitions="*,Auto" Margin="{union:Style Layout.Padding}" MaxHeight="398">
+            <Grid Name="PART_PickerContainer">
+              <Grid.Styles>
+                <Style Selector="DateTimePickerPanel > ListBoxItem">
+                  <Setter Property="Theme" Value="{StaticResource UnionTumblerText}" />
+                </Style>
+              </Grid.Styles>
+              <Panel Name="PART_MonthHost" Grid.Column="0" union:Union.Type="tumbler" union:Union.StateSource="None" Background="Transparent">
+                <union:UnionBox />
+                <Border Theme="{StaticResource UnionTumblerBand}" />
+                <ScrollViewer Theme="{StaticResource UnionPlainScrollViewer}" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                  <DateTimePickerPanel Name="PART_MonthSelector" PanelType="Month" ItemHeight="32" ShouldLoop="True" />
+                </ScrollViewer>
+                <RepeatButton Name="PART_MonthUpButton" Theme="{StaticResource UnionTumblerUp}" />
+                <RepeatButton Name="PART_MonthDownButton" Theme="{StaticResource UnionTumblerDown}" />
+              </Panel>
+              <Panel Name="PART_DayHost" Grid.Column="0" union:Union.Type="tumbler" union:Union.StateSource="None" Background="Transparent">
+                <union:UnionBox />
+                <Border Theme="{StaticResource UnionTumblerBand}" />
+                <ScrollViewer Theme="{StaticResource UnionPlainScrollViewer}" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                  <DateTimePickerPanel Name="PART_DaySelector" PanelType="Day" ItemHeight="32" ShouldLoop="True" />
+                </ScrollViewer>
+                <RepeatButton Name="PART_DayUpButton" Theme="{StaticResource UnionTumblerUp}" />
+                <RepeatButton Name="PART_DayDownButton" Theme="{StaticResource UnionTumblerDown}" />
+              </Panel>
+              <Panel Name="PART_YearHost" Grid.Column="0" union:Union.Type="tumbler" union:Union.StateSource="None" Background="Transparent">
+                <union:UnionBox />
+                <Border Theme="{StaticResource UnionTumblerBand}" />
+                <ScrollViewer Theme="{StaticResource UnionPlainScrollViewer}" HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Hidden">
+                  <DateTimePickerPanel Name="PART_YearSelector" PanelType="Year" ItemHeight="32" ShouldLoop="False" />
+                </ScrollViewer>
+                <RepeatButton Name="PART_YearUpButton" Theme="{StaticResource UnionTumblerUp}" />
+                <RepeatButton Name="PART_YearDownButton" Theme="{StaticResource UnionTumblerDown}" />
+              </Panel>
+              <Rectangle Name="PART_FirstSpacer" Fill="{DynamicResource Union.Active.View.Decoration.FrameBrush}" HorizontalAlignment="Center" Width="1" Grid.Column="1" />
+              <Rectangle Name="PART_SecondSpacer" Fill="{DynamicResource Union.Active.View.Decoration.FrameBrush}" HorizontalAlignment="Center" Width="1" Grid.Column="3" />
+            </Grid>
+            <Grid Name="AcceptDismissGrid" Grid.Row="1" ColumnDefinitions="*,*" Margin="{union:Style Layout.Spacing, Sides=Top}">
+              <Button Name="PART_AcceptButton" Grid.Column="0" Theme="{StaticResource UnionToolButton}" HorizontalAlignment="Stretch">
+                <union:UnionIcon IconName="dialog-ok-apply" Width="16" Height="16" />
+              </Button>
+              <Button Name="PART_DismissButton" Grid.Column="1" Theme="{StaticResource UnionToolButton}" HorizontalAlignment="Stretch">
+                <union:UnionIcon IconName="dialog-cancel" Width="16" Height="16" />
+              </Button>
+            </Grid>
+          </Grid>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^ /template/ Panel:pointerover > RepeatButton">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

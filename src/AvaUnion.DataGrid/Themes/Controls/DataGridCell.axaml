@@ -1,0 +1,41 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type DataGridCell}" TargetType="DataGridCell">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=View.Foreground.Text}" />
+    <Setter Property="MinHeight" Value="{union:Style Layout.Height, Fallback=24}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid Name="PART_CellRoot" ColumnDefinitions="*,Auto" Background="{TemplateBinding Background}">
+          <Border Name="FocusVisual"
+                  IsHitTestVisible="False"
+                  IsVisible="False"
+                  BorderThickness="1"
+                  BorderBrush="{DynamicResource Union.Active.View.Decoration.FocusBrush}" />
+          <ContentPresenter Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Foreground="{TemplateBinding Foreground}" />
+          <Border Name="InvalidVisualElement"
+                  IsHitTestVisible="False"
+                  IsVisible="False"
+                  BorderThickness="1"
+                  BorderBrush="{DynamicResource Union.Active.View.Foreground.NegativeBrush}" />
+          <Rectangle Name="PART_RightGridLine" Grid.Column="1" Width="1" VerticalAlignment="Stretch" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:current:focus /template/ Border#FocusVisual">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+    <Style Selector="^:invalid /template/ Border#InvalidVisualElement">
+      <Setter Property="IsVisible" Value="True" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

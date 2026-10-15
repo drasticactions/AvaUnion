@@ -1,0 +1,1686 @@
+{
+    "colors": [
+        {
+            "argb": "#ffffffff",
+            "key": "active.view.background.normal"
+        },
+        {
+            "argb": "#fff7f7f7",
+            "key": "active.view.background.alternate"
+        },
+        {
+            "argb": "#ffecf6fc",
+            "key": "active.view.background.active"
+        },
+        {
+            "argb": "#ffe8f0f8",
+            "key": "active.view.background.link"
+        },
+        {
+            "argb": "#fff2ecf6",
+            "key": "active.view.background.visited"
+        },
+        {
+            "argb": "#fffaeced",
+            "key": "active.view.background.negative"
+        },
+        {
+            "argb": "#fffef1ea",
+            "key": "active.view.background.neutral"
+        },
+        {
+            "argb": "#ffddfbe8",
+            "key": "active.view.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "active.view.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "active.view.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.view.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "active.view.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "active.view.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "active.view.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "active.view.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "active.view.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.view.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.view.decoration.hover"
+        },
+        {
+            "argb": "#ffd3d4d4",
+            "key": "active.view.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "active.view.decoration.framecontrast"
+        },
+        {
+            "argb": "#ffeff0f1",
+            "key": "active.window.background.normal"
+        },
+        {
+            "argb": "#ffe3e5e7",
+            "key": "active.window.background.alternate"
+        },
+        {
+            "argb": "#ffd5eaf7",
+            "key": "active.window.background.active"
+        },
+        {
+            "argb": "#ffd4e5f2",
+            "key": "active.window.background.link"
+        },
+        {
+            "argb": "#ffe8deee",
+            "key": "active.window.background.visited"
+        },
+        {
+            "argb": "#fff5dddf",
+            "key": "active.window.background.negative"
+        },
+        {
+            "argb": "#fffbe1d2",
+            "key": "active.window.background.neutral"
+        },
+        {
+            "argb": "#ffadf6ca",
+            "key": "active.window.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "active.window.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "active.window.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.window.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "active.window.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "active.window.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "active.window.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "active.window.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "active.window.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.window.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.window.decoration.hover"
+        },
+        {
+            "argb": "#ffc6c8c9",
+            "key": "active.window.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "active.window.decoration.framecontrast"
+        },
+        {
+            "argb": "#fffcfcfc",
+            "key": "active.button.background.normal"
+        },
+        {
+            "argb": "#ffa3d4fa",
+            "key": "active.button.background.alternate"
+        },
+        {
+            "argb": "#ffe8f3fb",
+            "key": "active.button.background.active"
+        },
+        {
+            "argb": "#ffe4eef7",
+            "key": "active.button.background.link"
+        },
+        {
+            "argb": "#fff1e9f4",
+            "key": "active.button.background.visited"
+        },
+        {
+            "argb": "#fff9e9ea",
+            "key": "active.button.background.negative"
+        },
+        {
+            "argb": "#fffdeee5",
+            "key": "active.button.background.neutral"
+        },
+        {
+            "argb": "#ffd4fae2",
+            "key": "active.button.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "active.button.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "active.button.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.button.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "active.button.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "active.button.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "active.button.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "active.button.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "active.button.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.button.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.button.decoration.hover"
+        },
+        {
+            "argb": "#ffd1d1d2",
+            "key": "active.button.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "active.button.decoration.framecontrast"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.selection.background.normal"
+        },
+        {
+            "argb": "#ffa3d4fa",
+            "key": "active.selection.background.alternate"
+        },
+        {
+            "argb": "#ff5ab7dc",
+            "key": "active.selection.background.active"
+        },
+        {
+            "argb": "#ffb3ab74",
+            "key": "active.selection.background.link"
+        },
+        {
+            "argb": "#ff9799d3",
+            "key": "active.selection.background.visited"
+        },
+        {
+            "argb": "#ffaa96b0",
+            "key": "active.selection.background.negative"
+        },
+        {
+            "argb": "#ffb29b74",
+            "key": "active.selection.background.neutral"
+        },
+        {
+            "argb": "#ff32ada4",
+            "key": "active.selection.background.positive"
+        },
+        {
+            "argb": "#ffffffff",
+            "key": "active.selection.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "active.selection.foreground.inactive"
+        },
+        {
+            "argb": "#ffffffff",
+            "key": "active.selection.foreground.active"
+        },
+        {
+            "argb": "#fffdbc4b",
+            "key": "active.selection.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "active.selection.foreground.visited"
+        },
+        {
+            "argb": "#ffb03745",
+            "key": "active.selection.foreground.negative"
+        },
+        {
+            "argb": "#ffc65c00",
+            "key": "active.selection.foreground.neutral"
+        },
+        {
+            "argb": "#ff176839",
+            "key": "active.selection.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.selection.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.selection.decoration.hover"
+        },
+        {
+            "argb": "#ff64beed",
+            "key": "active.selection.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "active.selection.decoration.framecontrast"
+        },
+        {
+            "argb": "#fff7f7f7",
+            "key": "active.tooltip.background.normal"
+        },
+        {
+            "argb": "#ffeff0f1",
+            "key": "active.tooltip.background.alternate"
+        },
+        {
+            "argb": "#ffe0effa",
+            "key": "active.tooltip.background.active"
+        },
+        {
+            "argb": "#ffdeeaf5",
+            "key": "active.tooltip.background.link"
+        },
+        {
+            "argb": "#ffede5f1",
+            "key": "active.tooltip.background.visited"
+        },
+        {
+            "argb": "#fff8e4e5",
+            "key": "active.tooltip.background.negative"
+        },
+        {
+            "argb": "#fffce9dd",
+            "key": "active.tooltip.background.neutral"
+        },
+        {
+            "argb": "#ffc5f8d8",
+            "key": "active.tooltip.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "active.tooltip.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "active.tooltip.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.tooltip.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "active.tooltip.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "active.tooltip.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "active.tooltip.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "active.tooltip.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "active.tooltip.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.tooltip.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.tooltip.decoration.hover"
+        },
+        {
+            "argb": "#ffcdcdce",
+            "key": "active.tooltip.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "active.tooltip.decoration.framecontrast"
+        },
+        {
+            "argb": "#ff2a2e32",
+            "key": "active.complementary.background.normal"
+        },
+        {
+            "argb": "#ff1b1e20",
+            "key": "active.complementary.background.alternate"
+        },
+        {
+            "argb": "#ff1c3c4d",
+            "key": "active.complementary.background.active"
+        },
+        {
+            "argb": "#ff143955",
+            "key": "active.complementary.background.link"
+        },
+        {
+            "argb": "#ff412c4d",
+            "key": "active.complementary.background.visited"
+        },
+        {
+            "argb": "#ff57242b",
+            "key": "active.complementary.background.negative"
+        },
+        {
+            "argb": "#ff532e0d",
+            "key": "active.complementary.background.neutral"
+        },
+        {
+            "argb": "#ff163e29",
+            "key": "active.complementary.background.positive"
+        },
+        {
+            "argb": "#fffcfcfc",
+            "key": "active.complementary.foreground.text"
+        },
+        {
+            "argb": "#ffa1a9b1",
+            "key": "active.complementary.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.complementary.foreground.active"
+        },
+        {
+            "argb": "#ff1d99f3",
+            "key": "active.complementary.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "active.complementary.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "active.complementary.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "active.complementary.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "active.complementary.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.complementary.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.complementary.decoration.hover"
+        },
+        {
+            "argb": "#ff54575a",
+            "key": "active.complementary.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "active.complementary.decoration.framecontrast"
+        },
+        {
+            "argb": "#ffdee0e2",
+            "key": "active.header.background.normal"
+        },
+        {
+            "argb": "#ffeff0f1",
+            "key": "active.header.background.alternate"
+        },
+        {
+            "argb": "#ffbddcf1",
+            "key": "active.header.background.active"
+        },
+        {
+            "argb": "#ffbed8ed",
+            "key": "active.header.background.link"
+        },
+        {
+            "argb": "#ffddcfe5",
+            "key": "active.header.background.visited"
+        },
+        {
+            "argb": "#ffeecccf",
+            "key": "active.header.background.negative"
+        },
+        {
+            "argb": "#fff7cfb7",
+            "key": "active.header.background.neutral"
+        },
+        {
+            "argb": "#ff85ecb2",
+            "key": "active.header.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "active.header.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "active.header.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.header.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "active.header.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "active.header.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "active.header.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "active.header.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "active.header.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.header.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "active.header.decoration.hover"
+        },
+        {
+            "argb": "#ffb9bbbd",
+            "key": "active.header.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "active.header.decoration.framecontrast"
+        },
+        {
+            "argb": "#ffffffff",
+            "key": "inactive.view.background.normal"
+        },
+        {
+            "argb": "#fff7f7f7",
+            "key": "inactive.view.background.alternate"
+        },
+        {
+            "argb": "#ffecf6fc",
+            "key": "inactive.view.background.active"
+        },
+        {
+            "argb": "#ffe8f0f8",
+            "key": "inactive.view.background.link"
+        },
+        {
+            "argb": "#fff2ecf6",
+            "key": "inactive.view.background.visited"
+        },
+        {
+            "argb": "#fffaeced",
+            "key": "inactive.view.background.negative"
+        },
+        {
+            "argb": "#fffef1ea",
+            "key": "inactive.view.background.neutral"
+        },
+        {
+            "argb": "#ffddfbe8",
+            "key": "inactive.view.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "inactive.view.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "inactive.view.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.view.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "inactive.view.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "inactive.view.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "inactive.view.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "inactive.view.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "inactive.view.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.view.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.view.decoration.hover"
+        },
+        {
+            "argb": "#ffd3d4d4",
+            "key": "inactive.view.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "inactive.view.decoration.framecontrast"
+        },
+        {
+            "argb": "#ffeff0f1",
+            "key": "inactive.window.background.normal"
+        },
+        {
+            "argb": "#ffe3e5e7",
+            "key": "inactive.window.background.alternate"
+        },
+        {
+            "argb": "#ffd5eaf7",
+            "key": "inactive.window.background.active"
+        },
+        {
+            "argb": "#ffd4e5f2",
+            "key": "inactive.window.background.link"
+        },
+        {
+            "argb": "#ffe8deee",
+            "key": "inactive.window.background.visited"
+        },
+        {
+            "argb": "#fff5dddf",
+            "key": "inactive.window.background.negative"
+        },
+        {
+            "argb": "#fffbe1d2",
+            "key": "inactive.window.background.neutral"
+        },
+        {
+            "argb": "#ffadf6ca",
+            "key": "inactive.window.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "inactive.window.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "inactive.window.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.window.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "inactive.window.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "inactive.window.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "inactive.window.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "inactive.window.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "inactive.window.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.window.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.window.decoration.hover"
+        },
+        {
+            "argb": "#ffc6c8c9",
+            "key": "inactive.window.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "inactive.window.decoration.framecontrast"
+        },
+        {
+            "argb": "#fffcfcfc",
+            "key": "inactive.button.background.normal"
+        },
+        {
+            "argb": "#ffa3d4fa",
+            "key": "inactive.button.background.alternate"
+        },
+        {
+            "argb": "#ffe8f3fb",
+            "key": "inactive.button.background.active"
+        },
+        {
+            "argb": "#ffe4eef7",
+            "key": "inactive.button.background.link"
+        },
+        {
+            "argb": "#fff1e9f4",
+            "key": "inactive.button.background.visited"
+        },
+        {
+            "argb": "#fff9e9ea",
+            "key": "inactive.button.background.negative"
+        },
+        {
+            "argb": "#fffdeee5",
+            "key": "inactive.button.background.neutral"
+        },
+        {
+            "argb": "#ffd4fae2",
+            "key": "inactive.button.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "inactive.button.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "inactive.button.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.button.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "inactive.button.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "inactive.button.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "inactive.button.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "inactive.button.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "inactive.button.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.button.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.button.decoration.hover"
+        },
+        {
+            "argb": "#ffd1d1d2",
+            "key": "inactive.button.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "inactive.button.decoration.framecontrast"
+        },
+        {
+            "argb": "#ffc2e0f5",
+            "key": "inactive.selection.background.normal"
+        },
+        {
+            "argb": "#ffb0d8f3",
+            "key": "inactive.selection.background.alternate"
+        },
+        {
+            "argb": "#ffb3d9f4",
+            "key": "inactive.selection.background.active"
+        },
+        {
+            "argb": "#ffb5d4ef",
+            "key": "inactive.selection.background.link"
+        },
+        {
+            "argb": "#ffd6cbe6",
+            "key": "inactive.selection.background.visited"
+        },
+        {
+            "argb": "#ffe8c9cf",
+            "key": "inactive.selection.background.negative"
+        },
+        {
+            "argb": "#fff4cbb0",
+            "key": "inactive.selection.background.neutral"
+        },
+        {
+            "argb": "#ff75e9b8",
+            "key": "inactive.selection.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "inactive.selection.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "inactive.selection.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.selection.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "inactive.selection.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "inactive.selection.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "inactive.selection.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "inactive.selection.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "inactive.selection.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.selection.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.selection.decoration.hover"
+        },
+        {
+            "argb": "#ffa2bbcc",
+            "key": "inactive.selection.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "inactive.selection.decoration.framecontrast"
+        },
+        {
+            "argb": "#fff7f7f7",
+            "key": "inactive.tooltip.background.normal"
+        },
+        {
+            "argb": "#ffeff0f1",
+            "key": "inactive.tooltip.background.alternate"
+        },
+        {
+            "argb": "#ffe0effa",
+            "key": "inactive.tooltip.background.active"
+        },
+        {
+            "argb": "#ffdeeaf5",
+            "key": "inactive.tooltip.background.link"
+        },
+        {
+            "argb": "#ffede5f1",
+            "key": "inactive.tooltip.background.visited"
+        },
+        {
+            "argb": "#fff8e4e5",
+            "key": "inactive.tooltip.background.negative"
+        },
+        {
+            "argb": "#fffce9dd",
+            "key": "inactive.tooltip.background.neutral"
+        },
+        {
+            "argb": "#ffc5f8d8",
+            "key": "inactive.tooltip.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "inactive.tooltip.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "inactive.tooltip.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.tooltip.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "inactive.tooltip.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "inactive.tooltip.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "inactive.tooltip.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "inactive.tooltip.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "inactive.tooltip.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.tooltip.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.tooltip.decoration.hover"
+        },
+        {
+            "argb": "#ffcdcdce",
+            "key": "inactive.tooltip.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "inactive.tooltip.decoration.framecontrast"
+        },
+        {
+            "argb": "#ff2a2e32",
+            "key": "inactive.complementary.background.normal"
+        },
+        {
+            "argb": "#ff1b1e20",
+            "key": "inactive.complementary.background.alternate"
+        },
+        {
+            "argb": "#ff1c3c4d",
+            "key": "inactive.complementary.background.active"
+        },
+        {
+            "argb": "#ff143955",
+            "key": "inactive.complementary.background.link"
+        },
+        {
+            "argb": "#ff412c4d",
+            "key": "inactive.complementary.background.visited"
+        },
+        {
+            "argb": "#ff57242b",
+            "key": "inactive.complementary.background.negative"
+        },
+        {
+            "argb": "#ff532e0d",
+            "key": "inactive.complementary.background.neutral"
+        },
+        {
+            "argb": "#ff163e29",
+            "key": "inactive.complementary.background.positive"
+        },
+        {
+            "argb": "#fffcfcfc",
+            "key": "inactive.complementary.foreground.text"
+        },
+        {
+            "argb": "#ffa1a9b1",
+            "key": "inactive.complementary.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.complementary.foreground.active"
+        },
+        {
+            "argb": "#ff1d99f3",
+            "key": "inactive.complementary.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "inactive.complementary.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "inactive.complementary.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "inactive.complementary.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "inactive.complementary.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.complementary.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.complementary.decoration.hover"
+        },
+        {
+            "argb": "#ff54575a",
+            "key": "inactive.complementary.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "inactive.complementary.decoration.framecontrast"
+        },
+        {
+            "argb": "#ffeff0f1",
+            "key": "inactive.header.background.normal"
+        },
+        {
+            "argb": "#ffe3e5e7",
+            "key": "inactive.header.background.alternate"
+        },
+        {
+            "argb": "#ffd5eaf7",
+            "key": "inactive.header.background.active"
+        },
+        {
+            "argb": "#ffd4e5f2",
+            "key": "inactive.header.background.link"
+        },
+        {
+            "argb": "#ffe8deee",
+            "key": "inactive.header.background.visited"
+        },
+        {
+            "argb": "#fff5dddf",
+            "key": "inactive.header.background.negative"
+        },
+        {
+            "argb": "#fffbe1d2",
+            "key": "inactive.header.background.neutral"
+        },
+        {
+            "argb": "#ffadf6ca",
+            "key": "inactive.header.background.positive"
+        },
+        {
+            "argb": "#ff232629",
+            "key": "inactive.header.foreground.text"
+        },
+        {
+            "argb": "#ff707d8a",
+            "key": "inactive.header.foreground.inactive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.header.foreground.active"
+        },
+        {
+            "argb": "#ff2980b9",
+            "key": "inactive.header.foreground.link"
+        },
+        {
+            "argb": "#ff9b59b6",
+            "key": "inactive.header.foreground.visited"
+        },
+        {
+            "argb": "#ffda4453",
+            "key": "inactive.header.foreground.negative"
+        },
+        {
+            "argb": "#fff67400",
+            "key": "inactive.header.foreground.neutral"
+        },
+        {
+            "argb": "#ff27ae60",
+            "key": "inactive.header.foreground.positive"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.header.decoration.focus"
+        },
+        {
+            "argb": "#ff3daee9",
+            "key": "inactive.header.decoration.hover"
+        },
+        {
+            "argb": "#ffc6c8c9",
+            "key": "inactive.header.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "inactive.header.decoration.framecontrast"
+        },
+        {
+            "argb": "#fff3f3f3",
+            "key": "disabled.view.background.normal"
+        },
+        {
+            "argb": "#ffebebeb",
+            "key": "disabled.view.background.alternate"
+        },
+        {
+            "argb": "#ffdceff9",
+            "key": "disabled.view.background.active"
+        },
+        {
+            "argb": "#ffe3edf4",
+            "key": "disabled.view.background.link"
+        },
+        {
+            "argb": "#fff1e9f4",
+            "key": "disabled.view.background.visited"
+        },
+        {
+            "argb": "#fff9e7e9",
+            "key": "disabled.view.background.negative"
+        },
+        {
+            "argb": "#fffce9d8",
+            "key": "disabled.view.background.neutral"
+        },
+        {
+            "argb": "#ffdef0e6",
+            "key": "disabled.view.background.positive"
+        },
+        {
+            "argb": "#ffaaabac",
+            "key": "disabled.view.foreground.text"
+        },
+        {
+            "argb": "#ffc2c8ce",
+            "key": "disabled.view.foreground.inactive"
+        },
+        {
+            "argb": "#ffa3daf5",
+            "key": "disabled.view.foreground.active"
+        },
+        {
+            "argb": "#ffa3cae2",
+            "key": "disabled.view.foreground.link"
+        },
+        {
+            "argb": "#ffd6bae1",
+            "key": "disabled.view.foreground.visited"
+        },
+        {
+            "argb": "#fff0b1b8",
+            "key": "disabled.view.foreground.negative"
+        },
+        {
+            "argb": "#fffbc289",
+            "key": "disabled.view.foreground.neutral"
+        },
+        {
+            "argb": "#ffabd8be",
+            "key": "disabled.view.foreground.positive"
+        },
+        {
+            "argb": "#ffa3daf5",
+            "key": "disabled.view.decoration.focus"
+        },
+        {
+            "argb": "#ffa3daf5",
+            "key": "disabled.view.decoration.hover"
+        },
+        {
+            "argb": "#ffe4e5e5",
+            "key": "disabled.view.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "disabled.view.decoration.framecontrast"
+        },
+        {
+            "argb": "#ffe3e5e7",
+            "key": "disabled.window.background.normal"
+        },
+        {
+            "argb": "#ffd8dadd",
+            "key": "disabled.window.background.alternate"
+        },
+        {
+            "argb": "#ffc9e2f0",
+            "key": "disabled.window.background.active"
+        },
+        {
+            "argb": "#ffd1e0ea",
+            "key": "disabled.window.background.link"
+        },
+        {
+            "argb": "#ffe4daea",
+            "key": "disabled.window.background.visited"
+        },
+        {
+            "argb": "#ffefd8db",
+            "key": "disabled.window.background.negative"
+        },
+        {
+            "argb": "#fff2dac5",
+            "key": "disabled.window.background.neutral"
+        },
+        {
+            "argb": "#ffc3e6d3",
+            "key": "disabled.window.background.positive"
+        },
+        {
+            "argb": "#ffa0a1a3",
+            "key": "disabled.window.foreground.text"
+        },
+        {
+            "argb": "#ffb8bfc5",
+            "key": "disabled.window.foreground.inactive"
+        },
+        {
+            "argb": "#ff9cd1eb",
+            "key": "disabled.window.foreground.active"
+        },
+        {
+            "argb": "#ff9bc0d9",
+            "key": "disabled.window.foreground.link"
+        },
+        {
+            "argb": "#ffcbb1d8",
+            "key": "disabled.window.foreground.visited"
+        },
+        {
+            "argb": "#ffe5a8af",
+            "key": "disabled.window.foreground.negative"
+        },
+        {
+            "argb": "#ffefb984",
+            "key": "disabled.window.foreground.neutral"
+        },
+        {
+            "argb": "#ffa1cfb5",
+            "key": "disabled.window.foreground.positive"
+        },
+        {
+            "argb": "#ff9cd1eb",
+            "key": "disabled.window.decoration.focus"
+        },
+        {
+            "argb": "#ff9cd1eb",
+            "key": "disabled.window.decoration.hover"
+        },
+        {
+            "argb": "#ffd6d7d9",
+            "key": "disabled.window.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "disabled.window.decoration.framecontrast"
+        },
+        {
+            "argb": "#fff0f0f0",
+            "key": "disabled.button.background.normal"
+        },
+        {
+            "argb": "#ff8cccf9",
+            "key": "disabled.button.background.alternate"
+        },
+        {
+            "argb": "#ffd8edf7",
+            "key": "disabled.button.background.active"
+        },
+        {
+            "argb": "#ffdfeaf2",
+            "key": "disabled.button.background.link"
+        },
+        {
+            "argb": "#ffeee6f2",
+            "key": "disabled.button.background.visited"
+        },
+        {
+            "argb": "#fff7e4e6",
+            "key": "disabled.button.background.negative"
+        },
+        {
+            "argb": "#fffae6d4",
+            "key": "disabled.button.background.neutral"
+        },
+        {
+            "argb": "#ffd9eee2",
+            "key": "disabled.button.background.positive"
+        },
+        {
+            "argb": "#ffa8a9aa",
+            "key": "disabled.button.foreground.text"
+        },
+        {
+            "argb": "#ffc0c6cc",
+            "key": "disabled.button.foreground.inactive"
+        },
+        {
+            "argb": "#ffa2d8f3",
+            "key": "disabled.button.foreground.active"
+        },
+        {
+            "argb": "#ffa2c8e0",
+            "key": "disabled.button.foreground.link"
+        },
+        {
+            "argb": "#ffd4b8df",
+            "key": "disabled.button.foreground.visited"
+        },
+        {
+            "argb": "#ffeeafb6",
+            "key": "disabled.button.foreground.negative"
+        },
+        {
+            "argb": "#fff9c088",
+            "key": "disabled.button.foreground.neutral"
+        },
+        {
+            "argb": "#ffa9d6bc",
+            "key": "disabled.button.foreground.positive"
+        },
+        {
+            "argb": "#ffa2d8f3",
+            "key": "disabled.button.decoration.focus"
+        },
+        {
+            "argb": "#ffa2d8f3",
+            "key": "disabled.button.decoration.hover"
+        },
+        {
+            "argb": "#ffe2e2e2",
+            "key": "disabled.button.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "disabled.button.decoration.framecontrast"
+        },
+        {
+            "argb": "#ffe3e5e7",
+            "key": "disabled.selection.background.normal"
+        },
+        {
+            "argb": "#ffd8dadd",
+            "key": "disabled.selection.background.alternate"
+        },
+        {
+            "argb": "#ffc9e2f0",
+            "key": "disabled.selection.background.active"
+        },
+        {
+            "argb": "#ffd1e0ea",
+            "key": "disabled.selection.background.link"
+        },
+        {
+            "argb": "#ffe4daea",
+            "key": "disabled.selection.background.visited"
+        },
+        {
+            "argb": "#ffefd8db",
+            "key": "disabled.selection.background.negative"
+        },
+        {
+            "argb": "#fff2dac5",
+            "key": "disabled.selection.background.neutral"
+        },
+        {
+            "argb": "#ffc3e6d3",
+            "key": "disabled.selection.background.positive"
+        },
+        {
+            "argb": "#ffa0a1a3",
+            "key": "disabled.selection.foreground.text"
+        },
+        {
+            "argb": "#ffb8bfc5",
+            "key": "disabled.selection.foreground.inactive"
+        },
+        {
+            "argb": "#ff9cd1eb",
+            "key": "disabled.selection.foreground.active"
+        },
+        {
+            "argb": "#ff9bc0d9",
+            "key": "disabled.selection.foreground.link"
+        },
+        {
+            "argb": "#ffcbb1d8",
+            "key": "disabled.selection.foreground.visited"
+        },
+        {
+            "argb": "#ffe5a8af",
+            "key": "disabled.selection.foreground.negative"
+        },
+        {
+            "argb": "#ffefb984",
+            "key": "disabled.selection.foreground.neutral"
+        },
+        {
+            "argb": "#ffa1cfb5",
+            "key": "disabled.selection.foreground.positive"
+        },
+        {
+            "argb": "#ff9cd1eb",
+            "key": "disabled.selection.decoration.focus"
+        },
+        {
+            "argb": "#ff9cd1eb",
+            "key": "disabled.selection.decoration.hover"
+        },
+        {
+            "argb": "#ffd6d7d9",
+            "key": "disabled.selection.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "disabled.selection.decoration.framecontrast"
+        },
+        {
+            "argb": "#ffebebeb",
+            "key": "disabled.tooltip.background.normal"
+        },
+        {
+            "argb": "#ffe3e5e7",
+            "key": "disabled.tooltip.background.alternate"
+        },
+        {
+            "argb": "#ffd2e8f4",
+            "key": "disabled.tooltip.background.active"
+        },
+        {
+            "argb": "#ffdae6ee",
+            "key": "disabled.tooltip.background.link"
+        },
+        {
+            "argb": "#ffeae1ee",
+            "key": "disabled.tooltip.background.visited"
+        },
+        {
+            "argb": "#fff4dfe1",
+            "key": "disabled.tooltip.background.negative"
+        },
+        {
+            "argb": "#fff7e1cd",
+            "key": "disabled.tooltip.background.neutral"
+        },
+        {
+            "argb": "#ffd0ebdb",
+            "key": "disabled.tooltip.background.positive"
+        },
+        {
+            "argb": "#ffa5a6a7",
+            "key": "disabled.tooltip.foreground.text"
+        },
+        {
+            "argb": "#ffbdc3c8",
+            "key": "disabled.tooltip.foreground.inactive"
+        },
+        {
+            "argb": "#ffa0d5ef",
+            "key": "disabled.tooltip.foreground.active"
+        },
+        {
+            "argb": "#ff9fc5dd",
+            "key": "disabled.tooltip.foreground.link"
+        },
+        {
+            "argb": "#ffd0b5dc",
+            "key": "disabled.tooltip.foreground.visited"
+        },
+        {
+            "argb": "#ffeaacb3",
+            "key": "disabled.tooltip.foreground.negative"
+        },
+        {
+            "argb": "#fff5bd86",
+            "key": "disabled.tooltip.foreground.neutral"
+        },
+        {
+            "argb": "#ffa6d3b9",
+            "key": "disabled.tooltip.foreground.positive"
+        },
+        {
+            "argb": "#ffa0d5ef",
+            "key": "disabled.tooltip.decoration.focus"
+        },
+        {
+            "argb": "#ffa0d5ef",
+            "key": "disabled.tooltip.decoration.hover"
+        },
+        {
+            "argb": "#ffdddede",
+            "key": "disabled.tooltip.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "disabled.tooltip.decoration.framecontrast"
+        },
+        {
+            "argb": "#ff282c30",
+            "key": "disabled.complementary.background.normal"
+        },
+        {
+            "argb": "#ff1a1d1f",
+            "key": "disabled.complementary.background.alternate"
+        },
+        {
+            "argb": "#ff20333d",
+            "key": "disabled.complementary.background.active"
+        },
+        {
+            "argb": "#ff1c3242",
+            "key": "disabled.complementary.background.link"
+        },
+        {
+            "argb": "#ff352c3f",
+            "key": "disabled.complementary.background.visited"
+        },
+        {
+            "argb": "#ff42282e",
+            "key": "disabled.complementary.background.negative"
+        },
+        {
+            "argb": "#ff3e2c1c",
+            "key": "disabled.complementary.background.neutral"
+        },
+        {
+            "argb": "#ff1e352b",
+            "key": "disabled.complementary.background.positive"
+        },
+        {
+            "argb": "#ff6e7173",
+            "key": "disabled.complementary.foreground.text"
+        },
+        {
+            "argb": "#ff50555a",
+            "key": "disabled.complementary.foreground.inactive"
+        },
+        {
+            "argb": "#ff2e576d",
+            "key": "disabled.complementary.foreground.active"
+        },
+        {
+            "argb": "#ff245070",
+            "key": "disabled.complementary.foreground.link"
+        },
+        {
+            "argb": "#ff4e3a5c",
+            "key": "disabled.complementary.foreground.visited"
+        },
+        {
+            "argb": "#ff63333b",
+            "key": "disabled.complementary.foreground.negative"
+        },
+        {
+            "argb": "#ff6c431f",
+            "key": "disabled.complementary.foreground.neutral"
+        },
+        {
+            "argb": "#ff27573f",
+            "key": "disabled.complementary.foreground.positive"
+        },
+        {
+            "argb": "#ff2e576d",
+            "key": "disabled.complementary.decoration.focus"
+        },
+        {
+            "argb": "#ff2e576d",
+            "key": "disabled.complementary.decoration.hover"
+        },
+        {
+            "argb": "#ff363a3d",
+            "key": "disabled.complementary.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "disabled.complementary.decoration.framecontrast"
+        },
+        {
+            "argb": "#ffd3d6d8",
+            "key": "disabled.header.background.normal"
+        },
+        {
+            "argb": "#ffe3e5e7",
+            "key": "disabled.header.background.alternate"
+        },
+        {
+            "argb": "#ffb6d4e4",
+            "key": "disabled.header.background.active"
+        },
+        {
+            "argb": "#ffc1d1dc",
+            "key": "disabled.header.background.link"
+        },
+        {
+            "argb": "#ffd6cbdd",
+            "key": "disabled.header.background.visited"
+        },
+        {
+            "argb": "#ffe2c8cc",
+            "key": "disabled.header.background.negative"
+        },
+        {
+            "argb": "#ffe5cbb3",
+            "key": "disabled.header.background.neutral"
+        },
+        {
+            "argb": "#ffb3d7c5",
+            "key": "disabled.header.background.positive"
+        },
+        {
+            "argb": "#ff95979a",
+            "key": "disabled.header.foreground.text"
+        },
+        {
+            "argb": "#ffaeb5bb",
+            "key": "disabled.header.foreground.inactive"
+        },
+        {
+            "argb": "#ff93c6e0",
+            "key": "disabled.header.foreground.active"
+        },
+        {
+            "argb": "#ff94b6cc",
+            "key": "disabled.header.foreground.link"
+        },
+        {
+            "argb": "#ffc0a7ce",
+            "key": "disabled.header.foreground.visited"
+        },
+        {
+            "argb": "#ffd99fa6",
+            "key": "disabled.header.foreground.negative"
+        },
+        {
+            "argb": "#ffe2b080",
+            "key": "disabled.header.foreground.neutral"
+        },
+        {
+            "argb": "#ff97c5ac",
+            "key": "disabled.header.foreground.positive"
+        },
+        {
+            "argb": "#ff93c6e0",
+            "key": "disabled.header.decoration.focus"
+        },
+        {
+            "argb": "#ff93c6e0",
+            "key": "disabled.header.decoration.hover"
+        },
+        {
+            "argb": "#ffc7c9cc",
+            "key": "disabled.header.decoration.frame"
+        },
+        {
+            "argb": "#33000000",
+            "key": "disabled.header.decoration.framecontrast"
+        }
+    ],
+    "format": 1,
+    "name": "BreezeLight"
+}

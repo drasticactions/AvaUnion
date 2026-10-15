@@ -1,0 +1,22 @@
+.avalonia-splash {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background: #eff0f1;
+  color: #232629;
+  font-family: "Helvetica", "Liberation Sans", sans-serif;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  display: flex;
+  pointer-events: none;
+}
+
+.avalonia-splash h2 { font-weight: normal; font-size: 2rem; margin: 0; }
+.avalonia-splash p { color: #3daee9; }
+
+.avalonia-splash.splash-close {
+  transition: opacity 200ms, display 200ms;
+  display: none;
+  opacity: 0;
+}

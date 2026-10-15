@@ -1,0 +1,320 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionInvisibleRepeatButton" TargetType="RepeatButton">
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}" />
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionBoxThumb" TargetType="Thumb">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <union:UnionBox />
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionPlainScrollViewer" TargetType="ScrollViewer">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="AllowAutoHide" Value="False" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,Auto">
+          <ScrollContentPresenter Name="PART_ContentPresenter"
+                                  Background="{TemplateBinding Background}"
+                                  HorizontalSnapPointsType="{TemplateBinding HorizontalSnapPointsType}"
+                                  VerticalSnapPointsType="{TemplateBinding VerticalSnapPointsType}"
+                                  HorizontalSnapPointsAlignment="{TemplateBinding HorizontalSnapPointsAlignment}"
+                                  VerticalSnapPointsAlignment="{TemplateBinding VerticalSnapPointsAlignment}"
+                                  Padding="{TemplateBinding Padding}"
+                                  ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}" />
+          <ScrollBar Name="PART_HorizontalScrollBar" Orientation="Horizontal" Grid.Row="1" />
+          <ScrollBar Name="PART_VerticalScrollBar" Orientation="Vertical" Grid.Column="1" />
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionInnerTextBox" TargetType="TextBox">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="CaretBrush" Value="{union:Style Text.Color}" />
+    <Setter Property="SelectionBrush" Value="{union:SchemeColor Selection, Background, Normal}" />
+    <Setter Property="SelectionForegroundBrush" Value="{union:SchemeColor Selection, Foreground, Text}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ScrollViewer Name="PART_ScrollViewer" Theme="{StaticResource UnionPlainScrollViewer}" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden">
+          <TextPresenter Name="PART_TextPresenter"
+                         Text="{TemplateBinding Text, Mode=TwoWay}"
+                         CaretIndex="{TemplateBinding CaretIndex}"
+                         SelectionStart="{TemplateBinding SelectionStart}"
+                         SelectionEnd="{TemplateBinding SelectionEnd}"
+                         TextAlignment="{TemplateBinding TextAlignment}"
+                         TextWrapping="NoWrap"
+                         SelectionBrush="{TemplateBinding SelectionBrush}"
+                         SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                         CaretBrush="{TemplateBinding CaretBrush}"
+                         VerticalAlignment="Center" />
+        </ScrollViewer>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionItemDelegate" TargetType="ContentControl">
+    <Setter Property="union:Union.Type" Value="itemdelegate" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <union:UnionPositioner>
+            <union:UnionIcon union:PositionedItem.Source="Icon" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              union:PositionedItem.Source="Text"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              TextWrapping="NoWrap"
+                              TextTrimming="CharacterEllipsis"
+                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalContentAlignment="Center" />
+          </union:UnionPositioner>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionMenuFrame" TargetType="ItemsControl">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="menu" />
+    <Setter Property="union:Union.StateSource" Value="None" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="FontSize" Value="{DynamicResource UnionMenuFontSize}" />
+    <Setter Property="MaxWidth" Value="456" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <ScrollViewer Theme="{StaticResource UnionPlainScrollViewer}"
+                        Margin="{TemplateBinding Padding}"
+                        HorizontalScrollBarVisibility="Disabled"
+                        VerticalScrollBarVisibility="Auto">
+            <ItemsPresenter Name="PART_ItemsPresenter"
+                            ItemsPanel="{TemplateBinding ItemsPanel}"
+                            KeyboardNavigation.TabNavigation="Continue"
+                            Grid.IsSharedSizeScope="True" />
+          </ScrollViewer>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionIndicatorButton" TargetType="Button">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="indicator" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox ImplicitSize="True" />
+          <union:UnionIcon HorizontalAlignment="Center" VerticalAlignment="Center" Margin="{union:Style Layout.Padding}" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionInnerButtonSpinner" TargetType="ButtonSpinner">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <union:UnionPositioner>
+          <RepeatButton Name="PART_DecreaseButton"
+                        Theme="{StaticResource UnionIndicatorButton}"
+                        union:Union.Hints="decrease"
+                        union:PositionedItem.Source="Layout"
+                        IsVisible="{TemplateBinding ShowButtonSpinner}" />
+          <ContentPresenter Name="PART_ContentPresenter"
+                            union:PositionedItem.Source="Text"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            HorizontalContentAlignment="Stretch"
+                            VerticalContentAlignment="Center" />
+          <RepeatButton Name="PART_IncreaseButton"
+                        Theme="{StaticResource UnionIndicatorButton}"
+                        union:Union.Hints="increase"
+                        union:PositionedItem.Source="Layout"
+                        IsVisible="{TemplateBinding ShowButtonSpinner}" />
+        </union:UnionPositioner>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionTabButton" TargetType="ContentControl">
+    <Setter Property="union:Union.Type" Value="tabbutton" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+          <union:UnionPositioner>
+            <union:UnionIcon union:PositionedItem.Source="Icon" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              union:PositionedItem.Source="Text"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              RecognizesAccessKey="True"
+                              TextWrapping="NoWrap"
+                              VerticalContentAlignment="Center" />
+          </union:UnionPositioner>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionToolButton" TargetType="Button">
+    <Setter Property="union:Union.Type" Value="toolbutton" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+          <union:UnionPositioner>
+            <union:UnionIcon union:PositionedItem.Source="Icon" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              union:PositionedItem.Source="Text"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              RecognizesAccessKey="True"
+                              HorizontalContentAlignment="Center"
+                              VerticalContentAlignment="Center" />
+            <union:UnionIcon union:Union.Type="indicator"
+                             union:PositionedItem.Source="Layout"
+                             IsVisible="{union:Style Display.Visible, Fallback=False}" />
+          </union:UnionPositioner>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <x:String x:Key="StringDatePickerDayText">day</x:String>
+  <x:String x:Key="StringDatePickerMonthText">month</x:String>
+  <x:String x:Key="StringDatePickerYearText">year</x:String>
+  <x:String x:Key="StringTimePickerHourText">hour</x:String>
+  <x:String x:Key="StringTimePickerMinuteText">minute</x:String>
+  <x:String x:Key="StringTimePickerSecondText">second</x:String>
+  <x:String x:Key="StringTextFlyoutCutText">Cut</x:String>
+  <x:String x:Key="StringTextFlyoutCopyText">Copy</x:String>
+  <x:String x:Key="StringTextFlyoutPasteText">Paste</x:String>
+
+  <ControlTheme x:Key="UnionPickerFace" TargetType="Button">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                          Background="{TemplateBinding Background}"
+                          Content="{TemplateBinding Content}"
+                          HorizontalContentAlignment="Stretch"
+                          VerticalContentAlignment="Stretch" />
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionTumblerText" TargetType="ListBoxItem">
+    <Setter Property="union:Union.Type" Value="text" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                          Background="{TemplateBinding Background}"
+                          Content="{TemplateBinding Content}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:selected">
+      <Setter Property="IsHitTestVisible" Value="False" />
+      <Setter Property="Foreground" Value="{DynamicResource Union.Active.Selection.Foreground.TextBrush}" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionTumblerBand" TargetType="Border">
+    <Setter Property="Background" Value="{DynamicResource Union.Active.Selection.Background.NormalBrush}" />
+    <Setter Property="IsHitTestVisible" Value="False" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Height" Value="32" />
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionTumblerUp" TargetType="RepeatButton" BasedOn="{StaticResource UnionToolButton}">
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="IsVisible" Value="False" />
+    <Setter Property="Content">
+      <Template>
+        <union:UnionIcon IconName="arrow-up" Width="16" Height="16" />
+      </Template>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionTumblerDown" TargetType="RepeatButton" BasedOn="{StaticResource UnionToolButton}">
+    <Setter Property="VerticalAlignment" Value="Bottom" />
+    <Setter Property="HorizontalAlignment" Value="Stretch" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="IsVisible" Value="False" />
+    <Setter Property="Content">
+      <Template>
+        <union:UnionIcon IconName="arrow-down" Width="16" Height="16" />
+      </Template>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionPopupList" TargetType="ListBox">
+    <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+    <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ScrollViewer Name="PART_ScrollViewer"
+                      Theme="{StaticResource UnionPlainScrollViewer}"
+                      HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                      VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}">
+          <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" />
+        </ScrollViewer>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionPipList" TargetType="ListBox">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" />
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

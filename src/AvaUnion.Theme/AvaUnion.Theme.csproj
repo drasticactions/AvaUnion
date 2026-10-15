@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>AvaUnion</RootNamespace>
+    <PackageId>AvaUnion.Theme</PackageId>
+    <Description>Bindings for KDE Union in Avalonia applications.</Description>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Snapshot\breeze.union.bin" LogicalName="AvaUnion.Snapshot.breeze.union.bin" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="buildTransitive\AvaUnion.Theme.targets" Pack="true" PackagePath="buildTransitive" />
+    <None Include="build\AvaUnion.Theme.targets" Pack="true" PackagePath="build" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AvaUnion.DataGrid" />
+    <InternalsVisibleTo Include="AvaUnion.Theme.Tests" />
+    <InternalsVisibleTo Include="AvaUnion.DataGrid.Tests" />
+    <InternalsVisibleTo Include="AvaUnion.Gallery" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AvaUnion.Native\AvaUnion.Native.csproj" />
+  </ItemGroup>
+
+  <Import Project="..\SharedThemes.targets" />
+
+</Project>

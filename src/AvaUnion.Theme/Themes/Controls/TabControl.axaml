@@ -1,0 +1,185 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    xmlns:markup="using:AvaUnion.Markup"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionTabScrollButton" TargetType="RepeatButton">
+    <Setter Property="union:Union.Type" Value="tabscrollbutton" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <ContentPresenter Content="{TemplateBinding Content}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="UnionTabStripScrollViewer" TargetType="ScrollViewer">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="IsScrollChainingEnabled" Value="False" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DockPanel>
+          <StackPanel Name="PART_HorizontalButtons" DockPanel.Dock="Right" Orientation="Horizontal">
+            <StackPanel.IsVisible>
+              <MultiBinding Converter="{x:Static markup:TabStripConverters.Overflows}">
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Offset.X" />
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Extent.Width" />
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Viewport.Width" />
+              </MultiBinding>
+            </StackPanel.IsVisible>
+            <RepeatButton Name="PART_ScrollLeft"
+                          Theme="{StaticResource UnionTabScrollButton}"
+                          Width="{union:Style Layout.Width}"
+                          Command="{Binding LineLeft, RelativeSource={RelativeSource TemplatedParent}}">
+              <RepeatButton.IsEnabled>
+                <MultiBinding Converter="{x:Static markup:TabStripConverters.CanScrollBack}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Offset.X" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Extent.Width" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Viewport.Width" />
+                </MultiBinding>
+              </RepeatButton.IsEnabled>
+              <union:UnionIcon IconName="arrow-left" MirrorInRightToLeft="True" Width="16" Height="16" />
+            </RepeatButton>
+            <RepeatButton Name="PART_ScrollRight"
+                          Theme="{StaticResource UnionTabScrollButton}"
+                          Width="{union:Style Layout.Width}"
+                          Command="{Binding LineRight, RelativeSource={RelativeSource TemplatedParent}}">
+              <RepeatButton.IsEnabled>
+                <MultiBinding Converter="{x:Static markup:TabStripConverters.CanScrollForward}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Offset.X" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Extent.Width" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Viewport.Width" />
+                </MultiBinding>
+              </RepeatButton.IsEnabled>
+              <union:UnionIcon IconName="arrow-right" MirrorInRightToLeft="True" Width="16" Height="16" />
+            </RepeatButton>
+          </StackPanel>
+          <StackPanel Name="PART_VerticalButtons" DockPanel.Dock="Bottom" Orientation="Vertical">
+            <StackPanel.IsVisible>
+              <MultiBinding Converter="{x:Static markup:TabStripConverters.Overflows}">
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Offset.Y" />
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Extent.Height" />
+                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Viewport.Height" />
+              </MultiBinding>
+            </StackPanel.IsVisible>
+            <RepeatButton Name="PART_ScrollUp"
+                          Theme="{StaticResource UnionTabScrollButton}"
+                          Height="{union:Style Layout.Height}"
+                          Command="{Binding LineUp, RelativeSource={RelativeSource TemplatedParent}}">
+              <RepeatButton.IsEnabled>
+                <MultiBinding Converter="{x:Static markup:TabStripConverters.CanScrollBack}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Offset.Y" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Extent.Height" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Viewport.Height" />
+                </MultiBinding>
+              </RepeatButton.IsEnabled>
+              <union:UnionIcon IconName="arrow-up" Width="16" Height="16" />
+            </RepeatButton>
+            <RepeatButton Name="PART_ScrollDown"
+                          Theme="{StaticResource UnionTabScrollButton}"
+                          Height="{union:Style Layout.Height}"
+                          Command="{Binding LineDown, RelativeSource={RelativeSource TemplatedParent}}">
+              <RepeatButton.IsEnabled>
+                <MultiBinding Converter="{x:Static markup:TabStripConverters.CanScrollForward}">
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Offset.Y" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Extent.Height" />
+                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Viewport.Height" />
+                </MultiBinding>
+              </RepeatButton.IsEnabled>
+              <union:UnionIcon IconName="arrow-down" Width="16" Height="16" />
+            </RepeatButton>
+          </StackPanel>
+          <ScrollContentPresenter Name="PART_ContentPresenter"
+                                  Background="{TemplateBinding Background}"
+                                  ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}" />
+        </DockPanel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^ /template/ RepeatButton union|UnionIcon">
+      <Setter Property="Color" Value="{union:SchemeColor Window, Foreground, Text}" />
+    </Style>
+    <Style Selector="^ /template/ RepeatButton:disabled union|UnionIcon">
+      <Setter Property="Color" Value="{union:SchemeColor Window, Foreground, Text, Group=Disabled}" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type TabControl}" TargetType="TabControl">
+    <Setter Property="union:Union.Type" Value="tabwidget" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Foreground" Value="{union:SchemeColor View, Foreground, Text}" />
+    <Setter Property="ItemsPanel">
+      <ItemsPanelTemplate>
+        <StackPanel Orientation="Horizontal" />
+      </ItemsPanelTemplate>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DockPanel>
+          <ScrollViewer Name="PART_TabScroll"
+                        Theme="{StaticResource UnionTabStripScrollViewer}"
+                        DockPanel.Dock="{TemplateBinding TabStripPlacement}"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Disabled"
+                        ZIndex="1">
+            <ItemsPresenter Name="PART_ItemsPresenter"
+                            union:Union.Type="tabbar"
+                            union:Union.StateSource="None"
+                            ItemsPanel="{TemplateBinding ItemsPanel}" />
+          </ScrollViewer>
+          <Panel Name="PART_Pane">
+            <union:UnionBox Name="PART_PaneBox" Margin="{union:Style Layout.Inset}" />
+            <Panel ClipToBounds="True" Margin="{TemplateBinding Padding}">
+              <ContentPresenter Name="PART_SelectedContentHost2"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                IsVisible="False" />
+              <ContentPresenter Name="PART_SelectedContentHost"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </Panel>
+          </Panel>
+        </DockPanel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^ /template/ ItemsPresenter#PART_ItemsPresenter">
+      <Setter Property="union:Union.Attributes" Value="tab-position=top" />
+    </Style>
+    <Style Selector="^[TabStripPlacement=Bottom] /template/ ItemsPresenter#PART_ItemsPresenter">
+      <Setter Property="union:Union.Attributes" Value="tab-position=bottom" />
+    </Style>
+    <Style Selector="^[TabStripPlacement=Left] /template/ ItemsPresenter#PART_ItemsPresenter">
+      <Setter Property="union:Union.Attributes" Value="tab-position=left" />
+    </Style>
+    <Style Selector="^[TabStripPlacement=Right] /template/ ItemsPresenter#PART_ItemsPresenter">
+      <Setter Property="union:Union.Attributes" Value="tab-position=right" />
+    </Style>
+    <Style Selector="^ /template/ Panel#PART_Pane">
+      <Setter Property="Margin" Value="{union:Style Border.Top.Size, Sides=-Top}" />
+    </Style>
+    <Style Selector="^[TabStripPlacement=Bottom] /template/ Panel#PART_Pane">
+      <Setter Property="Margin" Value="{union:Style Border.Bottom.Size, Sides=-Bottom}" />
+    </Style>
+    <Style Selector="^[TabStripPlacement=Left] /template/ Panel#PART_Pane">
+      <Setter Property="Margin" Value="{union:Style Border.Left.Size, Sides=-Left}" />
+    </Style>
+    <Style Selector="^[TabStripPlacement=Right] /template/ Panel#PART_Pane">
+      <Setter Property="Margin" Value="{union:Style Border.Right.Size, Sides=-Right}" />
+    </Style>
+    <Style Selector="^[TabStripPlacement=Left], ^[TabStripPlacement=Right]">
+      <Style Selector="^ /template/ ScrollViewer#PART_TabScroll">
+        <Setter Property="HorizontalScrollBarVisibility" Value="Disabled" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+      </Style>
+      <Style Selector="^ /template/ ItemsPresenter#PART_ItemsPresenter > StackPanel">
+        <Setter Property="Orientation" Value="Vertical" />
+      </Style>
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

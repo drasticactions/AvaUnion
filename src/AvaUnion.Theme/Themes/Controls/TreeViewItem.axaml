@@ -1,0 +1,66 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="UnionTreeIndicator" TargetType="ToggleButton">
+    <Setter Property="union:Union.Type" Value="indicator" />
+    <Setter Property="union:Union.StateSource" Value="None" />
+    <Setter Property="Focusable" Value="False" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox ImplicitSize="True" />
+          <union:UnionIcon HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type TreeViewItem}" TargetType="TreeViewItem">
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <StackPanel>
+          <Panel Name="PART_LayoutRoot"
+                 union:Union.Type="treeviewdelegate"
+                 union:Union.StateSource="TemplatedParent"
+                 Focusable="True"
+                 Background="Transparent"
+                 TemplatedControl.IsTemplateFocusTarget="True">
+            <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+            <Grid Name="PART_Header" ColumnDefinitions="Auto, Auto, *" Margin="{union:Style Layout.Padding}">
+              <union:IndentationSpacer union:Union.Type="indentation"
+                                       union:Union.StateSource="None"
+                                       Level="{TemplateBinding Level}" />
+              <Panel Grid.Column="1"
+                     Margin="{union:Style Layout.Padding.Left, Sides=Right}"
+                     IsVisible="{Binding #PART_ExpandCollapseChevron.IsVisible}">
+                <Panel Margin="{union:Style Layout.Padding.Left, Sides=-Left}">
+                  <ToggleButton Name="PART_ExpandCollapseChevron"
+                                Theme="{StaticResource UnionTreeIndicator}"
+                                IsChecked="{TemplateBinding IsExpanded, Mode=TwoWay}" />
+                </Panel>
+              </Panel>
+              <ContentPresenter Name="PART_HeaderPresenter"
+                                Grid.Column="2"
+                                Focusable="False"
+                                Foreground="{union:Style Text.Color}"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                TextTrimming="{union:Style Text.Elide, Fallback=CharacterEllipsis}"
+                                VerticalAlignment="Center"
+                                Margin="{union:Style Layout.Spacing, Sides=Left}" />
+            </Grid>
+          </Panel>
+          <ItemsPresenter Name="PART_ItemsPresenter"
+                          IsVisible="{TemplateBinding IsExpanded}"
+                          ItemsPanel="{TemplateBinding ItemsPanel}" />
+        </StackPanel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:empty /template/ ToggleButton#PART_ExpandCollapseChevron">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

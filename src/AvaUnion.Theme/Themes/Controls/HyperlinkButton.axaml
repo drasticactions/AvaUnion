@@ -1,0 +1,15 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type HyperlinkButton}" TargetType="HyperlinkButton" BasedOn="{StaticResource UnionButtonBase}">
+    <Setter Property="Foreground" Value="{union:SchemeColor View, Foreground, Link}" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Style Selector="^:visited">
+      <Setter Property="Foreground" Value="{union:SchemeColor View, Foreground, Visited}" />
+    </Style>
+    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="TextBlock.TextDecorations" Value="Underline" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

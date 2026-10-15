@@ -1,0 +1,95 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type TextBox}" TargetType="TextBox">
+    <Setter Property="union:Union.Type" Value="textfield" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=View.Foreground.Text}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="CaretBrush" Value="{union:Style Text.Color}" />
+    <Setter Property="SelectionBrush" Value="{union:SchemeColor Selection, Background, Normal}" />
+    <Setter Property="SelectionForegroundBrush" Value="{union:SchemeColor Selection, Foreground, Text}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="VerticalContentAlignment" Value="{union:Style Text.Alignment.Vertical, Fallback=Center}" />
+    <Setter Property="TextAlignment" Value="{union:Style Text.Alignment.Horizontal, Fallback=Start}" />
+    <Setter Property="ScrollViewer.IsScrollChainingEnabled" Value="True" />
+    <Setter Property="ContextFlyout">
+      <MenuFlyout>
+        <MenuItem Header="Cut" Command="{Binding $parent[TextBox].Cut}" IsEnabled="{Binding $parent[TextBox].CanCut}" InputGesture="{x:Static TextBox.CutGesture}" />
+        <MenuItem Header="Copy" Command="{Binding $parent[TextBox].Copy}" IsEnabled="{Binding $parent[TextBox].CanCopy}" InputGesture="{x:Static TextBox.CopyGesture}" />
+        <MenuItem Header="Paste" Command="{Binding $parent[TextBox].Paste}" IsEnabled="{Binding $parent[TextBox].CanPaste}" InputGesture="{x:Static TextBox.PasteGesture}" />
+      </MenuFlyout>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <DataValidationErrors>
+          <Panel>
+            <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+            <DockPanel Margin="{TemplateBinding Padding}">
+              <ContentPresenter DockPanel.Dock="Left"
+                                Content="{TemplateBinding InnerLeftContent}" />
+              <ContentPresenter DockPanel.Dock="Right"
+                                Content="{TemplateBinding InnerRightContent}" />
+              <ScrollViewer Name="PART_ScrollViewer"
+                            Theme="{StaticResource UnionPlainScrollViewer}"
+                            HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                            VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+                            IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
+                            AllowAutoHide="{TemplateBinding (ScrollViewer.AllowAutoHide)}"
+                            BringIntoViewOnFocusChange="{TemplateBinding (ScrollViewer.BringIntoViewOnFocusChange)}">
+                <Panel>
+                  <TextBlock Name="PART_Watermark"
+                             union:Union.Type=""
+                             union:Union.Hints="placeholder"
+                             union:Union.StateSource="None"
+                             Foreground="{union:Style Text.Color, FallbackColor=View.Foreground.Inactive}"
+                             Text="{TemplateBinding PlaceholderText}"
+                             TextAlignment="{TemplateBinding TextAlignment}"
+                             TextTrimming="CharacterEllipsis"
+                             TextWrapping="{TemplateBinding TextWrapping}"
+                             HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+                    <TextBlock.IsVisible>
+                      <MultiBinding Converter="{x:Static BoolConverters.And}">
+                        <Binding ElementName="PART_TextPresenter" Path="PreeditText" Converter="{x:Static StringConverters.IsNullOrEmpty}" />
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text" Converter="{x:Static StringConverters.IsNullOrEmpty}" />
+                      </MultiBinding>
+                    </TextBlock.IsVisible>
+                  </TextBlock>
+                  <TextPresenter Name="PART_TextPresenter"
+                                 Text="{TemplateBinding Text, Mode=TwoWay}"
+                                 CaretBlinkInterval="{TemplateBinding CaretBlinkInterval}"
+                                 CaretIndex="{TemplateBinding CaretIndex}"
+                                 SelectionStart="{TemplateBinding SelectionStart}"
+                                 SelectionEnd="{TemplateBinding SelectionEnd}"
+                                 TextAlignment="{TemplateBinding TextAlignment}"
+                                 TextWrapping="{TemplateBinding TextWrapping}"
+                                 LineHeight="{TemplateBinding LineHeight}"
+                                 LetterSpacing="{TemplateBinding LetterSpacing}"
+                                 PasswordChar="{TemplateBinding PasswordChar}"
+                                 RevealPassword="{TemplateBinding RevealPassword}"
+                                 SelectionBrush="{TemplateBinding SelectionBrush}"
+                                 SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+                                 CaretBrush="{TemplateBinding CaretBrush}"
+                                 HorizontalAlignment="Stretch"
+                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                </Panel>
+              </ScrollViewer>
+            </DockPanel>
+          </Panel>
+        </DataValidationErrors>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^[AcceptsReturn=True]">
+      <Setter Property="union:Union.Type" Value="textarea" />
+    </Style>
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=Disabled.View.Foreground.Text}" />
+    </Style>
+    <Style Selector="^:disabled /template/ TextBlock#PART_Watermark">
+      <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=Disabled.View.Foreground.Inactive}" />
+    </Style>
+  </ControlTheme>
+
+</ResourceDictionary>

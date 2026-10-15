@@ -1,0 +1,558 @@
+itemdelegate,
+checkdelegate,
+radiodelegate,
+switchdelegate,
+swipedelegate,
+itemviewitem {
+    padding: var(--avaunion-demo-gap-l);
+    padding-bottom: var(--avaunion-demo-gap-m);
+    inset: var(--avaunion-demo-gap-s);
+    inset-bottom: 0px;
+    spacing: var(--avaunion-demo-gap-l);
+    width: var(--avaunion-demo-icon-s);
+    height: var(--avaunion-demo-icon-s);
+    border-radius: var(--avaunion-demo-round-m);
+    icon-size: var(--avaunion-demo-icon-sm);
+
+    layout-alignment: content fill fill 0;
+    icon-alignment: content start center 0;
+    text-alignment: content fill center 0;
+    text-wrap-mode: wrap;
+
+    color: var(--avaunion-demo-view-fg);
+
+    & > * {
+        layout-alignment: content fill fill 0;
+    }
+
+    &.alternating-colors {
+        background-color: var(--avaunion-demo-view-bg-alt);
+    }
+
+    &.inside-table,
+    &.inside-list {
+        inset: 0px;
+        border-radius: 0px;
+    }
+
+    &.inside-table {
+        padding-top: var(--avaunion-demo-gap-s);
+        padding-bottom: var(--avaunion-demo-gap-s);
+        padding-left: var(--avaunion-demo-gap-m);
+        padding-right: var(--avaunion-demo-gap-m);
+        text-wrap-mode: no-wrap;
+    }
+
+    &.inside-list.hover-enabled {
+        inset: var(--avaunion-demo-gap-s);
+        inset-bottom: 0px;
+        border-radius: var(--avaunion-demo-round-m);
+
+        &.last-in-list {
+            inset-bottom: var(--avaunion-demo-gap-s);
+        }
+    }
+
+    &.last-in-list {
+        padding-bottom: var(--avaunion-demo-gap-l);
+        inset-bottom: var(--avaunion-demo-gap-s);
+    }
+
+    &:hovered {
+        background-color: var(--avaunion-demo-accent-faint);
+    }
+
+    &:active-focus {
+        background-color: var(--avaunion-demo-accent-faint);
+        outline: var(--avaunion-demo-accent-ring);
+    }
+
+    &:pressed {
+        background-color: var(--avaunion-demo-accent-soft);
+    }
+
+    &:highlighted {
+        color: var(--avaunion-demo-on-accent);
+        background-color: var(--avaunion-demo-accent);
+    }
+
+    &:disabled {
+        color: var(--avaunion-demo-view-fg-off);
+        background-color: transparent;
+    }
+
+    &[display="text-under-icon"] {
+        icon-alignment: content center stack-center 0;
+        text-alignment: content center stack-center 1;
+        icon-size: var(--avaunion-demo-icon-m);
+        width: var(--avaunion-demo-icon-l);
+        height: var(--avaunion-demo-icon-l);
+    }
+
+    & > indicator {
+        layout-alignment: content start center -1;
+    }
+}
+
+itemviewitem {
+    inset: var(--avaunion-demo-gap-xs);
+    icon-size: var(--avaunion-demo-size-s);
+    text-wrap-mode: no-wrap;
+    text-elide: right;
+    padding-top: var(--avaunion-demo-gap-s);
+    padding-bottom: var(--avaunion-demo-gap-s);
+    padding-left: var(--avaunion-demo-gap-m);
+    padding-right: var(--avaunion-demo-gap-m);
+    height: 34px;
+
+    & > checkbox {
+        width: var(--avaunion-demo-size-s);
+        height: var(--avaunion-demo-size-s);
+    }
+
+    &[position="invalid"] {
+        inset: 0px;
+        border-radius: 0px;
+    }
+
+    &[position="beginning"] {
+        inset-right: 0px;
+        border-top-right-radius: 0px;
+        border-bottom-right-radius: 0px;
+    }
+
+    &[position="middle"] {
+        inset-left: 0px;
+        inset-right: 0px;
+        border-radius: 0px;
+    }
+
+    &[position="end"] {
+        inset-left: 0px;
+        border-top-left-radius: 0px;
+        border-bottom-left-radius: 0px;
+    }
+
+    &.inside-list {
+        inset: 0px;
+
+        &.hover-enabled {
+            inset: var(--avaunion-demo-gap-xs);
+        }
+    }
+
+    &.inside-table {
+        inset: 0px;
+        border-radius: 0px;
+
+        &.hover-enabled {
+            inset: 0px;
+        }
+    }
+
+    &.inside-list[display="text-below-icon"],
+    &.inside-list[display="text-above-icon"] {
+        text-wrap-mode: wrap;
+    }
+}
+
+checkdelegate[display="text-under-icon"] > indicator,
+radiodelegate[display="text-under-icon"] > indicator {
+    layout-alignment: content start start -1;
+    margin-right: -18px;
+}
+
+switchdelegate[display="text-under-icon"] > indicator {
+    layout-alignment: content start start -1;
+    margin-right: -44px;
+    margin-top: var(--avaunion-demo-gap-s);
+}
+
+treeviewdelegate,
+tableviewdelegate {
+    width: var(--avaunion-demo-size-m);
+    height: 30px;
+    padding-top: var(--avaunion-demo-gap-s);
+    padding-bottom: var(--avaunion-demo-gap-s);
+    padding-left: var(--avaunion-demo-gap-m);
+    padding-right: var(--avaunion-demo-gap-m);
+    spacing: var(--avaunion-demo-gap-m);
+    border-radius: 0px;
+
+    layout-alignment: content fill center 0;
+    icon-alignment: content start center 1;
+    text-alignment: content fill center 2;
+    icon-width: var(--avaunion-demo-icon-s);
+    icon-height: var(--avaunion-demo-icon-s);
+
+    color: var(--avaunion-demo-view-fg);
+    background-color: var(--avaunion-demo-view-bg);
+
+    &.alternating-colors {
+        background-color: var(--avaunion-demo-view-tint);
+    }
+
+    &:hovered {
+        background-color: mix(var(--avaunion-demo-view-bg), var(--avaunion-demo-accent), 0.1);
+    }
+
+    &:active-focus {
+        background-color: mix(var(--avaunion-demo-view-bg), var(--avaunion-demo-accent), 0.1);
+    }
+
+    &:visual-focus {
+        outline: 1px solid var(--avaunion-demo-accent);
+    }
+
+    &:highlighted,
+    &.selected {
+        color: var(--avaunion-demo-on-accent);
+        background-color: var(--avaunion-demo-accent);
+    }
+
+    &.selected > label {
+        color: var(--avaunion-demo-on-accent);
+    }
+
+    &.editing {
+        border: 2px solid var(--avaunion-demo-accent);
+    }
+
+    &:disabled {
+        color: var(--avaunion-demo-view-fg-off);
+        background-color: var(--avaunion-demo-view-bg-off);
+    }
+}
+
+treeviewdelegate {
+    spacing: 0px;
+    border-radius: var(--avaunion-demo-round-s);
+    inset-top: 1px;
+    inset-bottom: 1px;
+    inset-left: var(--avaunion-demo-gap-xs);
+    inset-right: var(--avaunion-demo-gap-xs);
+    text-wrap-mode: no-wrap;
+    text-elide: right;
+
+    & > * {
+        layout-alignment: content fill fill 0;
+    }
+
+    & > indentation {
+        width: 20px;
+        layout-alignment: item start center 0;
+    }
+
+    & > indicator {
+        width: 22px;
+        height: var(--avaunion-demo-icon-s);
+        color: var(--avaunion-demo-accent);
+        icon-name: "arrow-right-symbolic";
+        layout-alignment: item start center 1;
+    }
+
+    & > radiobutton,
+    & > checkbox {
+        text-wrap-mode: no-wrap;
+        layout-alignment: content fill center 0;
+        icon-alignment: content start center 1;
+        text-alignment: content fill center 2;
+    }
+
+    &.expanded > indicator {
+        icon-name: "arrow-down-symbolic";
+    }
+
+    &:highlighted > indicator,
+    &.selected > indicator {
+        color: var(--avaunion-demo-on-accent);
+    }
+
+    &:disabled > indicator {
+        color: var(--avaunion-demo-view-fg-off);
+    }
+}
+
+headerviewdelegate {
+    width: var(--avaunion-demo-size-l);
+    height: 32px;
+    padding-top: var(--avaunion-demo-gap-s);
+    padding-bottom: var(--avaunion-demo-gap-s);
+    padding-left: var(--avaunion-demo-gap-m);
+    padding-right: var(--avaunion-demo-gap-m);
+
+    border: none;
+    border-bottom: 2px solid var(--avaunion-demo-soft-line);
+
+    background-color: var(--avaunion-demo-win-bg);
+    color: var(--avaunion-demo-muted-fg);
+    font-weight: 700;
+
+    layout-alignment: content fill center 0;
+    icon-alignment: content start center 0;
+    text-alignment: content start center 1;
+    text-wrap-mode: no-wrap;
+    text-elide: right;
+    icon-size: var(--avaunion-demo-icon-s);
+
+    &:hovered {
+        color: var(--avaunion-demo-win-fg);
+        background-color: var(--avaunion-demo-tint-1);
+    }
+
+    &:pressed {
+        border-bottom-color: var(--avaunion-demo-accent);
+    }
+
+    & > indicator {
+        color: var(--avaunion-demo-accent);
+        width: var(--avaunion-demo-icon-s);
+        height: var(--avaunion-demo-icon-s);
+        layout-alignment: content end center 0;
+    }
+
+    &.sort-ascending > indicator {
+        icon-name: "arrow-up-symbolic";
+    }
+
+    &.sort-descending > indicator {
+        icon-name: "arrow-down-symbolic";
+    }
+
+    &.sort-ascending,
+    &.sort-descending {
+        color: var(--avaunion-demo-win-fg);
+        border-bottom-color: var(--avaunion-demo-accent);
+    }
+
+    &:disabled {
+        color: var(--avaunion-demo-win-fg-off);
+        background-color: var(--avaunion-demo-win-bg-off);
+    }
+}
+
+selectionrectangle {
+    color: var(--avaunion-demo-accent);
+    border: 1px solid var(--avaunion-demo-accent);
+    border-radius: var(--avaunion-demo-round-s);
+    background-color: var(--avaunion-demo-accent-soft);
+
+    &:disabled {
+        border-color: var(--avaunion-demo-tint-3);
+        color: var(--avaunion-demo-tint-3);
+        background-color: var(--avaunion-demo-tint-1);
+    }
+}
+
+selectionrectanglehandle {
+    width: var(--avaunion-demo-size-s);
+    height: var(--avaunion-demo-size-s);
+    background-color: var(--avaunion-demo-view-bg);
+    border: 3px solid var(--avaunion-demo-accent);
+    border-radius: var(--avaunion-demo-size-s);
+
+    &:visual-focus {
+        outline: 2px solid mix(var(--avaunion-demo-win-bg), var(--avaunion-demo-accent), 0.5);
+    }
+
+    &:disabled {
+        background-color: var(--avaunion-demo-win-bg-off);
+        border-color: var(--avaunion-demo-tint-3);
+    }
+}
+
+rubberband {
+    background-color: var(--avaunion-demo-accent-soft);
+    border: 1px solid var(--avaunion-demo-accent);
+    border-radius: var(--avaunion-demo-round-s);
+}
+
+frame,
+groupbox,
+framemenu,
+framewindow {
+    padding: var(--avaunion-demo-gap-l);
+    border: 1px solid var(--avaunion-demo-soft-line);
+    border-radius: var(--avaunion-demo-round-l);
+
+    .inactive & {
+        border-color: var(--avaunion-demo-tint-1);
+    }
+}
+
+frame,
+listview,
+treeview,
+tableview,
+columnview,
+scrollview,
+textfield,
+textarea {
+    &[shape="no-frame"] {
+        border: none;
+    }
+
+    &[shape="panel"],
+    &[shape="box"] {
+        border-radius: var(--avaunion-demo-round-l);
+        border: 1px solid var(--avaunion-demo-soft-line);
+        background-color: var(--avaunion-demo-view-bg);
+
+        .inactive & {
+            background-color: var(--avaunion-demo-win-bg-inactive);
+        }
+    }
+
+    &[shape="vertical-line"],
+    &[shape="horizontal-line"] {
+        border-radius: 0px;
+        border: none;
+        background-color: var(--avaunion-demo-soft-line);
+        padding: 0px;
+        inset: 1px;
+    }
+
+    &[shape="vertical-line"] {
+        width: 1px;
+    }
+
+    &[shape="horizontal-line"] {
+        height: 1px;
+    }
+
+    &.dock-left,
+    &.dock-right,
+    &.dock-top,
+    &.dock-bottom,
+    &.left-edge,
+    &.right-edge,
+    &.top-edge,
+    &.bottom-edge {
+        border: none;
+        border-radius: 0px;
+    }
+
+    &.left-edge {
+        border-left: 1px solid var(--avaunion-demo-soft-line);
+    }
+
+    &.right-edge {
+        border-right: 1px solid var(--avaunion-demo-soft-line);
+    }
+
+    &.top-edge {
+        border-top: 1px solid var(--avaunion-demo-soft-line);
+    }
+
+    &.bottom-edge {
+        border-bottom: 1px solid var(--avaunion-demo-soft-line);
+    }
+}
+
+frame,
+listview,
+treeview,
+tableview,
+columnview,
+scrollview {
+    &:visual-focus {
+        border: 1px solid var(--avaunion-demo-accent);
+        outline: var(--avaunion-demo-accent-ring);
+    }
+}
+
+groupbox {
+    padding: var(--avaunion-demo-gap-l);
+    spacing: var(--avaunion-demo-gap-m);
+    width: 200px;
+    color: var(--avaunion-demo-win-fg);
+    background-color: var(--avaunion-demo-win-bg-alt);
+    border: none;
+    border-radius: var(--avaunion-demo-round-l);
+    icon-alignment: content start start 0;
+    text-alignment: content start start 0;
+
+    & > header {
+        color: var(--avaunion-demo-accent);
+        font-weight: 700;
+    }
+}
+
+panel,
+groupbox {
+    &.flat {
+        background-color: transparent;
+        border: none;
+    }
+}
+
+scrollview {
+    &.vertical-scroll {
+        padding-right: var(--avaunion-demo-scroll-size);
+    }
+
+    &.horizontal-scroll {
+        padding-bottom: var(--avaunion-demo-scroll-size);
+    }
+
+    &.framed-background {
+        background-color: var(--avaunion-demo-view-bg);
+        border: 1px solid var(--avaunion-demo-soft-line);
+        border-radius: var(--avaunion-demo-round-l);
+    }
+}
+
+scrollareacorner {
+    background-color: transparent;
+    color: var(--avaunion-demo-win-fg);
+}
+
+monthgrid,
+dayofweekrow,
+weeknumbercolumn {
+    background-color: var(--avaunion-demo-view-bg);
+    border: none;
+    border-radius: var(--avaunion-demo-round-m);
+
+    & > label {
+        text-alignment-horizontal: center;
+        text-alignment-vertical: center;
+        color: var(--avaunion-demo-view-fg);
+    }
+}
+
+dayofweekrow > label {
+    color: var(--avaunion-demo-accent);
+    font-weight: 700;
+}
+
+monthgrid label {
+    color: var(--avaunion-demo-view-fg-off);
+    border-radius: var(--avaunion-demo-round-pill);
+    inset: 1px;
+
+    &.current-month {
+        color: var(--avaunion-demo-view-fg);
+    }
+
+    &:hovered {
+        background-color: var(--avaunion-demo-accent-faint);
+    }
+
+    &:pressed {
+        background-color: var(--avaunion-demo-accent-soft);
+    }
+
+    &.today {
+        color: var(--avaunion-demo-accent);
+        font-weight: 700;
+        border: 2px solid var(--avaunion-demo-accent);
+    }
+
+    &:highlighted,
+    &.selected,
+    &:checked {
+        color: var(--avaunion-demo-on-accent);
+        background-color: var(--avaunion-demo-accent);
+    }
+}

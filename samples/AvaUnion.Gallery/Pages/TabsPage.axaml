@@ -1,0 +1,72 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaUnion.Gallery.Pages.TabsPage">
+  <StackPanel Spacing="16" Width="520" HorizontalAlignment="Left">
+    <Label Content="Tab control" FontWeight="Bold" />
+    <TabControl Height="140">
+      <TabItem Header="General">
+        <TextBlock Text="General settings" />
+      </TabItem>
+      <TabItem Header="Appearance">
+        <TextBlock Text="Appearance settings" />
+      </TabItem>
+      <TabItem Header="Advanced">
+        <TextBlock Text="Advanced settings" />
+      </TabItem>
+    </TabControl>
+    <Label Content="Many tabs" FontWeight="Bold" />
+    <TabControl Height="120">
+      <TabItem Header="General"><TextBlock Text="General settings" /></TabItem>
+      <TabItem Header="Appearance"><TextBlock Text="Appearance settings" /></TabItem>
+      <TabItem Header="Advanced"><TextBlock Text="Advanced settings" /></TabItem>
+      <TabItem Header="Shortcuts"><TextBlock Text="Shortcut settings" /></TabItem>
+      <TabItem Header="Notifications"><TextBlock Text="Notification settings" /></TabItem>
+      <TabItem Header="Privacy"><TextBlock Text="Privacy settings" /></TabItem>
+      <TabItem Header="Accessibility"><TextBlock Text="Accessibility settings" /></TabItem>
+    </TabControl>
+    <Label Content="Tabs on the side" FontWeight="Bold" />
+    <Grid ColumnDefinitions="*,16,*">
+      <TabControl Grid.Column="0" TabStripPlacement="Left" Height="220">
+        <TabItem Header="Documents"><TextBlock Text="Documents" /></TabItem>
+        <TabItem Header="Projects"><TextBlock Text="Projects" /></TabItem>
+      </TabControl>
+      <TabControl Grid.Column="2" TabStripPlacement="Right" Height="220">
+        <TabItem Header="Outline"><TextBlock Text="Outline" /></TabItem>
+        <TabItem Header="Git"><TextBlock Text="Git" /></TabItem>
+      </TabControl>
+    </Grid>
+    <Label Content="Tabs on the bottom" FontWeight="Bold" />
+    <TabControl TabStripPlacement="Bottom" Height="120">
+      <TabItem Header="General"><TextBlock Text="General settings" /></TabItem>
+      <TabItem Header="Appearance"><TextBlock Text="Appearance settings" /></TabItem>
+      <TabItem Header="Advanced"><TextBlock Text="Advanced settings" /></TabItem>
+    </TabControl>
+    <Label Content="Expander" FontWeight="Bold" />
+    <Expander Header="More options">
+      <StackPanel Spacing="4">
+        <CheckBox Content="Option one" />
+        <CheckBox Content="Option two" />
+      </StackPanel>
+    </Expander>
+    <Expander Header="Expanded" IsExpanded="True">
+      <StackPanel Spacing="4">
+        <CheckBox Content="Option one" />
+        <CheckBox Content="Option two" />
+      </StackPanel>
+    </Expander>
+    <Label Content="Group box" FontWeight="Bold" />
+    <GroupBox Header="Notifications">
+      <StackPanel Spacing="4">
+        <ToggleSwitch Content="Show banners" IsChecked="True" />
+        <ToggleSwitch Content="Play sounds" />
+      </StackPanel>
+    </GroupBox>
+    <Label Content="Split view" FontWeight="Bold" />
+    <SplitView IsPaneOpen="True" DisplayMode="Inline" OpenPaneLength="140" Height="120">
+      <SplitView.Pane>
+        <TextBlock Text="Drawer" Margin="8" />
+      </SplitView.Pane>
+      <TextBlock Text="Content" Margin="8" />
+    </SplitView>
+  </StackPanel>
+</UserControl>

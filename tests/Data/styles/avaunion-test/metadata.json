@@ -1,0 +1,12 @@
+{
+    "input-type": "css",
+    "input-version": 1,
+    "name": "AvaUnion Test",
+    "name[de_DE]": "AvaUnion-Test",
+    "description": "A small style for the AvaUnion tests.",
+    "version": "1.0",
+    "license": "LGPL-2.1-only",
+    "authors": [
+        "AvaUnion"
+    ]
+}

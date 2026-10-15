@@ -1,0 +1,112 @@
+@import "colors.css";
+
+:root {
+    --avaunion-test-radius: 5px;
+    --avaunion-test-frame: 1px solid var(--avaunion-test-frame-color);
+}
+
+applicationwindow {
+    background-color: var(--avaunion-test-window-color);
+    color: var(--avaunion-test-text-color);
+}
+
+button,
+toolbutton {
+    width: 30px;
+    height: 30px;
+    padding: 6px;
+    spacing: 4px;
+    border: var(--avaunion-test-frame);
+    border-radius: var(--avaunion-test-radius);
+    background-color: var(--avaunion-test-button-color);
+    color: var(--avaunion-test-text-color);
+    text-alignment-horizontal: center;
+    font-weight: 600;
+
+    &:hovered {
+        border-color: var(--avaunion-test-accent-color);
+    }
+
+    &:pressed {
+        background-color: modify-color(var(--avaunion-test-button-color) multiply #e0e0e0);
+    }
+
+    &:checked {
+        background-color: modify-color(var(--avaunion-test-button-color) subtract #202020);
+    }
+
+    &:disabled {
+        color: modify-color(var(--avaunion-test-text-color) set-alpha 0.5);
+    }
+
+    &.flat {
+        border-width: 0px;
+        background-color: transparent;
+    }
+}
+
+button:visual-focus {
+    outline: 2px solid var(--avaunion-test-accent-color);
+}
+
+toolbutton[display="icon-only"] {
+    padding: 4px;
+}
+
+applicationwindow > button {
+    margin: 1px;
+}
+
+applicationwindow button.flat:hovered {
+    background-color: modify-color(var(--avaunion-test-button-color) add #101010);
+}
+
+tabbutton[colorset="header"] {
+    background-color: rgba(10, 20, 30, 0.5);
+}
+
+textfield {
+    padding: 5px;
+    border: var(--avaunion-test-frame);
+    border-radius: 3px;
+    background-color: var(--avaunion-test-view-color);
+    font-family: "Noto Sans";
+    font-size: 11pt;
+}
+
+frame[shape^="hori"] {
+    height: 1px;
+    background-color: #808080;
+}
+
+frame[shape] {
+    border: var(--avaunion-test-frame);
+}
+
+#avaunion-test-id {
+    width: 42px;
+}
+
+checkbox > indicator {
+    width: 18px;
+    height: 18px;
+    border: var(--avaunion-test-frame);
+    border-radius: 3px;
+    background-color: var(--avaunion-test-view-color);
+}
+
+checkbox:checked > indicator {
+    background-image: url("../images/mark.svg") mask var(--avaunion-test-accent-color);
+}
+
+slider > handle {
+    width: 16px;
+    height: 16px;
+    border-radius: 8px;
+    background-color: mix(var(--avaunion-test-button-color), var(--avaunion-test-accent-color), 0.25);
+}
+
+label {
+    color: var(--avaunion-test-text-color);
+    font-size: 120%;
+}

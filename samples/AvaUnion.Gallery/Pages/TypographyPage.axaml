@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
+             x:Class="AvaUnion.Gallery.Pages.TypographyPage">
+  <StackPanel Spacing="10">
+    <Label Content="Session fonts" FontWeight="Bold" />
+    <TextBlock Text="General font" FontFamily="{DynamicResource UnionFontFamily}" FontSize="{DynamicResource UnionFontSize}" />
+    <TextBlock Text="Fixed-width font" FontFamily="{DynamicResource UnionFixedFontFamily}" FontSize="{DynamicResource UnionFixedFontSize}" />
+    <TextBlock Text="Small font" FontSize="{DynamicResource UnionSmallFontSize}" />
+    <Label Content="Icons" FontWeight="Bold" />
+    <WrapPanel ItemSpacing="12" LineSpacing="12">
+      <union:UnionIcon IconName="arrow-down" Width="16" Height="16" />
+      <union:UnionIcon IconName="arrow-up" Width="16" Height="16" />
+      <union:UnionIcon IconName="arrow-left" Width="16" Height="16" />
+      <union:UnionIcon IconName="arrow-right" Width="16" Height="16" />
+      <union:UnionIcon IconName="search" Width="16" Height="16" />
+      <union:UnionIcon IconName="edit-clear" Width="16" Height="16" />
+      <union:UnionIcon IconName="help-contextual-symbolic" Width="16" Height="16" />
+      <union:UnionIcon IconName="window-close-symbolic" Width="16" Height="16" />
+      <union:UnionIcon IconName="application-menu-symbolic" Width="16" Height="16" />
+      <union:UnionIcon IconName="document-open" Width="22" Height="22" />
+      <union:UnionIcon IconName="folder" Width="32" Height="32" />
+    </WrapPanel>
+  </StackPanel>
+</UserControl>
