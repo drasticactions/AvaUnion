@@ -1,6 +1,6 @@
 # AvaUnion
 
-[![NuGet Version](https://img.shields.io/nuget/v/AvaUnion.svg)](https://www.nuget.org/packages/AvaUnion/) ![License](https://img.shields.io/badge/License-LGPL2.1-015d93.svg)
+[![NuGet Version](https://img.shields.io/nuget/v/AvaUnion.Theme.svg)](https://www.nuget.org/packages/AvaUnion.Theme/) ![License](https://img.shields.io/badge/License-LGPL2.1-015d93.svg)
 
 
 AvaUnion is an experimental theme for [Avalonia](https://avaloniaui.net) 12 
@@ -8,6 +8,8 @@ that binds [KDE Union](https://api.kde.org/union-index.html). When Union is avai
 it will wrap its thems (Including its style, color schemes, fonts, icons, etc) to it dynamically. 
 When it's not, it uses a snapshot of breeze taken at build time and bundled with the library.
 You can also provide your own for use on other platforms.
+
+![Screenshot](./assets/screenshot.png)
 
 To see it live, go to [live gallery demo](https://drasticactions.github.io/AvaUnion),
 or download the [AppImage](https://github.com/drasticactions/AvaUnion/actions/workflows/appimage.yml).
