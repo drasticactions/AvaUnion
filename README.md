@@ -83,6 +83,10 @@ tools/regenerate-data.sh    # snapshot, parity corpus and expected results
 tools/publish-local.sh      # pack everything into the local NuGet cache
 ```
 
+## LLM Usage
+
+LLMs were/are used in the construction of the generator tooling, CI, samples, and portions of the documentation.
+
 ## License
 
 LGPL-2.1-only. See `LICENSE` and `NOTICE.md`.
