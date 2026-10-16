@@ -1,0 +1,168 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  managed:
+    runs-on: ubuntu-latest
+    env:
+      AVAUNION_ENGINE: managed
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - name: Build
+        run: dotnet build AvaUnion.slnx -c Release
+      - name: Tests
+        run: dotnet run --project tests/AvaUnion.Theme.Tests -c Release
+      - name: Fetch Union's release tags
+        run: git -C external/union fetch --depth 1 origin 'refs/tags/v*:refs/tags/v*'
+      - name: Generated code is up to date
+        run: |
+          dotnet run tools/union-properties/union-properties.cs -- --check
+          dotnet run tools/union-schemas/union-schemas.cs -- --check
+          dotnet run tools/union-snapshot/union-snapshot.cs -- --check
+          dotnet run tools/union-snapshot/union-snapshot.cs -- --export tests/Data/styles/avaunion-test.json --out tests/Data/styles/avaunion-test.union.bin --check
+          dotnet run tools/union-snapshot/union-snapshot.cs -- --export tests/Data/styles/avaunion-demo.json --out samples/AvaUnion.Gallery/Styles/avaunion-demo.union.bin --check
+          dotnet run tools/union-corpus/union-corpus.cs -- --check
+
+  native:
+    name: native (${{ matrix.rid }})
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - rid: linux-x64
+            runner: ubuntu-24.04
+          - rid: linux-arm64
+            runner: ubuntu-24.04-arm
+    runs-on: ${{ matrix.runner }}
+    container: ${{ matrix.rid == 'linux-x64' && 'archlinux:latest' || 'menci/archlinuxarm:latest' }}
+    steps:
+      - name: Install git
+        run: |
+          grep -q '^DisableSandbox' /etc/pacman.conf || sed -i '/^\[options\]/a DisableSandbox' /etc/pacman.conf
+          pacman -Sy --noconfirm --needed git
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - id: keys
+        uses: ./.github/actions/build-union-export
+        with:
+          rid: ${{ matrix.rid }}
+          install-union: ${{ matrix.rid == 'linux-x64' }}
+      - name: Export (x64 only)
+        if: matrix.rid == 'linux-x64'
+        env:
+          QT_QPA_PLATFORM: offscreen
+        run: |
+          mkdir -p export
+          for s in breeze breeze-rtl breeze-mobile; do dist/union-export style $s export/$s.json; done
+          for c in BreezeLight BreezeDark; do dist/union-export scheme /usr/share/color-schemes/$c.colors export/$c.json; done
+          dist/union-export parity tests/Data/parity/chains.json export/expected-native.json \
+            /usr/share/color-schemes/BreezeLight.colors /usr/share/color-schemes/BreezeDark.colors
+      - uses: actions/upload-artifact@v4
+        with:
+          name: avaunion-native-${{ matrix.rid }}-${{ steps.keys.outputs.recipe }}
+          path: dist/libavaunion-native-*.so
+          retention-days: 90
+          if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        if: matrix.rid == 'linux-x64'
+        with:
+          name: union-export-${{ steps.keys.outputs.recipe }}
+          path: export
+          retention-days: 90
+      - name: Pack Union and the shim for the tests
+        if: matrix.rid == 'linux-x64'
+        run: tar -cf native-build.tar union-install dist
+      - uses: actions/upload-artifact@v4
+        if: matrix.rid == 'linux-x64'
+        with:
+          name: native-build-linux-x64
+          path: native-build.tar
+          retention-days: 1
+          if-no-files-found: error
+
+  linux:
+    needs: native
+    runs-on: ubuntu-latest
+    container: archlinux:latest
+    steps:
+      - name: Install dependencies
+        run: |
+          grep -q '^DisableSandbox' /etc/pacman.conf || sed -i '/^\[options\]/a DisableSandbox' /etc/pacman.conf
+          pacman -Syu --noconfirm --needed base-devel git cmake ninja \
+            qt6-base qt6-svg qt6-declarative qt6-shadertools cxx-rust-cssparser \
+            kcoreaddons kguiaddons kconfig kiconthemes kcolorscheme kirigami \
+            plasma-integration breeze breeze-icons extra-cmake-modules dotnet-sdk noto-fonts
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - uses: actions/download-artifact@v4
+        with:
+          name: native-build-linux-x64
+          path: native-build
+      - name: Install Union
+        run: |
+          tar -xf native-build/native-build.tar -C native-build
+          cp -a native-build/union-install/. /
+      - name: Exported data matches the repository
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          tools/regenerate-data.sh --export-tool "$GITHUB_WORKSPACE/native-build/dist/union-export"
+          git diff --exit-code HEAD -- tests/Data src/AvaUnion.Theme/Snapshot samples/AvaUnion.Gallery/Styles
+      - name: Tests (native and managed)
+        run: |
+          AVAUNION_NATIVE_PATH="$(echo "$GITHUB_WORKSPACE"/native-build/dist/libavaunion-native-*.so)"
+          export AVAUNION_NATIVE_PATH
+          dotnet run --project tests/AvaUnion.Theme.Tests -c Release
+
+  style-snapshot:
+    uses: ./.github/workflows/style-snapshot.yml
+    with:
+      package: samples/AvaUnion.Gallery/Styles/avaunion-demo
+      snapshot: samples/AvaUnion.Gallery/Styles/avaunion-demo.union.bin
+      avaunion-ref: ${{ github.sha }}
+      avaunion-repository: ${{ github.repository }}
+
+  pack:
+    needs: [managed, native]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: global.json
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: avaunion-native-*
+          path: native-shims
+      - name: Place the native shims
+        run: |
+          for rid in linux-x64 linux-arm64; do
+            mkdir -p native/artifacts/$rid
+            cp native-shims/avaunion-native-$rid-*/libavaunion-native-*.so native/artifacts/$rid/
+          done
+      - name: NativeAOT publish of the gallery
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y clang zlib1g-dev
+          dotnet publish samples/AvaUnion.Gallery.Desktop -c Release -r linux-x64 -p:PublishAot=true -p:TreatWarningsAsErrors=true -o publish/aot
+      - name: Pack
+        run: dotnet pack AvaUnion.slnx -c Release -o artifacts -p:AvaUnionRevision=${{ github.run_number }}
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: artifacts/*.nupkg

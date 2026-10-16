@@ -1,0 +1,73 @@
+name: Build Union and union-export
+description: Builds Union and the native shim with union-export, with caches. Needs an Arch Linux container with git installed and the pacman database synced.
+
+inputs:
+  rid:
+    description: The runtime id, linux-x64 or linux-arm64.
+    required: true
+  root:
+    description: The AvaUnion checkout, relative to the workspace.
+    required: false
+    default: '.'
+  install-union:
+    description: Install Union also when the shim comes from the cache.
+    required: false
+    default: 'true'
+
+outputs:
+  recipe:
+    description: The recipe key of the shim.
+    value: ${{ steps.keys.outputs.recipe }}
+
+runs:
+  using: composite
+  steps:
+    - name: Find the cache keys
+      id: keys
+      shell: bash
+      working-directory: ${{ inputs.root }}
+      run: |
+        git config --global --add safe.directory "$GITHUB_WORKSPACE"
+        git config --global --add safe.directory "$PWD"
+        key="$(tools/natives/recipe-key.sh)"
+        echo "recipe=$key" >> "$GITHUB_OUTPUT"
+        echo "union=$(git rev-parse HEAD:external/union)" >> "$GITHUB_OUTPUT"
+        packages=$(pacman -Si qt6-base qt6-svg qt6-declarative qt6-shadertools cxx-rust-cssparser \
+          kcoreaddons kguiaddons kconfig kiconthemes kcolorscheme kirigami extra-cmake-modules \
+          | grep -E '^(Name|Version)' | sha256sum | cut -c1-16)
+        echo "packages=$packages" >> "$GITHUB_OUTPUT"
+        echo "### Native shim ${{ inputs.rid }}, recipe key \`$key\`" >> "$GITHUB_STEP_SUMMARY"
+    - id: shim
+      uses: actions/cache@v4
+      with:
+        path: ${{ inputs.root == '.' && 'dist' || format('{0}/dist', inputs.root) }}
+        key: natives-${{ inputs.rid }}-${{ steps.keys.outputs.recipe }}
+    - id: union
+      if: steps.shim.outputs.cache-hit != 'true' || inputs.install-union == 'true'
+      uses: actions/cache@v4
+      with:
+        path: ${{ inputs.root == '.' && 'union-install' || format('{0}/union-install', inputs.root) }}
+        key: union-${{ inputs.rid }}-${{ steps.keys.outputs.union }}-${{ steps.keys.outputs.packages }}-${{ hashFiles(format('{0}/tools/natives/build-union.sh', inputs.root)) }}
+    - name: Install build dependencies
+      if: steps.shim.outputs.cache-hit != 'true' || inputs.install-union == 'true'
+      shell: bash
+      run: |
+        pacman -Syu --noconfirm --needed base-devel git cmake ninja \
+          qt6-base qt6-svg qt6-declarative qt6-shadertools cxx-rust-cssparser \
+          kcoreaddons kguiaddons kconfig kiconthemes kcolorscheme kirigami \
+          plasma-integration breeze breeze-icons extra-cmake-modules
+    - name: Build Union
+      if: (steps.shim.outputs.cache-hit != 'true' || inputs.install-union == 'true') && steps.union.outputs.cache-hit != 'true'
+      shell: bash
+      working-directory: ${{ inputs.root }}
+      run: DESTDIR="$PWD/union-install" tools/natives/build-union.sh
+    - name: Install Union
+      if: steps.shim.outputs.cache-hit != 'true' || inputs.install-union == 'true'
+      shell: bash
+      working-directory: ${{ inputs.root }}
+      run: cp -a union-install/. /
+    - name: Build the shim
+      if: steps.shim.outputs.cache-hit != 'true'
+      shell: bash
+      working-directory: ${{ inputs.root }}
+      run: tools/natives/build-shim.sh dist

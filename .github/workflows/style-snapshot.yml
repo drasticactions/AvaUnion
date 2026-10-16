@@ -1,0 +1,89 @@
+name: Union style snapshot
+
+on:
+  workflow_call:
+    inputs:
+      package:
+        description: The style package folder in the caller's repository.
+        type: string
+        required: true
+      snapshot:
+        description: A committed .union.bin to compare with the new snapshot. The job fails when they differ.
+        type: string
+        required: false
+        default: ''
+      avaunion-ref:
+        description: The AvaUnion tag or commit that matches the AvaUnion package the app uses.
+        type: string
+        required: true
+      avaunion-repository:
+        description: The AvaUnion repository.
+        type: string
+        required: false
+        default: drasticactions/avaunion
+    outputs:
+      artifact:
+        description: The name of the artifact that holds the snapshot.
+        value: ${{ jobs.build.outputs.artifact }}
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    container: archlinux:latest
+    outputs:
+      artifact: ${{ steps.snapshot.outputs.artifact }}
+    steps:
+      - name: Install git
+        run: |
+          grep -q '^DisableSandbox' /etc/pacman.conf || sed -i '/^\[options\]/a DisableSandbox' /etc/pacman.conf
+          pacman -Sy --noconfirm --needed git
+      - uses: actions/checkout@v4
+        with:
+          path: app
+      - uses: actions/checkout@v4
+        with:
+          repository: ${{ inputs.avaunion-repository }}
+          ref: ${{ inputs.avaunion-ref }}
+          path: avaunion
+          submodules: true
+      - uses: ./avaunion/.github/actions/build-union-export
+        with:
+          rid: linux-x64
+          root: avaunion
+          install-union: 'true'
+      - uses: actions/setup-dotnet@v4
+        with:
+          global-json-file: avaunion/global.json
+      - name: Build the snapshot
+        id: snapshot
+        env:
+          PACKAGE: ${{ inputs.package }}
+          QT_QPA_PLATFORM: offscreen
+        run: |
+          id="$(basename "$PACKAGE")"
+          mkdir -p out
+          avaunion/dist/union-export package "app/$PACKAGE" "$PWD/export.json"
+          (cd avaunion && dotnet run tools/union-snapshot/union-snapshot.cs -- --export "$GITHUB_WORKSPACE/export.json" --out "$GITHUB_WORKSPACE/out/$id.union.bin")
+          echo "id=$id" >> "$GITHUB_OUTPUT"
+          echo "artifact=union-style-$id" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ steps.snapshot.outputs.artifact }}
+          path: out/${{ steps.snapshot.outputs.id }}.union.bin
+          if-no-files-found: error
+      - name: Compare with the committed snapshot
+        if: inputs.snapshot != ''
+        env:
+          SNAPSHOT: ${{ inputs.snapshot }}
+          ID: ${{ steps.snapshot.outputs.id }}
+          ARTIFACT: ${{ steps.snapshot.outputs.artifact }}
+        run: |
+          if ! cmp "out/$ID.union.bin" "app/$SNAPSHOT"; then
+            {
+              echo "### Stale style snapshot"
+              echo
+              echo "\`$SNAPSHOT\` does not match the package. Download the \`$ARTIFACT\` artifact of this run and commit its \`$ID.union.bin\` as \`$SNAPSHOT\`."
+            } >> "$GITHUB_STEP_SUMMARY"
+            echo "::error file=$SNAPSHOT::stale: $SNAPSHOT"
+            exit 1
+          fi
