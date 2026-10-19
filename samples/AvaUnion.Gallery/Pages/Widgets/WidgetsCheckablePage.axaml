@@ -1,0 +1,25 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaUnion.Gallery.Pages.WidgetsCheckablePage">
+  <StackPanel Spacing="6" HorizontalAlignment="Left">
+    <GroupBox Header="Radio Buttons" HorizontalAlignment="Left">
+      <StackPanel Spacing="6">
+        <RadioButton Content="Tomato Soup" GroupName="soup" IsChecked="True" />
+        <RadioButton Content="Split Pea Soup" GroupName="soup" />
+        <RadioButton Content="Chicken Soup" GroupName="soup" />
+        <RadioButton Content="Soup of the Day" GroupName="soup" />
+      </StackPanel>
+    </GroupBox>
+    <GroupBox HorizontalAlignment="Left">
+      <GroupBox.Header>
+        <CheckBox Name="Checkboxes" Content="Checkboxes" IsChecked="True" />
+      </GroupBox.Header>
+      <StackPanel Spacing="6" IsEnabled="{Binding #Checkboxes.IsChecked}">
+        <CheckBox Content="Tomatoes" />
+        <CheckBox Content="Olives" IsChecked="True" />
+        <CheckBox Content="Mushrooms" IsThreeState="True" IsChecked="{x:Null}" />
+        <CheckBox Content="Extra Cheese" IsThreeState="True" />
+      </StackPanel>
+    </GroupBox>
+  </StackPanel>
+</UserControl>

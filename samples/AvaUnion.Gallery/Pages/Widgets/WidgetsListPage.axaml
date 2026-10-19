@@ -1,0 +1,52 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:pages="using:AvaUnion.Gallery.Pages"
+             xmlns:g="using:AvaUnion.Gallery"
+             x:Class="AvaUnion.Gallery.Pages.WidgetsListPage">
+  <StackPanel Spacing="6">
+    <ListBox Height="192">
+      <ListBoxItem><g:IconLabel Icon="arrow-down" Text="Take the road to the end of the galaxy" /></ListBoxItem>
+      <ListBoxItem><g:IconLabel Icon="arrow-left" Text="Take care of your belongings and your fantasies" /></ListBoxItem>
+      <ListBoxItem><g:IconLabel Icon="arrow-up" Text="Hurry dear, get your engines running for your longest haul" /></ListBoxItem>
+      <ListBoxItem><g:IconLabel Icon="arrow-right" Text="No one said the stars would be leaving so soon" /></ListBoxItem>
+      <ListBoxItem><CheckBox Content="Nothing left, saving the words that were said:" /></ListBoxItem>
+      <ListBoxItem><CheckBox Content="&quot;One chance to shed off your troubles, travel the rainbow road, with pride&quot;" IsChecked="True" /></ListBoxItem>
+      <ListBoxItem><CheckBox Content="Nothing left, saving the words that were said:" IsThreeState="True" IsChecked="{x:Null}" /></ListBoxItem>
+      <ListBoxItem><CheckBox Content="&quot;One chance to shed off your troubles, travel the rainbow road, with pride&quot;" IsThreeState="True" /></ListBoxItem>
+      <ListBoxItem Content="Carry your head straight dear and never follow the lights" IsEnabled="False" />
+      <ListBoxItem Content="The road may wind all around us, guiding the lost and forgotten" IsEnabled="False" />
+      <ListBoxItem Content="Jettison all your excess payload, never follow the lights" IsEnabled="False" />
+      <ListBoxItem Content="At rainbow's end I wait, for the end to choose our sky" IsEnabled="False" />
+    </ListBox>
+    <Grid ColumnDefinitions="*,*" ColumnSpacing="6">
+      <DataGrid Name="Table" Height="170" HeadersVisibility="All" GridLinesVisibility="All" IsReadOnly="True">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Type" Width="200" Binding="{Binding Type}" x:DataType="pages:Dragon" />
+          <DataGridTextColumn Header="Wings" Binding="{Binding Wings}" x:DataType="pages:Dragon" />
+          <DataGridTextColumn Header="Front Legs" Binding="{Binding FrontLegs}" x:DataType="pages:Dragon" />
+          <DataGridTextColumn Header="Hind Legs" Binding="{Binding HindLegs}" x:DataType="pages:Dragon" />
+        </DataGrid.Columns>
+      </DataGrid>
+      <DataGrid Name="TableNoGrid" Grid.Column="1" Height="170" HeadersVisibility="All" GridLinesVisibility="None" IsReadOnly="True">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Type" Width="200" Binding="{Binding Type}" x:DataType="pages:Dragon" />
+          <DataGridTextColumn Header="Wings" Binding="{Binding Wings}" x:DataType="pages:Dragon" />
+          <DataGridTextColumn Header="Front Legs" Binding="{Binding FrontLegs}" x:DataType="pages:Dragon" />
+          <DataGridTextColumn Header="Hind Legs" Binding="{Binding HindLegs}" x:DataType="pages:Dragon" />
+        </DataGrid.Columns>
+      </DataGrid>
+    </Grid>
+    <TabControl Height="80">
+      <TabItem>
+        <TabItem.Header><g:IconLabel Icon="document-save" Text="Tab 1" /></TabItem.Header>
+        <Label Content="One day" />
+      </TabItem>
+      <TabItem>
+        <TabItem.Header><g:IconLabel Icon="document-save" Text="Tab 2" /></TabItem.Header>
+        <Label Content="I went to the park" />
+      </TabItem>
+      <TabItem Header="Tab 3"><Label Content="The park had" /></TabItem>
+      <TabItem Header="Tab 4"><Label Content="Many pine trees" /></TabItem>
+    </TabControl>
+  </StackPanel>
+</UserControl>

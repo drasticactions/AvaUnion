@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
+             x:Class="AvaUnion.Gallery.Pages.QmlTextPage">
+  <StackPanel Spacing="5" HorizontalAlignment="Left">
+    <Label Content="Label" />
+    <Label Content="Disabled Label" IsEnabled="False" />
+    <Label Name="Heading" Content="Heading" />
+    <Label Name="DisabledHeading" Content="Disabled Heading" IsEnabled="False" />
+    <TextBox PlaceholderText="Text Field" Width="200" HorizontalAlignment="Left" />
+    <TextBox PlaceholderText="Disabled Text Field" Width="200" HorizontalAlignment="Left" IsEnabled="False" />
+    <TextBox PlaceholderText="Password field" PasswordChar="●" RevealPassword="{Binding #Reveal.IsChecked}" Width="200" HorizontalAlignment="Left">
+      <TextBox.InnerRightContent>
+        <ToggleButton Name="Reveal" union:Union.Type="toolbutton" Width="20" Height="20">
+          <union:UnionIcon IconName="password-show-on" Width="16" Height="16" />
+        </ToggleButton>
+      </TextBox.InnerRightContent>
+    </TextBox>
+    <TextBox PlaceholderText="ActionTextField" Height="40">
+      <TextBox.InnerRightContent>
+        <Button union:Union.Type="toolbutton" Width="20" Height="20" ToolTip.Tip="Cancel">
+          <union:UnionIcon IconName="edit-delete-remove" Width="16" Height="16" />
+        </Button>
+      </TextBox.InnerRightContent>
+    </TextBox>
+    <TextBox AcceptsReturn="True" PlaceholderText="Text Area" Width="200" HorizontalAlignment="Left" />
+    <TextBox AcceptsReturn="True" PlaceholderText="Disabled Text Area" Width="200" HorizontalAlignment="Left" IsEnabled="False" />
+    <NumericUpDown Minimum="0" Maximum="1000" Increment="1" Value="0" HorizontalAlignment="Left" />
+    <NumericUpDown Minimum="0" Maximum="1000" Increment="1" Value="0" HorizontalAlignment="Left" IsEnabled="False" />
+    <NumericUpDown Minimum="10" Maximum="1000" Increment="10" Value="10" Width="50" HorizontalAlignment="Left" />
+    <TextBox union:Union.Type="searchfield" Width="200" HorizontalAlignment="Left">
+      <TextBox.InnerLeftContent>
+        <union:UnionIcon union:Union.Type="searchindicator" />
+      </TextBox.InnerLeftContent>
+    </TextBox>
+  </StackPanel>
+</UserControl>

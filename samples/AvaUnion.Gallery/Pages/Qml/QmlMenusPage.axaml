@@ -1,0 +1,68 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
+             xmlns:g="using:AvaUnion.Gallery"
+             x:Class="AvaUnion.Gallery.Pages.QmlMenusPage">
+  <StackPanel Spacing="5">
+    <Menu HorizontalAlignment="Left">
+      <MenuItem Header="_File">
+        <MenuItem Header="_New..." />
+        <MenuItem Header="_Open..." />
+        <Separator />
+        <MenuItem Header="_Save">
+          <MenuItem.Icon><union:UnionIcon IconName="document-save" Width="16" Height="16" /></MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="_Save As..." />
+      </MenuItem>
+      <MenuItem Header="_Edit">
+        <MenuItem Header="Cut">
+          <MenuItem.Icon><union:UnionIcon IconName="edit-cut" Width="16" Height="16" /></MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="Copy">
+          <MenuItem.Icon><union:UnionIcon IconName="edit-copy" Width="16" Height="16" /></MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="Paste" IsEnabled="False">
+          <MenuItem.Icon><union:UnionIcon IconName="edit-paste" Width="16" Height="16" /></MenuItem.Icon>
+        </MenuItem>
+      </MenuItem>
+      <MenuItem Header="States">
+        <MenuItem Header="Text Only" />
+        <MenuItem Header="Text and Icon">
+          <MenuItem.Icon><union:UnionIcon IconName="document-new" Width="16" Height="16" /></MenuItem.Icon>
+        </MenuItem>
+        <MenuItem Header="Checkable" ToggleType="CheckBox" />
+        <MenuItem Header="Checkable with Icon" ToggleType="CheckBox">
+          <MenuItem.Icon><union:UnionIcon IconName="document-new" Width="16" Height="16" /></MenuItem.Icon>
+        </MenuItem>
+        <Separator />
+        <MenuItem Header="Submenu">
+          <MenuItem Header="Submenu Item" ToggleType="Radio" GroupName="submenu" />
+          <MenuItem Header="Another Submenu Item" ToggleType="Radio" GroupName="submenu" />
+        </MenuItem>
+      </MenuItem>
+      <MenuItem Header="Help">
+        <MenuItem Header="About" />
+      </MenuItem>
+      <MenuItem Header="Disabled Menu" IsEnabled="False">
+        <MenuItem Header="How did you open me??" IsEnabled="False" />
+      </MenuItem>
+    </Menu>
+    <Panel union:Union.Type="toolbar" union:Union.Hints="header" union:Union.StateSource="None">
+      <union:UnionBox />
+      <StackPanel Orientation="Horizontal" Spacing="5" Margin="{union:Style Layout.Padding}">
+        <Button union:Union.Type="toolbutton" union:Union.Hints="with-menu" ToolTip.Tip="Shows a menu">
+          <g:IconLabel Icon="document-new" Text="ToolButton with Menu" />
+          <Button.Flyout>
+            <MenuFlyout>
+              <MenuItem Header="Menu Item 1" ToggleType="Radio" GroupName="toolbar" />
+              <MenuItem Header="Menu Item 2" ToggleType="Radio" GroupName="toolbar" />
+              <MenuItem Header="Menu Item 3" ToggleType="Radio" GroupName="toolbar" />
+            </MenuFlyout>
+          </Button.Flyout>
+        </Button>
+        <Separator />
+        <Button union:Union.Type="toolbutton" Content="Disabled ToolButton" IsEnabled="False" />
+      </StackPanel>
+    </Panel>
+  </StackPanel>
+</UserControl>

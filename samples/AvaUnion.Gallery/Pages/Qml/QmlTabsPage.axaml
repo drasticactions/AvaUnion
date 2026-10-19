@@ -1,0 +1,21 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
+             x:Class="AvaUnion.Gallery.Pages.QmlTabsPage">
+  <DockPanel MinHeight="400">
+    <TabStrip Name="Header" DockPanel.Dock="Top" SelectedIndex="0" Classes="immutable">
+      <TabStripItem Classes="immutable" Content="First" />
+      <TabStripItem Classes="immutable" Content="Second" />
+      <TabStripItem Classes="immutable" Content="Third" />
+    </TabStrip>
+    <TabStrip Name="Footer" DockPanel.Dock="Bottom" SelectedIndex="0" Classes="immutable" union:Union.Attributes="tab-position=bottom">
+      <TabStripItem Classes="immutable" Content="Fourth" />
+      <TabStripItem Classes="immutable" Content="Fifth" />
+      <TabStripItem Classes="immutable" Content="Sixth" />
+    </TabStrip>
+    <StackPanel Orientation="Horizontal" Spacing="5" Margin="0,16" VerticalAlignment="Top">
+      <TextBox AcceptsReturn="True" IsReadOnly="True" Width="200" Text="{Binding #Header.SelectedIndex}" />
+      <TextBox AcceptsReturn="True" IsReadOnly="True" Width="200" Text="{Binding #Footer.SelectedIndex}" />
+    </StackPanel>
+  </DockPanel>
+</UserControl>

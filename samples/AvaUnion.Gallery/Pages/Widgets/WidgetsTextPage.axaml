@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:g="using:AvaUnion.Gallery"
+             x:Class="AvaUnion.Gallery.Pages.WidgetsTextPage">
+  <StackPanel Spacing="6" HorizontalAlignment="Left">
+    <Label Content="Sphinx of black quartz, judge my vow." />
+    <TextBox PlaceholderText="QLineEdit" Width="135" HorizontalAlignment="Left" />
+    <TextBox PlaceholderText="QLineEditTwo" Classes="flat" Width="135" HorizontalAlignment="Left" />
+    <TextBox Name="TextEdit" AcceptsReturn="True" TextWrapping="NoWrap" PlaceholderText="QTextEdit"
+             Width="256" Height="192" HorizontalAlignment="Left"
+             ScrollViewer.HorizontalScrollBarVisibility="Auto" ScrollViewer.VerticalScrollBarVisibility="Auto" />
+    <ComboBox Name="Combo" Width="428" SelectedIndex="0" />
+    <ComboBox Name="ComboEditable" Width="428" IsEditable="True" Text="Red" />
+    <ComboBox Name="ComboNoFrame" Width="428" SelectedIndex="0" Classes="flat" />
+    <ComboBox Name="ComboNoFrameEditable" Width="428" IsEditable="True" Classes="flat" Text="Red" />
+  </StackPanel>
+</UserControl>

@@ -47,7 +47,7 @@ internal static class HeadlessShooter
             App.Instance.Theme.StyleId = style;
         }
 
-        foreach (var page in GalleryPages.All)
+        foreach (var (section, page) in GalleryPages.All)
         {
             var window = new Window
             {
@@ -81,7 +81,7 @@ internal static class HeadlessShooter
             }
 
             using var frame = window.CaptureRenderedFrame();
-            var name = page.Title.Replace(" & ", "-").Replace(' ', '-').ToLowerInvariant();
+            var name = section.Key + "-" + page.Title.Replace(" & ", "-").Replace(' ', '-').ToLowerInvariant();
             frame?.Save(Path.Combine(outDir, name + ".png"), new PngBitmapEncoderOptions());
             window.Close();
             Console.WriteLine($"{name}.png");

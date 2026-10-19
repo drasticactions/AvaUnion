@@ -1,0 +1,28 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
+             xmlns:g="using:AvaUnion.Gallery"
+             x:Class="AvaUnion.Gallery.Pages.QmlDelegatesPage">
+  <StackPanel Spacing="5" HorizontalAlignment="Left">
+    <StackPanel.Styles>
+      <Style Selector="ListBoxItem">
+        <Setter Property="HorizontalAlignment" Value="Left" />
+      </Style>
+    </StackPanel.Styles>
+    <ListBoxItem Content="ItemDelegate with Text" />
+    <ListBoxItem><g:IconLabel Icon="document-save" Text="ItemDelegate with Text and Icon" /></ListBoxItem>
+    <ListBoxItem IsSelected="True"><g:IconLabel Icon="document-save" Text="ItemDelegate Highlighted" /></ListBoxItem>
+    <ListBoxItem IsEnabled="False"><g:IconLabel Icon="document-save" Text="Disabled ItemDelegate with Text and Icon" /></ListBoxItem>
+    <ListBoxItem><g:IconLabel Icon="document-save" Text="ItemDelegate TextUnderIcon" Orientation="Vertical" /></ListBoxItem>
+    <CheckBox union:Union.Type="checkdelegate" Content="CheckDelegate with Text" />
+    <CheckBox union:Union.Type="checkdelegate" Content="DisabledCheckDelegate with Text" IsEnabled="False" />
+    <CheckBox union:Union.Type="checkdelegate"><g:IconLabel Icon="document-save" Text="CheckDelegate TextUnderIcon" Orientation="Vertical" /></CheckBox>
+    <RadioButton union:Union.Type="radiodelegate" GroupName="delegates" Content="RadioDelegate n. 1 with Text" />
+    <RadioButton union:Union.Type="radiodelegate" GroupName="delegates" Content="Disabled RadioDelegate n. 1 with Text" IsEnabled="False" />
+    <RadioButton union:Union.Type="radiodelegate" GroupName="delegates" Content="RadioDelegate n. 2 with Text" />
+    <RadioButton union:Union.Type="radiodelegate" GroupName="delegates"><g:IconLabel Icon="document-save" Text="RadioDelegate TextUnderIcon" Orientation="Vertical" /></RadioButton>
+    <ToggleSwitch union:Union.Type="switchdelegate" Content="SwitchDelegate with Text" />
+    <ToggleSwitch union:Union.Type="switchdelegate" Content="Disabled SwitchDelegate with Text" IsEnabled="False" />
+    <ToggleSwitch union:Union.Type="switchdelegate"><g:IconLabel Icon="document-save" Text="SwitchDelegate TextUnderIcon" Orientation="Vertical" /></ToggleSwitch>
+  </StackPanel>
+</UserControl>

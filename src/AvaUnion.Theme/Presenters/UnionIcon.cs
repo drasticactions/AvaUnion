@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Media;
+using AvaUnion.Elements;
 using AvaUnion.Engine;
 using AvaUnion.Icons;
 
@@ -121,6 +122,10 @@ public class UnionIcon : Control
         }
     }
 
+    internal Color? EffectiveColor => Color ?? Style.Icon.Color ?? (UnionEnvironment.IsReady
+        ? UnionEnvironment.Engine.SchemeColor(ColorGroup.Active, ColorSet.Window, ColorRoleKind.Foreground, (int)ForegroundRole.Text)
+        : null);
+
     /// <inheritdoc/>
     protected override Size MeasureOverride(Size availableSize)
     {
@@ -152,7 +157,7 @@ public class UnionIcon : Control
         var height = double.IsNaN(Height) ? style.Icon.Height ?? Bounds.Height : Bounds.Height;
         var size = new Size(System.Math.Min(width, Bounds.Width), System.Math.Min(height, Bounds.Height));
         var scale = TopLevel.GetTopLevel(this)?.RenderScaling ?? 1.0;
-        var image = IconProviders.Get(name, Color ?? style.Icon.Color, size, scale);
+        var image = IconProviders.Get(name, EffectiveColor, size, scale);
         if (image is null)
         {
             return;

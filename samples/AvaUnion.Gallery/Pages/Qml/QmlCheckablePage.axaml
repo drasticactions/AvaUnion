@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:g="using:AvaUnion.Gallery"
+             x:Class="AvaUnion.Gallery.Pages.QmlCheckablePage">
+  <StackPanel Spacing="5" HorizontalAlignment="Left">
+    <CheckBox Content="Checkbox with Text" />
+    <CheckBox Name="Check"><g:IconLabel Icon="document-save" Text="Checkbox with Text and Icon" /></CheckBox>
+    <CheckBox IsEnabled="False" IsChecked="{Binding #Check.IsChecked}"><g:IconLabel Icon="document-save" Text="Disabled Checkbox" /></CheckBox>
+    <RadioButton Content="RadioButton with Text" GroupName="qml" />
+    <RadioButton Name="Radio" GroupName="qml"><g:IconLabel Icon="document-save" Text="RadioButton withh Text and Icon" /></RadioButton>
+    <RadioButton IsEnabled="False" IsChecked="{Binding #Radio.IsChecked}"><g:IconLabel Icon="document-save" Text="Disabled RadioButton" /></RadioButton>
+    <ToggleSwitch Name="Switch" Content="Switch with Text" />
+    <ToggleSwitch Content="Disabled Switch with Text" IsEnabled="False" IsChecked="{Binding #Switch.IsChecked}" />
+  </StackPanel>
+</UserControl>

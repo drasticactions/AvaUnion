@@ -57,21 +57,34 @@ public sealed class MainView : UserControl
         header.Children.Add(switches);
         header.Children.Add(_engine);
 
+        var items = new List<ListBoxItem>();
+        foreach (var section in GalleryPages.Sections)
+        {
+            items.Add(new ListBoxItem
+            {
+                Content = new TextBlock { Text = section.Title, FontWeight = FontWeight.Bold },
+                Focusable = false,
+                IsHitTestVisible = false,
+                Margin = new Thickness(0, items.Count == 0 ? 0 : 8, 0, 0),
+            });
+            items.AddRange(section.Pages.Select(page => new ListBoxItem { Content = page.Title, Tag = page }));
+        }
+
         var pages = new ListBox
         {
-            ItemsSource = GalleryPages.All,
-            SelectedIndex = 0,
+            ItemsSource = items,
+            SelectedIndex = 1,
             Width = 210,
             Margin = new Thickness(12, 0, 0, 12),
         };
         pages.SelectionChanged += (_, _) =>
         {
-            if (pages.SelectedItem is GalleryPage page)
+            if (pages.SelectedItem is ListBoxItem { Tag: GalleryPage page })
             {
                 _content.Content = new ScrollViewer { Content = page.Create() };
             }
         };
-        _content.Content = new ScrollViewer { Content = GalleryPages.All[0].Create() };
+        _content.Content = new ScrollViewer { Content = GalleryPages.Sections[0].Pages[0].Create() };
 
         var root = new DockPanel();
         DockPanel.SetDock(header, Dock.Top);

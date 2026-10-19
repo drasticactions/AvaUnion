@@ -1,0 +1,48 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:sys="using:System"
+             xmlns:union="https://github.com/avaunion"
+             xmlns:g="using:AvaUnion.Gallery"
+             x:Class="AvaUnion.Gallery.Pages.QmlButtonsPage">
+  <StackPanel Spacing="5" HorizontalAlignment="Left">
+    <Button Content="Button with Text" />
+    <Button><g:IconLabel Icon="document-save" Text="Button with Text and Icon" /></Button>
+    <Button IsEnabled="False"><g:IconLabel Icon="document-save" Text="Disabled Button" /></Button>
+    <Button Classes="flat"><g:IconLabel Icon="document-save" Text="Button Flat" /></Button>
+    <Button><g:IconLabel Icon="document-save" Text="Button Text Under Icon" Orientation="Vertical" /></Button>
+    <Button><union:UnionIcon IconName="document-save" /></Button>
+    <ToggleButton IsChecked="True"><g:IconLabel Icon="document-save" Text="Button Checkable" /></ToggleButton>
+    <Button IsDefault="True"><g:IconLabel Icon="document-save" Text="Button Highlighted" /></Button>
+    <Button Width="24" Height="24" ToolTip.Tip="Tiny Button"><union:UnionIcon IconName="document-save" /></Button>
+    <Button union:Union.Type="toolbutton" Content="ToolButton with Text" />
+    <Button union:Union.Type="toolbutton"><g:IconLabel Icon="document-save" Text="ToolButton with Text and Icon" /></Button>
+    <Button union:Union.Type="toolbutton"><g:IconLabel Icon="document-save" Text="ToolButton Text Under Icon" Orientation="Vertical" /></Button>
+    <Button union:Union.Type="toolbutton" ToolTip.Tip="ToolButton Icon Only"><union:UnionIcon IconName="document-save" /></Button>
+    <ToggleButton union:Union.Type="toolbutton" IsChecked="True"><g:IconLabel Icon="document-save" Text="ToolButton Checkable" /></ToggleButton>
+    <Button union:Union.Type="roundbutton"><g:IconLabel Icon="document-save" Text="RoundButton" /></Button>
+    <ComboBox Tag="letters">
+      <ComboBox.SelectionBoxItemTemplate>
+        <DataTemplate x:DataType="sys:String"><TextBlock Text="{Binding StringFormat='Combobox: {0}'}" /></DataTemplate>
+      </ComboBox.SelectionBoxItemTemplate>
+    </ComboBox>
+    <ComboBox Tag="disabled-letters" IsEnabled="False">
+      <ComboBox.SelectionBoxItemTemplate>
+        <DataTemplate x:DataType="sys:String"><TextBlock Text="{Binding StringFormat='Disabled Combobox: {0}'}" /></DataTemplate>
+      </ComboBox.SelectionBoxItemTemplate>
+    </ComboBox>
+    <ComboBox Tag="letters" IsEditable="True" Text="Editable Combobox: BBBBBBBBBBB" />
+    <ComboBox Tag="disabled-letters" IsEditable="True" IsEnabled="False" Text="Disabled Editable Combobox: BBBBBBBBBBB" />
+    <ComboBox Tag="letters" Classes="flat">
+      <ComboBox.SelectionBoxItemTemplate>
+        <DataTemplate x:DataType="sys:String"><TextBlock Text="{Binding StringFormat='Flat Combobox: {0}'}" /></DataTemplate>
+      </ComboBox.SelectionBoxItemTemplate>
+    </ComboBox>
+    <ComboBox Tag="disabled-letters" Classes="flat" IsEnabled="False">
+      <ComboBox.SelectionBoxItemTemplate>
+        <DataTemplate x:DataType="sys:String"><TextBlock Text="{Binding StringFormat='Disabled Flat Combobox: {0}'}" /></DataTemplate>
+      </ComboBox.SelectionBoxItemTemplate>
+    </ComboBox>
+    <ComboBox Tag="letters" Classes="flat" IsEditable="True" Text="Flat Editable Combobox: BBBBBBBBBBB" />
+    <ComboBox Tag="disabled-letters" Classes="flat" IsEditable="True" IsEnabled="False" Text="Disabled Flat Editable Combobox: BBBBBBBBBBB" />
+  </StackPanel>
+</UserControl>

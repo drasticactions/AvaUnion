@@ -1,0 +1,17 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="AvaUnion.Gallery.Pages.WidgetsNumberPage">
+  <StackPanel Spacing="6" HorizontalAlignment="Left">
+    <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="6">
+      <Slider Grid.Row="0" Grid.Column="0" Width="200" Minimum="0" Maximum="5" IsSnapToTickEnabled="True" TickFrequency="1" />
+      <Slider Grid.Row="1" Grid.Column="0" Height="200" Orientation="Vertical" HorizontalAlignment="Left" Minimum="0" Maximum="5" IsSnapToTickEnabled="True" TickFrequency="1" />
+      <Slider Grid.Row="0" Grid.Column="1" Width="200" Minimum="0" Maximum="5" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight" />
+      <Slider Grid.Row="1" Grid.Column="1" Height="200" Orientation="Vertical" HorizontalAlignment="Left" Minimum="0" Maximum="5" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="BottomRight" />
+      <Slider Grid.Row="0" Grid.Column="2" Width="200" Minimum="0" Maximum="5" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="TopLeft" />
+      <Slider Grid.Row="1" Grid.Column="2" Height="200" Orientation="Vertical" HorizontalAlignment="Left" Minimum="0" Maximum="5" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="TopLeft" />
+      <ProgressBar Grid.Row="2" Grid.Column="0" Minimum="0" Maximum="100" Value="50" ShowProgressText="True" />
+    </Grid>
+    <NumericUpDown Value="0" Minimum="0" Maximum="99" Width="46" HorizontalAlignment="Left" />
+    <NumericUpDown Value="0" Minimum="0" Maximum="99" FormatString="'prefix '0' suffix'" Width="120" HorizontalAlignment="Left" />
+  </StackPanel>
+</UserControl>

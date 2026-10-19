@@ -228,6 +228,14 @@ public sealed class StyleValueConverter : IValueConverter
                     UnionAlignment.End => VerticalAlignment.Bottom,
                     _ => VerticalAlignment.Center,
                 };
+            case UnionAlignment alignment when target == typeof(HorizontalAlignment):
+                return alignment switch
+                {
+                    UnionAlignment.Start => HorizontalAlignment.Left,
+                    UnionAlignment.End => HorizontalAlignment.Right,
+                    UnionAlignment.Fill => HorizontalAlignment.Stretch,
+                    _ => HorizontalAlignment.Center,
+                };
             case UnionAlignment alignment when target == typeof(TextAlignment):
                 return alignment switch
                 {

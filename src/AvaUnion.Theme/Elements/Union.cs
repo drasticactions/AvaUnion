@@ -122,6 +122,7 @@ public static class Union
         ButtonMenuPlacement.Register();
         TabWheel.Register();
         TabHeaderText.Register();
+        TableRows.Register();
         Avalonia.Controls.TreeViewItem.IsExpandedProperty.Changed.AddClassHandler<Avalonia.Controls.TreeViewItem>((e, _) => AutoHints.RefreshTreeRows(e));
         Avalonia.Controls.ItemsControl.ItemCountProperty.Changed.AddClassHandler<Avalonia.Controls.TreeViewItem>((e, _) => AutoHints.RefreshTreeRows(e));
         Avalonia.Controls.ItemsControl.ItemCountProperty.Changed.AddClassHandler<Avalonia.Controls.TabControl>((e, _) => AutoHints.RefreshTabs(e));

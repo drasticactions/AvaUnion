@@ -1,41 +1,7 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:union="https://github.com/avaunion"
-             x:Class="AvaUnion.Gallery.Pages.TabsPage">
+             x:Class="AvaUnion.Gallery.Pages.ContainersPage">
   <StackPanel Spacing="16" Width="520" HorizontalAlignment="Left">
-    <Label Content="Tab control" FontWeight="Bold" />
-    <TabControl Height="140">
-      <TabItem Header="General">
-        <TextBlock Text="General settings" />
-      </TabItem>
-      <TabItem Header="Appearance">
-        <TextBlock Text="Appearance settings" />
-      </TabItem>
-      <TabItem Header="Advanced">
-        <TextBlock Text="Advanced settings" />
-      </TabItem>
-    </TabControl>
-    <Label Content="Tabs with icons" FontWeight="Bold" />
-    <TabControl Height="100">
-      <TabItem>
-        <TabItem.Header>
-          <StackPanel Orientation="Horizontal" Spacing="4">
-            <union:UnionIcon IconName="document-save" Width="16" Height="16" />
-            <TextBlock Text="Saved" />
-          </StackPanel>
-        </TabItem.Header>
-        <TextBlock Text="Saved documents" />
-      </TabItem>
-      <TabItem>
-        <TabItem.Header>
-          <StackPanel Orientation="Horizontal" Spacing="4">
-            <union:UnionIcon IconName="folder" Width="16" Height="16" />
-            <TextBlock Text="Folders" />
-          </StackPanel>
-        </TabItem.Header>
-        <TextBlock Text="Folders" />
-      </TabItem>
-    </TabControl>
     <Label Content="Many tabs" FontWeight="Bold" />
     <TabControl Height="120">
       <TabItem Header="General"><TextBlock Text="General settings" /></TabItem>
@@ -76,31 +42,6 @@
         <CheckBox Content="Option two" />
       </StackPanel>
     </Expander>
-    <Label Content="Group box" FontWeight="Bold" />
-    <GroupBox Header="Notifications">
-      <StackPanel Spacing="4">
-        <ToggleSwitch Content="Show banners" IsChecked="True" />
-        <ToggleSwitch Content="Play sounds" />
-      </StackPanel>
-    </GroupBox>
-    <GroupBox>
-      <GroupBox.Header>
-        <CheckBox Content="Checkable group" IsChecked="True" />
-      </GroupBox.Header>
-      <StackPanel Spacing="4">
-        <CheckBox Content="Tomatoes" />
-        <CheckBox Content="Olives" IsChecked="True" />
-      </StackPanel>
-    </GroupBox>
-    <Label Content="Swipe view" FontWeight="Bold" />
-    <StackPanel Spacing="4">
-      <Carousel Name="Swipe" Height="80">
-        <TextBlock Text="First page" Margin="8" />
-        <TextBlock Text="Second page" Margin="8" />
-        <TextBlock Text="Third page" Margin="8" />
-      </Carousel>
-      <PipsPager NumberOfPages="3" SelectedPageIndex="{Binding #Swipe.SelectedIndex, Mode=TwoWay}" HorizontalAlignment="Center" />
-    </StackPanel>
     <Label Content="Split view" FontWeight="Bold" />
     <SplitView IsPaneOpen="True" DisplayMode="Inline" OpenPaneLength="140" Height="120">
       <SplitView.Pane>

@@ -1,0 +1,33 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
+             xmlns:g="using:AvaUnion.Gallery"
+             x:Class="AvaUnion.Gallery.Pages.WidgetsButtonsPage">
+  <Grid ColumnDefinitions="Auto,Auto" RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto"
+        ColumnSpacing="24" RowSpacing="12" HorizontalAlignment="Left">
+    <Button Grid.Row="0" Content="Button with Text (with tooltip)" ToolTip.Tip="A tooltip" />
+    <Button Grid.Row="1"><g:IconLabel Icon="document-save" Text="Button with Text and Icon" /></Button>
+    <Button Grid.Row="2"><union:UnionIcon IconName="document-save" /></Button>
+    <Button Grid.Row="3" IsEnabled="False"><g:IconLabel Icon="document-save" Text="Disabled Button" /></Button>
+    <Button Grid.Row="4" Classes="flat"><g:IconLabel Icon="document-save" Text="Button Flat" /></Button>
+    <ToggleButton Grid.Row="5"><g:IconLabel Icon="document-save" Text="Button Checkable" /></ToggleButton>
+
+    <Button Grid.Row="0" Grid.Column="1" union:Union.Type="toolbutton" union:Union.Hints="raised"
+            Content="ToolButton with Text (with tooltip)" ToolTip.Tip="A tooltip" />
+    <Button Grid.Row="1" Grid.Column="1" union:Union.Type="toolbutton" union:Union.Hints="raised">
+      <g:IconLabel Icon="document-save" Text="ToolButton with Text and Icon" />
+    </Button>
+    <Button Grid.Row="2" Grid.Column="1" union:Union.Type="toolbutton" union:Union.Hints="raised">
+      <union:UnionIcon IconName="document-save" />
+    </Button>
+    <Button Grid.Row="3" Grid.Column="1" union:Union.Type="toolbutton" union:Union.Hints="raised" IsEnabled="False">
+      <g:IconLabel Icon="document-save" Text="Disabled ToolButton" />
+    </Button>
+    <ToggleButton Grid.Row="5" Grid.Column="1" union:Union.Type="toolbutton" union:Union.Hints="raised">
+      <g:IconLabel Icon="document-save" Text="ToolButton Checkable" />
+    </ToggleButton>
+    <Button Grid.Row="6" Grid.Column="1" union:Union.Type="toolbutton" union:Union.Hints="raised">
+      <g:IconLabel Icon="document-save" Text="ToolButton Text below Icon" Orientation="Vertical" />
+    </Button>
+  </Grid>
+</UserControl>

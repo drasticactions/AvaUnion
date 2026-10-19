@@ -8,35 +8,35 @@
     <Setter Property="Foreground" Value="{union:SchemeColor Window, Foreground, Text}" />
     <Setter Property="Template">
       <ControlTemplate TargetType="ProgressBar">
-        <Grid ColumnDefinitions="*,Auto">
-          <Panel>
-            <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
-            <Panel Name="PART_Content" Margin="{TemplateBinding Padding}">
-              <Border Name="PART_Indicator" HorizontalAlignment="Left" VerticalAlignment="Stretch">
-                <union:UnionBox union:Union.Type="track" union:Union.StateSource="None" />
-              </Border>
-              <union:IndeterminateTrackPanel Name="PART_Indeterminate" IsVisible="False" Orientation="{TemplateBinding Orientation}">
-                <union:UnionBox union:Union.Type="track" union:Union.StateSource="None" />
-              </union:IndeterminateTrackPanel>
-            </Panel>
+        <Panel>
+          <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+          <Panel Name="PART_Content" Margin="{TemplateBinding Padding}">
+            <Border Name="PART_Indicator" HorizontalAlignment="Left" VerticalAlignment="Stretch">
+              <union:UnionBox union:Union.Type="track" union:Union.StateSource="None" />
+            </Border>
+            <union:IndeterminateTrackPanel Name="PART_Indeterminate" IsVisible="False" Orientation="{TemplateBinding Orientation}">
+              <union:UnionBox union:Union.Type="track" union:Union.StateSource="None" />
+            </union:IndeterminateTrackPanel>
           </Panel>
-          <Panel Name="PART_Text" Grid.Column="1" Margin="4,0,0,0" IsVisible="{TemplateBinding ShowProgressText}">
-            <TextBlock Text="100%" Opacity="0" VerticalAlignment="Center" />
-            <TextBlock HorizontalAlignment="Center"
-                       VerticalAlignment="Center"
+          <Panel Margin="{union:Style Layout.Padding.Left, Sides=Left}">
+            <TextBlock Name="PART_Text"
+                       Margin="{union:Style Layout.Padding.Right, Sides=Right}"
+                       IsVisible="{TemplateBinding ShowProgressText}"
+                       HorizontalAlignment="{union:Style Text.Alignment.Horizontal, Fallback=Center}"
+                       VerticalAlignment="{union:Style Text.Alignment.Vertical, Fallback=Center}"
                        Text="{Binding $parent[ProgressBar].Percentage, StringFormat={}{0:0}%}" />
           </Panel>
-        </Grid>
+        </Panel>
       </ControlTemplate>
     </Setter>
     <Style Selector="^:vertical /template/ Border#PART_Indicator">
       <Setter Property="HorizontalAlignment" Value="Stretch" />
       <Setter Property="VerticalAlignment" Value="Bottom" />
     </Style>
-    <Style Selector="^:vertical /template/ Panel#PART_Text">
+    <Style Selector="^:vertical /template/ TextBlock#PART_Text">
       <Setter Property="IsVisible" Value="False" />
     </Style>
-    <Style Selector="^:indeterminate /template/ Panel#PART_Text">
+    <Style Selector="^:indeterminate /template/ TextBlock#PART_Text">
       <Setter Property="IsVisible" Value="False" />
     </Style>
     <Style Selector="^:indeterminate /template/ Border#PART_Indicator">

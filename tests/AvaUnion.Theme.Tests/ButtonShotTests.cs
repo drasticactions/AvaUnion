@@ -44,6 +44,19 @@ public class ButtonShotTests
     }
 
     [AvaloniaFact]
+    public void Icons_That_Do_Not_Fit_Stay_Centered()
+    {
+        var icon = new AvaUnion.Presenters.UnionIcon { IconName = "document-save" };
+        var button = new Button { Width = 24, Height = 24, Content = icon };
+        var window = Shots.Show(new StackPanel { Children = { button } });
+        var center = Avalonia.VisualExtensions.TranslatePoint(icon, new Avalonia.Point(icon.Bounds.Width / 2, icon.Bounds.Height / 2), button)!.Value;
+        Assert.Equal(16, icon.Bounds.Width);
+        Assert.Equal(12, center.X, 0.5);
+        Assert.Equal(12, center.Y, 0.5);
+        window.Close();
+    }
+
+    [AvaloniaFact]
     public void Checks_Render()
     {
         var panel = new StackPanel { Spacing = 8, Margin = new Avalonia.Thickness(16) };

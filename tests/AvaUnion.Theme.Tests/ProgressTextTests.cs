@@ -13,14 +13,16 @@ public class ProgressTextTests
         bar.GetVisualDescendants().OfType<Control>().First(c => c.Name == name);
 
     [AvaloniaFact]
-    public void Percentage_Sits_Beside_The_Bar()
+    public void Percentage_Is_Centered_On_The_Bar()
     {
         var bar = new ProgressBar { Width = 260, HorizontalAlignment = HorizontalAlignment.Left, Value = 5, ShowProgressText = true };
         var window = Shots.Show(bar, 400, 100);
         var content = Part(bar, "PART_Content");
         var text = Part(bar, "PART_Text");
         Assert.True(text.IsVisible);
-        Assert.True(text.Bounds.Left >= content.Bounds.Right + 4, $"text {text.Bounds} overlaps bar {content.Bounds}");
+        var middle = Avalonia.VisualExtensions.TranslatePoint(text, new Avalonia.Point(text.Bounds.Width / 2, text.Bounds.Height / 2), bar)!.Value;
+        Assert.Equal(bar.Bounds.Width / 2, middle.X, 1.0);
+        Assert.Equal(bar.Bounds.Height / 2, middle.Y, 1.0);
 
         var length = content.Bounds.Width;
         bar.Value = 100;

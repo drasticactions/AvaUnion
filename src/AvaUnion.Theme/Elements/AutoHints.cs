@@ -172,6 +172,11 @@ public static class AutoHints
                 Hint(hints, "inside-list", true);
                 Hint(hints, "hover-enabled", true);
                 Hint(hints, "last-in-list", IsLastInList((Control)element));
+                if (element is TableViewRow tableRow && ItemsControl.ItemsControlFromItemContainer(tableRow) is { } table)
+                {
+                    Hint(hints, "alternating-colors", !table.Classes.Contains("no-alternating-colors") && table.IndexFromContainer(tableRow) % 2 == 1);
+                }
+
                 break;
 
             case Control row when type == "treeviewdelegate" && row.TemplatedParent is TreeViewItem tree:
@@ -393,7 +398,7 @@ public static class AutoHints
     /// <summary>True when button content shows an icon.</summary>
     public static bool HasIcon(object? content) => IsIcon(content) || (content is Panel panel && ContainsIcon(panel));
 
-    private static bool IsIcon(object? content) =>
+    internal static bool IsIcon(object? content) =>
         content is Image or PathIcon or IconElement or Avalonia.Controls.Shapes.Shape or Presenters.UnionIcon;
 
     private static bool ContainsIcon(Panel panel)

@@ -85,7 +85,7 @@ public class UnionPositioner : Panel
             visual.SetValue(PlacementProperty, rect);
             if (visual is Layoutable layoutable && visual.GetVisualParentIs(this))
             {
-                layoutable.Arrange(rect);
+                layoutable.Arrange(ShowsOnlyIcon(visual) ? CenterOn(rect, layoutable.DesiredSize) : rect);
             }
         }
 
@@ -103,6 +103,16 @@ public class UnionPositioner : Panel
         }
 
         return finalSize;
+    }
+
+    private static bool ShowsOnlyIcon(Visual visual) =>
+        visual is UnionIcon || visual is Avalonia.Controls.Presenters.ContentPresenter { Content: var content } && Elements.AutoHints.IsIcon(content);
+
+    private static Rect CenterOn(Rect rect, Size desired)
+    {
+        var width = Math.Max(rect.Width, desired.Width);
+        var height = Math.Max(rect.Height, desired.Height);
+        return new Rect(rect.Center.X - width / 2, rect.Center.Y - height / 2, width, height);
     }
 
     private PositionerLayout Build(LayoutSize size, out List<(Visual Visual, LayoutItem Item)> placed)

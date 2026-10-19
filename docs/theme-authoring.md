@@ -113,7 +113,7 @@ part; hints in parentheses are added automatically when they apply.
 | ListBox, ListBoxItem | `scrollview.framed-background[colorset=view]` › `itemdelegate.inside-list.hover-enabled` (`last-in-list`) |
 | ItemsControl | untyped |
 | TreeView, TreeViewItem | `scrollview…` › `treeviewdelegate` › `indicator` (`expanded`, `selected`) |
-| TableView, rows, cells, column headers | `scrollview` › `tableviewdelegate`; `headerview.horizontal` › `headerviewdelegate.horizontal` |
+| TableView, rows, cells, column headers | `scrollview` › `tableviewdelegate` (`alternating-colors` on odd rows unless the table has the class `no-alternating-colors`); `headerview.horizontal` › `headerviewdelegate.horizontal` |
 | ScrollViewer, ScrollBar | `scrollview` › `scrollareacorner`; `scrollbar.vertical`/`.horizontal` › `handle` |
 | Slider | `slider.horizontal` › `fill`, `handle`, `tickmark` (`active` at or below the value) |
 | ProgressBar | `progressbar.horizontal` › `track` (`indeterminate`) |
