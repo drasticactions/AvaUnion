@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
              xmlns:sys="using:System"
              x:Class="AvaUnion.Gallery.Pages.ListsPage">
   <StackPanel Spacing="12">
@@ -14,6 +15,27 @@
       <ListBoxItem Content="Giant Mountains" />
       <ListBoxItem Content="Harz" />
       <ListBoxItem Content="Disabled" IsEnabled="False" />
+    </ListBox>
+    <Label Content="List with icons and controls" FontWeight="Bold" />
+    <ListBox Width="260" HorizontalAlignment="Left">
+      <ListBoxItem>
+        <StackPanel Orientation="Horizontal" Spacing="6">
+          <union:UnionIcon IconName="document-save" Width="16" Height="16" />
+          <TextBlock Text="Item with an icon" />
+        </StackPanel>
+      </ListBoxItem>
+      <ListBoxItem>
+        <CheckBox Content="Item with a check box" IsChecked="True" />
+      </ListBoxItem>
+      <ListBoxItem>
+        <RadioButton Content="Item with a radio button" GroupName="list" />
+      </ListBoxItem>
+      <ListBoxItem>
+        <ToggleSwitch Content="Item with a switch" />
+      </ListBoxItem>
+      <ListBoxItem IsEnabled="False">
+        <CheckBox Content="Disabled item" />
+      </ListBoxItem>
     </ListBox>
     <Label Content="Tree view" FontWeight="Bold" />
     <TreeView Width="260" Height="180" HorizontalAlignment="Left">

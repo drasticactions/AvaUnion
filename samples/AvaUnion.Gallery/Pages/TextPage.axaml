@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
              x:Class="AvaUnion.Gallery.Pages.TextPage">
   <StackPanel Spacing="12" Width="420" HorizontalAlignment="Left">
     <Label Content="Text fields" FontWeight="Bold" />
@@ -8,11 +9,34 @@
     <TextBox Text="Read only" IsReadOnly="True" />
     <TextBox Text="Disabled" IsEnabled="False" />
     <TextBox PasswordChar="●" Text="secret" />
+    <TextBox PasswordChar="●" Text="secret" RevealPassword="{Binding #Reveal.IsChecked}">
+      <TextBox.InnerRightContent>
+        <ToggleButton Name="Reveal" union:Union.Type="toolbutton" Width="20" Height="20">
+          <union:UnionIcon IconName="password-show-off" Width="16" Height="16" />
+        </ToggleButton>
+      </TextBox.InnerRightContent>
+    </TextBox>
+    <TextBox Text="With a clear button">
+      <TextBox.InnerRightContent>
+        <Button union:Union.Type="toolbutton" Width="20" Height="20">
+          <union:UnionIcon IconName="edit-clear" Width="16" Height="16" />
+        </Button>
+      </TextBox.InnerRightContent>
+    </TextBox>
+    <TextBox union:Union.Type="searchfield" PlaceholderText="Search">
+      <TextBox.InnerLeftContent>
+        <union:UnionIcon union:Union.Type="searchindicator" />
+      </TextBox.InnerLeftContent>
+    </TextBox>
     <Label Content="Spin boxes" FontWeight="Bold" />
     <NumericUpDown Value="5" Minimum="0" Maximum="10" />
     <NumericUpDown Value="10" Minimum="0" Maximum="10" />
+    <NumericUpDown Value="3" Minimum="0" Maximum="10" IsEnabled="False" />
+    <NumericUpDown Value="10" Minimum="10" Maximum="1000" Increment="10" Width="60" HorizontalAlignment="Left" />
     <Label Content="Text area" FontWeight="Bold" />
     <TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="100"
              Text="A text area accepts returns.&#x0a;It uses Union's textarea element." />
+    <TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="60" IsEnabled="False"
+             PlaceholderText="Disabled text area" />
   </StackPanel>
 </UserControl>

@@ -391,18 +391,16 @@ public static class AutoHints
     }
 
     /// <summary>True when button content shows an icon.</summary>
-    public static bool HasIcon(object? content) => content switch
-    {
-        Image or PathIcon or IconElement or Avalonia.Controls.Shapes.Shape => true,
-        Panel panel => ContainsIcon(panel),
-        _ => false,
-    };
+    public static bool HasIcon(object? content) => IsIcon(content) || (content is Panel panel && ContainsIcon(panel));
+
+    private static bool IsIcon(object? content) =>
+        content is Image or PathIcon or IconElement or Avalonia.Controls.Shapes.Shape or Presenters.UnionIcon;
 
     private static bool ContainsIcon(Panel panel)
     {
         foreach (var child in panel.Children)
         {
-            if (child is Image or PathIcon or IconElement or Avalonia.Controls.Shapes.Shape)
+            if (IsIcon(child))
             {
                 return true;
             }
@@ -413,7 +411,7 @@ public static class AutoHints
 
     private static string DisplayOf(object? content)
     {
-        if (content is Image or PathIcon or IconElement or Avalonia.Controls.Shapes.Shape)
+        if (IsIcon(content))
         {
             return "icon-only";
         }

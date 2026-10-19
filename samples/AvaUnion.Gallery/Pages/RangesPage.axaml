@@ -5,11 +5,19 @@
     <Label Content="Sliders" FontWeight="Bold" />
     <Slider Width="260" HorizontalAlignment="Left" Value="35" />
     <Slider Width="260" HorizontalAlignment="Left" Value="70" IsEnabled="False" />
-    <Slider Orientation="Vertical" Height="140" HorizontalAlignment="Left" Value="50" />
+    <Slider Width="260" HorizontalAlignment="Left" Value="50" TickPlacement="BottomRight" TickFrequency="20" IsSnapToTickEnabled="True" />
+    <Slider Width="260" HorizontalAlignment="Left" Value="40" TickPlacement="Outside" TickFrequency="10" />
+    <StackPanel Orientation="Horizontal" Spacing="16">
+      <Slider Orientation="Vertical" Height="140" Value="50" />
+      <Slider Orientation="Vertical" Height="140" Value="50" IsEnabled="False" />
+      <Slider Orientation="Vertical" Height="140" Value="60" TickPlacement="TopLeft" TickFrequency="20" />
+    </StackPanel>
     <Label Content="Progress bars" FontWeight="Bold" />
     <ProgressBar Width="260" HorizontalAlignment="Left" Value="45" />
     <ProgressBar Width="260" HorizontalAlignment="Left" Value="80" ShowProgressText="True" />
     <ProgressBar Width="260" HorizontalAlignment="Left" IsIndeterminate="True" />
+    <ProgressBar Width="260" HorizontalAlignment="Left" Value="30" IsEnabled="False" />
+    <ProgressBar Orientation="Vertical" Height="100" HorizontalAlignment="Left" Value="60" />
     <Label Content="Scroll bars" FontWeight="Bold" />
     <ScrollBar Orientation="Horizontal" Width="260" HorizontalAlignment="Left" Maximum="70" ViewportSize="30" Visibility="Visible" />
   </StackPanel>

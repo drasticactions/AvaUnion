@@ -26,6 +26,24 @@ public class ButtonShotTests
     }
 
     [AvaloniaFact]
+    public void Union_Icons_Are_Button_Icons()
+    {
+        var iconOnly = new Button { Content = new AvaUnion.Presenters.UnionIcon { IconName = "document-save" } };
+        var underIcon = new Button
+        {
+            Content = new StackPanel
+            {
+                Children = { new AvaUnion.Presenters.UnionIcon { IconName = "document-save" }, new TextBlock { Text = "Save" } },
+            },
+        };
+        var window = Shots.Show(new StackPanel { Children = { iconOnly, underIcon } });
+        Assert.Contains("with-icon", AvaUnion.Union.GetNode(iconOnly)!.Hints);
+        Assert.Contains("[display=icon-only]", AvaUnion.Union.GetNode(iconOnly)!.ChainText);
+        Assert.Contains("[display=text-under-icon]", AvaUnion.Union.GetNode(underIcon)!.ChainText);
+        window.Close();
+    }
+
+    [AvaloniaFact]
     public void Checks_Render()
     {
         var panel = new StackPanel { Spacing = 8, Margin = new Avalonia.Thickness(16) };
