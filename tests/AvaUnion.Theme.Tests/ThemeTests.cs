@@ -122,6 +122,29 @@ public class ThemeTests
     }
 
     [AvaloniaFact]
+    public void Focus_Outlines_Are_Not_Clipped()
+    {
+        var tree = new TreeView { ItemsSource = new[] { "x" } };
+        var controls = new TemplatedControl[]
+        {
+            new Button { Content = "x" },
+            new ListBoxItem { Content = "x" },
+            new CheckBox { Content = "x", [Union.TypeProperty] = "checkdelegate" },
+            new RadioButton { Content = "x", [Union.TypeProperty] = "radiodelegate" },
+            new ToggleSwitch { Content = "x", [Union.TypeProperty] = "switchdelegate" },
+            new TextBox { Text = "x" },
+        };
+        var panel = new StackPanel { Spacing = 8 };
+        panel.Children.AddRange(controls);
+        panel.Children.Add(tree);
+        var window = Shots.Show(panel);
+        var all = controls.Concat(tree.GetVisualDescendants().OfType<TreeViewItem>()).ToList();
+        Assert.Equal(controls.Length + 1, all.Count);
+        Assert.All(all, c => Assert.False(c.ClipToBounds, $"{c.GetType().Name} ({Union.GetNode(c)?.Type}) clips its focus outline"));
+        window.Close();
+    }
+
+    [AvaloniaFact]
     public void Spin_Boxes_Are_Constrained_Only_When_Text_And_Indicators_Do_Not_Fit()
     {
         var wide = new NumericUpDown { Value = 10, Minimum = 0, Maximum = 10, Width = 200 };

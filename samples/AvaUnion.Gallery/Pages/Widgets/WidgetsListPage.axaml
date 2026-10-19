@@ -37,7 +37,7 @@
         </DataGrid.Columns>
       </DataGrid>
     </Grid>
-    <union:ColumnTreeView Name="Files" Height="192">
+    <union:ColumnTreeView Name="Files" Height="192" Classes="framed-background">
       <union:ColumnTreeView.Columns>
         <union:ColumnTreeViewColumn Header="Name" Width="200" Binding="{Binding Name}" x:DataType="pages:FileEntry" />
         <union:ColumnTreeViewColumn Header="Size" Width="60" Binding="{Binding Size}" x:DataType="pages:FileEntry" />

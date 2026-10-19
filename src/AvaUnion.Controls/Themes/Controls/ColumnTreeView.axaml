@@ -26,6 +26,7 @@
   </ControlTheme>
 
   <ControlTheme x:Key="{x:Type union:ColumnTreeViewRow}" TargetType="union:ColumnTreeViewRow">
+    <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="union:Union.Type" Value="treeviewdelegate" />
     <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
     <Setter Property="Foreground" Value="{union:Style Text.Color}" />
@@ -48,27 +49,29 @@
       <ControlTemplate>
         <Panel Grid.IsSharedSizeScope="True">
           <union:UnionBox Margin="{union:Style Layout.Inset}" />
-          <DockPanel Margin="{union:Style Border}">
-            <Border DockPanel.Dock="Top"
-                    union:Union.Type="headerview"
-                    union:Union.Hints="horizontal"
-                    union:Union.StateSource="None"
-                    IsVisible="{TemplateBinding IsHeaderVisible}">
-              <Panel>
-                <union:UnionBox Margin="{union:Style Layout.Inset}" />
-                <Grid Name="PART_Header" />
-              </Panel>
-            </Border>
-            <ScrollViewer Theme="{DynamicResource UnionPlainScrollViewer}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-              <primitives:ColumnTreeRows Name="PART_Rows" Margin="{TemplateBinding Padding}">
-                <primitives:ColumnTreeRows.ItemsPanel>
-                  <ItemsPanelTemplate>
-                    <VirtualizingStackPanel />
-                  </ItemsPanelTemplate>
-                </primitives:ColumnTreeRows.ItemsPanel>
-              </primitives:ColumnTreeRows>
-            </ScrollViewer>
-          </DockPanel>
+          <union:UnionClip Margin="{union:Style Border}">
+            <DockPanel>
+              <Border DockPanel.Dock="Top"
+                      union:Union.Type="headerview"
+                      union:Union.Hints="horizontal"
+                      union:Union.StateSource="None"
+                      IsVisible="{TemplateBinding IsHeaderVisible}">
+                <Panel>
+                  <union:UnionBox Margin="{union:Style Layout.Inset}" />
+                  <Grid Name="PART_Header" />
+                </Panel>
+              </Border>
+              <ScrollViewer Theme="{DynamicResource UnionPlainScrollViewer}" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                <primitives:ColumnTreeRows Name="PART_Rows" Margin="{TemplateBinding Padding}">
+                  <primitives:ColumnTreeRows.ItemsPanel>
+                    <ItemsPanelTemplate>
+                      <VirtualizingStackPanel />
+                    </ItemsPanelTemplate>
+                  </primitives:ColumnTreeRows.ItemsPanel>
+                </primitives:ColumnTreeRows>
+              </ScrollViewer>
+            </DockPanel>
+          </union:UnionClip>
         </Panel>
       </ControlTemplate>
     </Setter>

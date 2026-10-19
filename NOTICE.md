@@ -130,3 +130,19 @@ fonts, since a browser has no system fonts.
   `Assets/Fonts/OFL-NotoSansCJK.txt`.
 
 Both are licensed under the SIL Open Font License, version 1.1.
+
+## 7. Breeze icons (LGPL-3.0-or-later), in AvaUnion.BreezeIcons only
+
+© 2014 Uri Herrera and others, https://invent.kde.org/frameworks/breeze-icons,
+tag `v6.31.0` (`60ca517`).
+
+`src/AvaUnion.BreezeIcons/Icons/<size>/*.svg` are copies, unchanged, of the
+icons listed in `src/AvaUnion.BreezeIcons/icons.txt`, at the sizes 16, 22, 32
+and 48 that breeze-icons has. They are embedded in `AvaUnion.BreezeIcons.dll`.
+The icons are licensed under the GNU Lesser General Public License, version 3
+or any later version, with the clarification in breeze-icons' `COPYING-ICONS`.
+The package carries `COPYING-ICONS`, the LGPL-3.0 and the GPL-3.0 in
+`licenses/breeze-icons/`; the repository has them in
+`src/AvaUnion.BreezeIcons/Icons/` and `src/AvaUnion.BreezeIcons/Licenses/`. The code of AvaUnion.BreezeIcons is
+LGPL-2.1-only, so the package is `LGPL-2.1-only AND LGPL-3.0-or-later`. The
+other AvaUnion packages contain no Breeze icons.

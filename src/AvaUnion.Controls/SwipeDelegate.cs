@@ -13,8 +13,10 @@ namespace AvaUnion.Controls;
 /// A list item that the user drags sideways to show the content behind it.
 /// Dragging to the right shows <see cref="LeftContent"/> and dragging to the
 /// left shows <see cref="RightContent"/>. Past half the width the item stays
-/// open and <see cref="Completed"/> occurs; otherwise it closes again. When
-/// the item has focus, the Left and Right keys open it and Escape closes it.
+/// open and <see cref="Completed"/> occurs; otherwise it closes again. As
+/// in Qt Quick, the item does not take the keyboard focus. When it is made
+/// focusable and has the focus, the Left and Right keys open it and Escape
+/// closes it.
 /// </summary>
 [PseudoClasses(":pressed", ":reveal-left", ":reveal-right")]
 public class SwipeDelegate : ContentControl
@@ -41,7 +43,6 @@ public class SwipeDelegate : ContentControl
 
     static SwipeDelegate()
     {
-        FocusableProperty.OverrideDefaultValue<SwipeDelegate>(true);
         UnionHintProviders.Register<SwipeDelegate>(
             static (element, _, hints, attributes) =>
             {
@@ -121,7 +122,6 @@ public class SwipeDelegate : ContentControl
         _startPosition = SwipePosition;
         e.Pointer.Capture(this);
         PseudoClasses.Set(":pressed", true);
-        Focus(NavigationMethod.Pointer);
         e.Handled = true;
     }
 

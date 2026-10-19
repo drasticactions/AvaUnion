@@ -57,6 +57,7 @@ public class SwipeDelegateTests
     {
         var item = new SwipeDelegate { Content = "Swipe me!", Width = 200, RightContent = new Rectangle { Fill = Brushes.Blue } };
         var window = Shots.Show(item, 300, 100);
+        item.Focusable = true;
         item.Focus();
         window.KeyPress(Key.Right, RawInputModifiers.None, PhysicalKey.ArrowRight, null);
         Assert.Equal(0, item.SwipePosition);
@@ -71,6 +72,23 @@ public class SwipeDelegateTests
         Assert.True(item.IsOpen);
         expand.Collapse();
         Assert.False(item.IsOpen);
+        window.Close();
+    }
+
+    [AvaloniaFact]
+    public void A_Press_Does_Not_Take_The_Focus()
+    {
+        var item = new SwipeDelegate { Content = "Swipe me!" };
+        var window = Shots.Show(item, 300, 100);
+        var center = item.TranslatePoint(new Point(item.Bounds.Width / 2, item.Bounds.Height / 2), window)!.Value;
+        window.MouseDown(center, MouseButton.Left);
+        Shots.Settle();
+        Assert.False(item.IsFocused);
+        var node = Union.GetNode(item)!;
+        Assert.True(node.States.HasFlag(AvaUnion.Engine.UnionStates.Pressed));
+        Assert.False(node.States.HasFlag(AvaUnion.Engine.UnionStates.ActiveFocus));
+        Assert.False(node.Resolved.Outline.HasAnyValue);
+        window.MouseUp(center, MouseButton.Left);
         window.Close();
     }
 }

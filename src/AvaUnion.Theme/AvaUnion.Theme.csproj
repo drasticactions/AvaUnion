@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <InternalsVisibleTo Include="AvaUnion.DataGrid" />
+    <InternalsVisibleTo Include="AvaUnion.BreezeIcons" />
     <InternalsVisibleTo Include="AvaUnion.Theme.Tests" />
     <InternalsVisibleTo Include="AvaUnion.DataGrid.Tests" />
     <InternalsVisibleTo Include="AvaUnion.Gallery" />

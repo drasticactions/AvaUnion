@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Xml;
 using Avalonia;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
@@ -12,15 +11,15 @@ namespace AvaUnion.Icons;
 /// <summary>
 /// Finds icons in the freedesktop icon theme. It searches the theme from
 /// <c>kdeglobals [Icons] Theme</c>, then its <c>Inherits</c> chain, then
-/// <c>hicolor</c>. An SVG icon becomes single-color geometry with a tint. A PNG
-/// icon is drawn without changes.
+/// <c>hicolor</c>. In an SVG icon, the parts in the text color take the tint
+/// and the other parts keep their colors. A PNG icon is drawn without changes.
 /// </summary>
 public sealed class FreedesktopIconProvider : IIconProvider
 {
     private readonly List<string> _baseDirs = [];
     private readonly List<string> _themes = [];
     private readonly Dictionary<string, string?> _files = [];
-    private readonly Dictionary<string, (Geometry Geometry, Rect Box)?> _geometries = [];
+    private readonly Dictionary<string, SvgIcon?> _svgs = [];
 
     /// <summary>Creates the provider for the icon theme of the current user.</summary>
     public FreedesktopIconProvider(string? theme = null)
@@ -54,21 +53,13 @@ public sealed class FreedesktopIconProvider : IIconProvider
 
         if (file.EndsWith(".svg", StringComparison.OrdinalIgnoreCase))
         {
-            if (!_geometries.TryGetValue(file, out var svg))
+            if (!_svgs.TryGetValue(file, out var svg))
             {
-                svg = ReadSvg(file);
-                _geometries[file] = svg;
+                svg = SvgIcon.Read(file);
+                _svgs[file] = svg;
             }
 
-            if (svg is not { } icon)
-            {
-                return null;
-            }
-
-            var group = new DrawingGroup();
-            group.Children.Add(new GeometryDrawing { Geometry = new RectangleGeometry(icon.Box), Brush = Brushes.Transparent });
-            group.Children.Add(new GeometryDrawing { Geometry = icon.Geometry, Brush = new SolidColorBrush(tint ?? Colors.Black) });
-            return new DrawingImage(group);
+            return svg?.ToImage(tint);
         }
 
         try
@@ -221,76 +212,6 @@ public sealed class FreedesktopIconProvider : IIconProvider
 
         return file.EndsWith(".svg", StringComparison.OrdinalIgnoreCase) ? 0 : 500;
     }
-
-    private static (Geometry Geometry, Rect Box)? ReadSvg(string file)
-    {
-        try
-        {
-            var group = new GeometryGroup { FillRule = FillRule.NonZero };
-            Rect? viewBox = null;
-            double width = 0, height = 0;
-            using var reader = XmlReader.Create(file, new XmlReaderSettings { DtdProcessing = DtdProcessing.Ignore, XmlResolver = null });
-            while (reader.Read())
-            {
-                if (reader.NodeType != XmlNodeType.Element)
-                {
-                    continue;
-                }
-
-                switch (reader.LocalName)
-                {
-                    case "svg":
-                        width = D(reader.GetAttribute("width"));
-                        height = D(reader.GetAttribute("height"));
-                        if (reader.GetAttribute("viewBox") is { } vb)
-                        {
-                            var p = vb.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries);
-                            if (p.Length == 4)
-                            {
-                                viewBox = new Rect(D(p[0]), D(p[1]), D(p[2]), D(p[3]));
-                            }
-                        }
-
-                        break;
-                    case "path" when reader.GetAttribute("d") is { } d && Visible(reader):
-                        group.Children.Add(StreamGeometry.Parse(d));
-                        break;
-                    case "rect" when Visible(reader):
-                        group.Children.Add(new RectangleGeometry(new Rect(D(reader.GetAttribute("x")), D(reader.GetAttribute("y")), D(reader.GetAttribute("width")), D(reader.GetAttribute("height")))));
-                        break;
-                    case "circle" when Visible(reader):
-                    {
-                        var r = D(reader.GetAttribute("r"));
-                        group.Children.Add(new EllipseGeometry(new Rect(D(reader.GetAttribute("cx")) - r, D(reader.GetAttribute("cy")) - r, 2 * r, 2 * r)));
-                        break;
-                    }
-                }
-            }
-
-            if (group.Children.Count == 0)
-            {
-                return null;
-            }
-
-            var box = viewBox ?? new Rect(0, 0, width > 0 ? width : 16, height > 0 ? height : 16);
-            group.Transform = new MatrixTransform(Matrix.CreateTranslation(-box.X, -box.Y));
-            return (group, new Rect(0, 0, box.Width, box.Height));
-        }
-        catch (Exception)
-        {
-            return null;
-        }
-    }
-
-    private static bool Visible(XmlReader reader)
-    {
-        var style = reader.GetAttribute("style") ?? string.Empty;
-        var fill = reader.GetAttribute("fill");
-        return fill != "none" && !style.Contains("fill:none", StringComparison.Ordinal) && !style.Contains("opacity:0", StringComparison.Ordinal);
-    }
-
-    private static double D(string? value) =>
-        double.TryParse(value, NumberStyles.Float, CultureInfo.InvariantCulture, out var d) ? d : 0.0;
 
     private static string? ConfiguredTheme()
     {

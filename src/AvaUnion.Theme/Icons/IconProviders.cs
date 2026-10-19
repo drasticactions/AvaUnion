@@ -9,11 +9,13 @@ namespace AvaUnion.Icons;
 
 /// <summary>
 /// The chain of icon providers. App providers are first. Then come the native
-/// engine icons, the freedesktop icon theme and the built-in glyphs.
+/// engine icons or the freedesktop icon theme, the fallback providers, and the
+/// built-in glyphs.
 /// </summary>
 public static class IconProviders
 {
     private static readonly List<IIconProvider> s_custom = [];
+    private static readonly List<IIconProvider> s_fallbacks = [];
     private static readonly Dictionary<string, IImage?> s_cache = [];
     private static IIconProvider[]? s_builtIn;
 
@@ -36,6 +38,24 @@ public static class IconProviders
     public static void Register(IIconProvider provider)
     {
         s_custom.Insert(0, provider);
+        s_cache.Clear();
+        Invalidated?.Invoke();
+    }
+
+    /// <summary>
+    /// Adds a provider after the icon theme of the system and before the
+    /// built-in glyphs, for example a bundled icon set. Fallbacks added first
+    /// are asked first.
+    /// </summary>
+    public static void RegisterFallback(IIconProvider provider)
+    {
+        if (s_fallbacks.Contains(provider))
+        {
+            return;
+        }
+
+        s_fallbacks.Add(provider);
+        s_builtIn = null;
         s_cache.Clear();
         Invalidated?.Invoke();
     }
@@ -92,6 +112,7 @@ public static class IconProviders
             list.Add(new FreedesktopIconProvider());
         }
 
+        list.AddRange(s_fallbacks);
         list.Add(new GlyphIconProvider());
         return s_builtIn = [.. list];
     }

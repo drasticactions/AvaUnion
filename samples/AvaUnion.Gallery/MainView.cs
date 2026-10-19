@@ -110,8 +110,11 @@ public sealed class MainView : UserControl
         var description = engine.Description;
         var font = engine.Fonts.General;
         var platform = engine.Platform;
+        var family = this.TryFindResource("UnionFontFamily", out var resource) && resource is FontFamily f ? f : new FontFamily(font.Family);
+        var drawn = FontManager.Current.TryGetGlyphTypeface(new Typeface(family), out var typeface) ? typeface.FamilyName : null;
+        var fontText = drawn ?? font.Family;
         description += string.Create(System.Globalization.CultureInfo.InvariantCulture,
-            $" · {font.Family} {font.SizeInDips:0.#} px · icons {platform.IconTheme ?? "none"} · animation {platform.AnimationSpeed:0.##}×");
+            $" · {fontText} {font.SizeInDips:0.#} px · icons {platform.IconTheme ?? "none"} · animation {platform.AnimationSpeed:0.##}×");
         _engine.Text = description;
         _variant.Text = $"Variant: {ActualThemeVariant}";
     }

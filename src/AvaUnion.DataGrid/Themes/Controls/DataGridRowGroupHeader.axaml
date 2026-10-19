@@ -19,6 +19,7 @@
   </ControlTheme>
 
   <ControlTheme x:Key="{x:Type DataGridRowGroupHeader}" TargetType="DataGridRowGroupHeader">
+    <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="union:Union.Type" Value="treeviewdelegate" />
     <Setter Property="Foreground" Value="{union:Style Text.Color}" />
     <Setter Property="MinHeight" Value="{union:Style Layout.Height, Fallback=24}" />

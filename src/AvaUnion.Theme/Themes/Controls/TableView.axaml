@@ -42,15 +42,16 @@
       <ControlTemplate>
         <Panel>
           <union:UnionBox Margin="{union:Style Layout.Inset}" />
-          <ScrollViewer Name="PART_ScrollViewer"
-                        Theme="{StaticResource UnionTableViewScrollViewer}"
-                        Margin="{union:Style Border}"
-                        HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
-                        VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
-                        IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
-                        IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}">
-            <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" Margin="{TemplateBinding Padding}" />
-          </ScrollViewer>
+          <union:UnionClip Margin="{union:Style Border}">
+            <ScrollViewer Name="PART_ScrollViewer"
+                          Theme="{StaticResource UnionTableViewScrollViewer}"
+                          HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                          VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+                          IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
+                          IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}">
+              <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" Margin="{TemplateBinding Padding}" />
+            </ScrollViewer>
+          </union:UnionClip>
         </Panel>
       </ControlTemplate>
     </Setter>

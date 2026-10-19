@@ -70,7 +70,9 @@ Button-like controls follow one shape:
 use the owner's `icon.alignment` and `text.alignment`; `Source="Layout"` uses
 the child's own `layout.alignment` and `layout.margins`. `UnionBox
 ImplicitSize="True"` measures to `layout.width × layout.height`, like a Qt
-Quick control's implicit background size.
+Quick control's implicit background size. `UnionClip`, with
+`Margin="{union:Style Border}"`, clips content such as a header row to the
+inside of the border and its rounded corners, so the frame stays unbroken.
 
 ## Right to left
 

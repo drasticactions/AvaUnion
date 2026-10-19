@@ -6,6 +6,7 @@ using Avalonia.Browser;
 using Avalonia.Media;
 using Avalonia.Media.Fonts;
 using AvaUnion;
+using AvaUnion.BreezeIcons;
 using AvaUnion.Gallery;
 
 internal static class Program
@@ -13,7 +14,7 @@ internal static class Program
     private const string Fonts = "fonts:Noto";
 
     private static Task Main(string[] args) =>
-        BuildAvaloniaApp().WithAvaUnion(App.CreateOptions()).StartBrowserAppAsync("out");
+        BuildAvaloniaApp().WithAvaUnion(App.CreateOptions()).WithBreezeIcons().StartBrowserAppAsync("out");
 
     public static AppBuilder BuildAvaloniaApp() => AppBuilder.Configure<App>()
         .ConfigureFonts(fontManager => fontManager.AddFontCollection(

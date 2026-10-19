@@ -109,4 +109,22 @@ public class DataGridShotTests
         Shots.Capture(window, "datagrid-edit");
         window.Close();
     }
+
+    [AvaloniaFact]
+    public void Headers_Do_Not_Cover_The_Rounded_Corners()
+    {
+        var grid = Grid();
+        var window = Shots.Show(grid, 420, 300);
+        var clip = grid.GetVisualDescendants().OfType<UnionClip>().Single();
+        var style = Union.GetNode(grid)!.Resolved;
+        var border = style.Border.Left.Size ?? 0;
+        var inner = (style.Corners.TopLeft.Radius ?? 0) - border;
+        Assert.True(inner > 0);
+        Assert.Equal(border, clip.TranslatePoint(default, grid)!.Value.X);
+        Assert.False(clip.Clip!.FillContains(new Point(0.5, 0.5)));
+        Assert.False(clip.Clip.FillContains(new Point(clip.Bounds.Width - 0.5, 0.5)));
+        Assert.True(clip.Clip.FillContains(new Point(inner, 0.5)));
+        Assert.True(clip.Clip.FillContains(new Point(clip.Bounds.Width / 2, clip.Bounds.Height / 2)));
+        window.Close();
+    }
 }

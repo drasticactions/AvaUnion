@@ -25,37 +25,38 @@
       <ControlTemplate>
         <Panel>
           <union:UnionBox Margin="{union:Style Layout.Inset}" />
-          <Grid Margin="{union:Style Border}"
-                ColumnDefinitions="Auto,*,Auto"
-                RowDefinitions="Auto,*,Auto,Auto"
-                ClipToBounds="True">
-            <DataGridColumnHeader Name="PART_TopLeftCornerHeader" Theme="{StaticResource UnionDataGridTopLeftHeader}" />
-            <DataGridColumnHeadersPresenter Name="PART_ColumnHeadersPresenter" Grid.Column="1" Grid.ColumnSpan="2" />
-            <DataGridRowsPresenter Name="PART_RowsPresenter"
-                                   Grid.Row="1"
-                                   Grid.RowSpan="2"
-                                   Grid.ColumnSpan="3"
-                                   ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
-              <DataGridRowsPresenter.GestureRecognizers>
-                <ScrollGestureRecognizer CanHorizontallyScroll="True"
-                                         CanVerticallyScroll="True"
-                                         IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_RowsPresenter}" />
-              </DataGridRowsPresenter.GestureRecognizers>
-            </DataGridRowsPresenter>
-            <Rectangle Name="PART_BottomRightCorner" Grid.Column="2" Grid.Row="2" />
-            <ScrollBar Name="PART_VerticalScrollbar"
-                       AllowAutoHide="{Binding Path=(ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}}"
-                       Orientation="Vertical"
-                       Grid.Column="2"
-                       Grid.Row="1" />
-            <Grid Grid.Column="1" Grid.Row="2" ColumnDefinitions="Auto,*">
-              <Rectangle Name="PART_FrozenColumnScrollBarSpacer" />
-              <ScrollBar Name="PART_HorizontalScrollbar"
+          <union:UnionClip Margin="{union:Style Border}">
+            <Grid ColumnDefinitions="Auto,*,Auto"
+                  RowDefinitions="Auto,*,Auto,Auto"
+                  ClipToBounds="True">
+              <DataGridColumnHeader Name="PART_TopLeftCornerHeader" Theme="{StaticResource UnionDataGridTopLeftHeader}" />
+              <DataGridColumnHeadersPresenter Name="PART_ColumnHeadersPresenter" Grid.Column="1" Grid.ColumnSpan="2" />
+              <DataGridRowsPresenter Name="PART_RowsPresenter"
+                                     Grid.Row="1"
+                                     Grid.RowSpan="2"
+                                     Grid.ColumnSpan="3"
+                                     ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}">
+                <DataGridRowsPresenter.GestureRecognizers>
+                  <ScrollGestureRecognizer CanHorizontallyScroll="True"
+                                           CanVerticallyScroll="True"
+                                           IsScrollInertiaEnabled="{Binding (ScrollViewer.IsScrollInertiaEnabled), ElementName=PART_RowsPresenter}" />
+                </DataGridRowsPresenter.GestureRecognizers>
+              </DataGridRowsPresenter>
+              <Rectangle Name="PART_BottomRightCorner" Grid.Column="2" Grid.Row="2" />
+              <ScrollBar Name="PART_VerticalScrollbar"
                          AllowAutoHide="{Binding Path=(ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}}"
-                         Grid.Column="1"
-                         Orientation="Horizontal" />
+                         Orientation="Vertical"
+                         Grid.Column="2"
+                         Grid.Row="1" />
+              <Grid Grid.Column="1" Grid.Row="2" ColumnDefinitions="Auto,*">
+                <Rectangle Name="PART_FrozenColumnScrollBarSpacer" />
+                <ScrollBar Name="PART_HorizontalScrollbar"
+                           AllowAutoHide="{Binding Path=(ScrollViewer.AllowAutoHide), RelativeSource={RelativeSource TemplatedParent}}"
+                           Grid.Column="1"
+                           Orientation="Horizontal" />
+              </Grid>
             </Grid>
-          </Grid>
+          </union:UnionClip>
         </Panel>
       </ControlTemplate>
     </Setter>

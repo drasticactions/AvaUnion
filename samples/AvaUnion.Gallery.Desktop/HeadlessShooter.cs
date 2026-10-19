@@ -5,6 +5,7 @@ using Avalonia.Controls;
 using Avalonia.Headless;
 using Avalonia.Media.Imaging;
 using Avalonia.Threading;
+using AvaUnion.BreezeIcons;
 using AvaUnion.Elements;
 
 namespace AvaUnion.Gallery.Desktop;
@@ -41,6 +42,7 @@ internal static class HeadlessShooter
             .UseHarfBuzz()
             .UseHeadless(new AvaloniaHeadlessPlatformOptions { UseHeadlessDrawing = false })
             .WithAvaUnion(App.CreateOptions())
+            .WithBreezeIcons()
             .SetupWithoutStarting();
         if (style is not null)
         {

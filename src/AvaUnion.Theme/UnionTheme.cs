@@ -27,6 +27,8 @@ public class UnionTheme : Styles
     {
         Resources.MergedDictionaries.Add(_provider);
         Resources.MergedDictionaries.Add(new Themes.ControlThemes());
+        Add(new Style(x => x.Is<TextBlock>()) { Setters = { new Setter(Presenters.TextCentering.IsEnabledProperty, true) } });
+        Add(new Style(x => x.Is<Avalonia.Controls.Presenters.TextPresenter>()) { Setters = { new Setter(Presenters.TextCentering.IsEnabledProperty, true) } });
         Union.EnsureRegistered();
         _provider.OwnerChanged += (_, _) => Initialize();
     }

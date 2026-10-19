@@ -46,6 +46,7 @@ public partial class RepositoryTests
     [InlineData(typeof(UnionTheme))]
     [InlineData(typeof(Controls.UnionControlsTheme))]
     [InlineData(typeof(DataGrid.UnionDataGridTheme))]
+    [InlineData(typeof(BreezeIcons.BreezeIconSet))]
     public void Every_Public_Namespace_Is_Mapped(Type type)
     {
         var assembly = type.Assembly;

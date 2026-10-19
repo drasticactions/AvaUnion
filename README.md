@@ -53,6 +53,17 @@ For the controls that Qt Quick Controls, Kirigami and QtWidgets have and
 Avalonia does not, add the `AvaUnion.Controls` package and
 `<union:UnionControlsTheme />` after `UnionTheme`.
 
+Icons come from the native engine or, with the managed engine on Linux, from
+the installed icon theme. Windows, macOS and the browser have no icon theme.
+For them, add the `AvaUnion.BreezeIcons` package and call `.WithBreezeIcons()`
+on the `AppBuilder`. It holds the Breeze icons that the Union styles and
+AvaUnion's controls use, and on Linux it fills in names that the installed
+theme lacks. Without it, a few simple built-in glyphs are drawn instead. The
+icons are LGPL-3.0-or-later, so the package is
+`LGPL-2.1-only AND LGPL-3.0-or-later`; the other packages stay LGPL-2.1-only.
+`tools/update-breeze-icons.sh` copies the names in
+`src/AvaUnion.BreezeIcons/icons.txt` from a breeze-icons release.
+
 Classes are Union hints: `<Button Classes="flat" />` matches Breeze's
 `button.flat`. `union:Union.Hints`, `union:Union.Id` and
 `union:Union.Attributes` add more. `docs/theme-authoring.md` describes the
@@ -77,6 +88,7 @@ This can be used for using a union theme on platforms not running it.
 | `AvaUnion.Native` | Runtime only: `libavaunion-native-<union-version>.so` for linux-x64 and linux-arm64. `AvaUnion.Theme` depends on it. |
 | `AvaUnion.DataGrid` | ControlThemes for `Avalonia.Controls.DataGrid`: add `<union:UnionDataGridTheme />` after `UnionTheme`. |
 | `AvaUnion.Controls` | Controls that Avalonia lacks, with Union ControlThemes: add `<union:UnionControlsTheme />` after `UnionTheme`. |
+| `AvaUnion.BreezeIcons` | The Breeze icons that the styles use, for Windows, macOS and the browser: call `.WithBreezeIcons()`. LGPL-2.1-only AND LGPL-3.0-or-later. |
 
 ## Building
 

@@ -3,6 +3,7 @@
                     xmlns:union="https://github.com/avaunion"
                     x:ClassModifier="internal">
   <ControlTheme x:Key="UnionCheckableBase" TargetType="ToggleButton">
+    <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
     <Setter Property="Foreground" Value="{union:Style Text.Color}" />
     <Setter Property="Background" Value="Transparent" />

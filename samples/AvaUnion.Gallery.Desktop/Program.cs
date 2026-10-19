@@ -1,6 +1,7 @@
 using System;
 using Avalonia;
 using AvaUnion;
+using AvaUnion.BreezeIcons;
 using AvaUnion.Gallery;
 
 internal static class Program
@@ -20,5 +21,6 @@ internal static class Program
         .UsePlatformDetect()
         .UseWaylandWithFallback()
         .WithAvaUnion(App.CreateOptions())
+        .WithBreezeIcons()
         .LogToTrace();
 }

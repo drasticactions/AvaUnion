@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>AvaUnion.BreezeIcons</RootNamespace>
+    <PackageId>AvaUnion.BreezeIcons</PackageId>
+    <Description>Breeze icons for AvaUnion</Description>
+    <PackageLicenseExpression>LGPL-2.1-only AND LGPL-3.0-or-later</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AvaUnion.Theme\AvaUnion.Theme.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Icons\**\*.svg" LogicalName="breeze/%(RecursiveDir)%(Filename)%(Extension)" />
+    <None Include="Icons\COPYING-ICONS;Icons\VERSION;Licenses\LGPL-3.0.txt;Licenses\GPL-3.0.txt" Pack="true" PackagePath="licenses\breeze-icons" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AvaUnion.Theme.Tests" />
+  </ItemGroup>
+
+</Project>
