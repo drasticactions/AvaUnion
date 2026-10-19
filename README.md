@@ -45,6 +45,19 @@ AppBuilder.Configure<App>()
 | `StylePackages` | Style packages that the application ships for its own use, in addition to the ones found in the entry assembly. See [App styles](#app-styles). |
 | `FollowThemeVariant` | With the native engine, sets `Application.RequestedThemeVariant` from the scheme: dark when the window background's relative luminance is below 0.5. With the managed engine the platform's variant picks Breeze Light or Dark. |
 
+For `Avalonia.Controls.DataGrid`, add the `AvaUnion.DataGrid` package and
+`<union:UnionDataGridTheme />` after `UnionTheme`. Rows alternate as in Qt
+Quick's TableView; `Classes="no-alternating-colors"` on a grid turns that off.
+
+For the controls that Qt Quick Controls, Kirigami and QtWidgets have and
+Avalonia does not, add the `AvaUnion.Controls` package and
+`<union:UnionControlsTheme />` after `UnionTheme`.
+
+Classes are Union hints: `<Button Classes="flat" />` matches Breeze's
+`button.flat`. `union:Union.Hints`, `union:Union.Id` and
+`union:Union.Attributes` add more. `docs/theme-authoring.md` describes the
+element model and how to write a ControlTheme with `{union:Style}`.
+
 ## App styles
 
 An application can ship its own Union style package. Add the folder and its
@@ -63,6 +76,7 @@ This can be used for using a union theme on platforms not running it.
 | `AvaUnion.Theme` | The engines, the Breeze snapshot, the native binding, the element model, `UnionBox`, `UnionPositioner`, `UnionIcon`, and ControlThemes. |
 | `AvaUnion.Native` | Runtime only: `libavaunion-native-<union-version>.so` for linux-x64 and linux-arm64. `AvaUnion.Theme` depends on it. |
 | `AvaUnion.DataGrid` | ControlThemes for `Avalonia.Controls.DataGrid`: add `<union:UnionDataGridTheme />` after `UnionTheme`. |
+| `AvaUnion.Controls` | Controls that Avalonia lacks, with Union ControlThemes: add `<union:UnionControlsTheme />` after `UnionTheme`. |
 
 ## Building
 

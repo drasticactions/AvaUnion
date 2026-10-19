@@ -1,8 +1,18 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
+             xmlns:pages="using:AvaUnion.Gallery.Pages"
              x:Class="AvaUnion.Gallery.Pages.QmlTreeViewPage">
   <StackPanel Spacing="5" HorizontalAlignment="Left">
     <CheckBox Name="Enabled" Content="Treeview enabled" IsChecked="True" />
-    <TreeView Name="Tree" Width="420" IsEnabled="{Binding #Enabled.IsChecked}" />
+    <union:ColumnTreeView Name="Tree" IsHeaderVisible="False" IsEnabled="{Binding #Enabled.IsChecked}">
+      <union:ColumnTreeView.Columns>
+        <union:ColumnTreeViewColumn Binding="{Binding CheckedText}" x:DataType="pages:TreeFile" />
+        <union:ColumnTreeViewColumn Binding="{Binding Size}" x:DataType="pages:TreeFile" />
+        <union:ColumnTreeViewColumn Binding="{Binding Type}" x:DataType="pages:TreeFile" />
+        <union:ColumnTreeViewColumn Binding="{Binding Name}" x:DataType="pages:TreeFile" />
+        <union:ColumnTreeViewColumn Binding="{Binding LastModified}" x:DataType="pages:TreeFile" />
+      </union:ColumnTreeView.Columns>
+    </union:ColumnTreeView>
   </StackPanel>
 </UserControl>

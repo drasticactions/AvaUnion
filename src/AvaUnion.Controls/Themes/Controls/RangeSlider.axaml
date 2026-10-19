@@ -1,0 +1,47 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    xmlns:primitives="using:AvaUnion.Controls.Primitives"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type primitives:RangeSliderHandle}" TargetType="primitives:RangeSliderHandle">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="handle" />
+    <Setter Property="Width" Value="{union:Style Layout.Width}" />
+    <Setter Property="Height" Value="{union:Style Layout.Height}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="Transparent">
+          <union:UnionBox />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type union:RangeSlider}" TargetType="union:RangeSlider">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="rangeslider" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <primitives:RangeSliderPanel Background="{TemplateBinding Background}"
+                                     Margin="{TemplateBinding Padding}"
+                                     Minimum="{TemplateBinding Minimum}"
+                                     Maximum="{TemplateBinding Maximum}"
+                                     LowerValue="{TemplateBinding LowerValue}"
+                                     UpperValue="{TemplateBinding UpperValue}"
+                                     Orientation="{TemplateBinding Orientation}"
+                                     Groove="{Binding #PART_Groove}"
+                                     Fill="{Binding #PART_Fill}"
+                                     LowerHandle="{Binding #PART_LowerHandle}"
+                                     UpperHandle="{Binding #PART_UpperHandle}">
+          <union:UnionBox Name="PART_Groove" ImplicitSize="True" />
+          <union:UnionBox Name="PART_Fill" union:Union.Type="fill" union:Union.StateSource="None" />
+          <primitives:RangeSliderHandle Name="PART_LowerHandle" Classes="first" />
+          <primitives:RangeSliderHandle Name="PART_UpperHandle" Classes="second" IsUpper="True" />
+        </primitives:RangeSliderPanel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

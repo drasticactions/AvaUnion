@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/src/">
     <Project Path="src/AvaUnion.Native/AvaUnion.Native.csproj" />
+    <Project Path="src/AvaUnion.Controls/AvaUnion.Controls.csproj" />
     <Project Path="src/AvaUnion.DataGrid/AvaUnion.DataGrid.csproj" />
     <Project Path="src/AvaUnion.Theme/AvaUnion.Theme.csproj" />
   </Folder>

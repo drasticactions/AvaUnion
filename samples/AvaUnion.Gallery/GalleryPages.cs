@@ -15,6 +15,7 @@ public static class GalleryPages
             new("Checkable Controls", () => new QmlCheckablePage()),
             new("Delegates", () => new QmlDelegatesPage()),
             new("Progress Bar & Slider", () => new QmlProgressSliderPage()),
+            new("Dialogs", () => new QmlDialogsPage()),
             new("Menus", () => new QmlMenusPage()),
             new("Tables", () => new QmlTablesPage()),
             new("Tabs", () => new QmlTabsPage()),

@@ -1,4 +1,6 @@
+using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Layout;
 using Avalonia.Styling;
 
 namespace AvaUnion.DataGrid;
@@ -12,5 +14,23 @@ public class UnionDataGridTheme : Styles
     public UnionDataGridTheme()
     {
         Resources.MergedDictionaries.Add(new Themes.ControlThemes());
+        var cell = new ResourceDictionary();
+        cell.AddDeferred("DataGridCellTextBoxTheme", _ => CellTextBoxTheme());
+        Resources.MergedDictionaries.Add(cell);
+    }
+
+    private ControlTheme CellTextBoxTheme()
+    {
+        object? textBox = null;
+        _ = Owner?.TryGetResource(typeof(TextBox), null, out textBox) == true || Application.Current?.TryGetResource(typeof(TextBox), null, out textBox) == true;
+        return new ControlTheme(typeof(TextBox))
+        {
+            BasedOn = textBox as ControlTheme,
+            Setters =
+            {
+                new Setter(Layoutable.VerticalAlignmentProperty, VerticalAlignment.Stretch),
+                new Setter(Layoutable.MinHeightProperty, 0.0),
+            },
+        };
     }
 }

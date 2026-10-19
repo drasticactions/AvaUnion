@@ -148,7 +148,7 @@
                         union:PositionedItem.Source="Layout"
                         IsVisible="{TemplateBinding ShowButtonSpinner}" />
           <ContentPresenter Name="PART_ContentPresenter"
-                            union:PositionedItem.Source="Text"
+                            union:PositionedItem.Source="Layout"
                             Content="{TemplateBinding Content}"
                             ContentTemplate="{TemplateBinding ContentTemplate}"
                             HorizontalContentAlignment="Stretch"

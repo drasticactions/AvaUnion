@@ -64,19 +64,61 @@ public class ThemeTests
         typeof(MaskedTextBox), typeof(NativeMenuBar), typeof(PageNavigationHost), typeof(Avalonia.Dialogs.AboutAvaloniaDialog),
     ];
 
+    private static Type StyleKeyOf(Type type) =>
+        type.Assembly == typeof(Controls.UnionControlsTheme).Assembly && Activator.CreateInstance(type) is StyledElement element ? element.StyleKey : type;
+
     [AvaloniaFact]
     public void Every_Stock_Templated_Control_Has_A_Theme()
     {
         _ = Shots.Show(new Panel());
-        var assemblies = new[] { typeof(Button).Assembly, typeof(Avalonia.Dialogs.ManagedFileChooser).Assembly, typeof(DataGridRow).Assembly };
+        var assemblies = new[] { typeof(Button).Assembly, typeof(Avalonia.Dialogs.ManagedFileChooser).Assembly, typeof(DataGridRow).Assembly, typeof(Controls.UnionControlsTheme).Assembly };
         var missing = assemblies
             .SelectMany(a => a.GetExportedTypes())
             .Where(t => typeof(TemplatedControl).IsAssignableFrom(t) && !t.IsAbstract && !t.ContainsGenericParameters && !s_noTheme.Contains(t))
-            .Where(t => !Application.Current!.TryGetResource(t, null, out var theme) || theme is not Avalonia.Styling.ControlTheme)
+            .Where(t => !Application.Current!.TryGetResource(StyleKeyOf(t), null, out var theme) || theme is not Avalonia.Styling.ControlTheme)
             .Select(t => t.FullName)
             .Order()
             .ToList();
         Assert.True(missing.Count == 0, string.Join(", ", missing));
+    }
+
+    [AvaloniaFact]
+    public void No_Template_Part_Takes_Its_Parents_Theme()
+    {
+        _ = Shots.Show(new Panel());
+        var assemblies = new[] { typeof(Button).Assembly, typeof(Avalonia.Dialogs.ManagedFileChooser).Assembly, typeof(DataGridRow).Assembly, typeof(Controls.UnionControlsTheme).Assembly };
+        var reached = new SortedSet<string>();
+        foreach (var type in assemblies.SelectMany(a => a.GetExportedTypes())
+            .Where(t => typeof(TemplatedControl).IsAssignableFrom(t) && !typeof(TopLevel).IsAssignableFrom(t) && !t.IsAbstract && !t.ContainsGenericParameters && t.GetConstructor(Type.EmptyTypes) is not null))
+        {
+            var control = (TemplatedControl)Activator.CreateInstance(type)!;
+            if (control is ContentControl { Content: null } content)
+            {
+                content.Content = "x";
+            }
+
+            var window = Shots.Show(control, 300, 200);
+            foreach (var part in control.GetVisualDescendants().OfType<StyledElement>())
+            {
+                if (part.TemplatedParent is not StyledElement parent)
+                {
+                    continue;
+                }
+
+                var theme = parent.Theme ?? (parent.TryFindResource(parent.StyleKey, out var found) ? found as Avalonia.Styling.ControlTheme : null);
+                for (; theme is not null; theme = theme.BasedOn)
+                {
+                    if (theme.TargetType!.IsAssignableFrom(part.StyleKey) && theme.Setters.Count > 0)
+                    {
+                        reached.Add($"{parent.GetType().Name} > {part.GetType().Name}");
+                    }
+                }
+            }
+
+            window.Close();
+        }
+
+        Assert.True(reached.Count == 0, string.Join(", ", reached));
     }
 
     [AvaloniaFact]
@@ -89,9 +131,29 @@ public class ThemeTests
         Assert.DoesNotContain("constrained", Union.GetNode(wide)!.Hints);
         Assert.Contains("constrained", Union.GetNode(narrow)!.Hints);
         Assert.DoesNotContain("constrained", Union.GetNode(free)!.Hints);
+        var narrowField = narrow.GetVisualDescendants().OfType<TextBox>().Single();
+        var freeField = free.GetVisualDescendants().OfType<TextBox>().Single();
+        Assert.Equal(Union.GetStyle(narrow)!.Layout.Margins.Left, narrowField.TranslatePoint(default, narrow)!.Value.X);
+        Assert.Equal(Avalonia.Media.TextAlignment.Start, narrowField.TextAlignment);
+        Assert.Equal(Avalonia.Media.TextAlignment.Center, freeField.TextAlignment);
+        Assert.Equal(Math.Ceiling(Elements.AutoHints.LimitTextWidth(narrow)), narrowField.Bounds.Width);
         narrow.Width = 300;
         Shots.Settle();
         Assert.DoesNotContain("constrained", Union.GetNode(narrow)!.Hints);
+        window.Close();
+    }
+
+    [AvaloniaFact]
+    public void Button_Spinners_Are_One_Spin_Box()
+    {
+        var spinner = new ButtonSpinner { Content = "12", Width = 120, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Left };
+        var numeric = new NumericUpDown { Value = 12, Width = 120, HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Left };
+        var window = Shots.Show(new StackPanel { Spacing = 8, Margin = new Thickness(16), Children = { spinner, numeric } }, 200, 120);
+        Shots.Capture(window, "buttonspinner");
+        Assert.Empty(spinner.GetVisualDescendants().OfType<ButtonSpinner>());
+        var increase = spinner.GetVisualDescendants().OfType<RepeatButton>().Last();
+        Assert.EndsWith("> spinbox > indicator.increase", Union.GetNode(increase)!.ChainText);
+        Assert.DoesNotContain("spinbox > spinbox", Union.GetNode(increase)!.ChainText);
         window.Close();
     }
 

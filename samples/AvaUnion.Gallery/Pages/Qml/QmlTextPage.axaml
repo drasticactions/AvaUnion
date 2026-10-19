@@ -5,24 +5,21 @@
   <StackPanel Spacing="5" HorizontalAlignment="Left">
     <Label Content="Label" />
     <Label Content="Disabled Label" IsEnabled="False" />
-    <Label Name="Heading" Content="Heading" />
-    <Label Name="DisabledHeading" Content="Disabled Heading" IsEnabled="False" />
+    <union:Heading Content="Heading" />
+    <union:Heading Content="Disabled Heading" IsEnabled="False" />
     <TextBox PlaceholderText="Text Field" Width="200" HorizontalAlignment="Left" />
     <TextBox PlaceholderText="Disabled Text Field" Width="200" HorizontalAlignment="Left" IsEnabled="False" />
-    <TextBox PlaceholderText="Password field" PasswordChar="●" RevealPassword="{Binding #Reveal.IsChecked}" Width="200" HorizontalAlignment="Left">
-      <TextBox.InnerRightContent>
-        <ToggleButton Name="Reveal" union:Union.Type="toolbutton" Width="20" Height="20">
-          <union:UnionIcon IconName="password-show-on" Width="16" Height="16" />
-        </ToggleButton>
-      </TextBox.InnerRightContent>
-    </TextBox>
-    <TextBox PlaceholderText="ActionTextField" Height="40">
-      <TextBox.InnerRightContent>
-        <Button union:Union.Type="toolbutton" Width="20" Height="20" ToolTip.Tip="Cancel">
-          <union:UnionIcon IconName="edit-delete-remove" Width="16" Height="16" />
-        </Button>
-      </TextBox.InnerRightContent>
-    </TextBox>
+    <union:ActionTextField Name="Password" PlaceholderText="Password field" PasswordChar="●" Width="200" HorizontalAlignment="Left">
+      <union:ActionTextField.RightActions>
+        <union:TextFieldAction IconName="password-show-on" Text="Show Password" />
+      </union:ActionTextField.RightActions>
+    </union:ActionTextField>
+    <union:ActionTextField Name="Actions" PlaceholderText="ActionTextField" Height="40">
+      <union:ActionTextField.RightActions>
+        <union:TextFieldAction IconName="edit-delete-remove" Text="Cancel" />
+        <union:TextFieldAction IconName="checkmark" Text="Confirm" IsVisible="False" />
+      </union:ActionTextField.RightActions>
+    </union:ActionTextField>
     <TextBox AcceptsReturn="True" PlaceholderText="Text Area" Width="200" HorizontalAlignment="Left" />
     <TextBox AcceptsReturn="True" PlaceholderText="Disabled Text Area" Width="200" HorizontalAlignment="Left" IsEnabled="False" />
     <NumericUpDown Minimum="0" Maximum="1000" Increment="1" Value="0" HorizontalAlignment="Left" />

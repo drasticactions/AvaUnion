@@ -93,4 +93,20 @@ public class DataGridShotTests
         var expander = group.GetVisualDescendants().OfType<ToggleButton>().Single();
         Assert.True(Union.GetNode(expander)!.ChainText.EndsWith("treeviewdelegate.expanded > indicator"), Union.GetNode(expander)!.ChainText);
     }
+
+    [AvaloniaFact]
+    public void Edited_Cells_Are_Text_Fields()
+    {
+        var grid = Grid();
+        var window = Shots.Show(grid, 420, 300);
+        grid.SelectedIndex = 0;
+        grid.CurrentColumn = grid.Columns[0];
+        Assert.True(grid.BeginEdit());
+        Shots.Settle();
+        var field = grid.GetVisualDescendants().OfType<TextBox>().Single();
+        Assert.Equal("Ada", field.Text);
+        Assert.Equal("textfield", Union.GetNode(field)!.Type);
+        Shots.Capture(window, "datagrid-edit");
+        window.Close();
+    }
 }

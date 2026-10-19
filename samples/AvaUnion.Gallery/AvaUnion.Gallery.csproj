@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\AvaUnion.Theme\AvaUnion.Theme.csproj" />
+    <ProjectReference Include="..\..\src\AvaUnion.Controls\AvaUnion.Controls.csproj" />
     <ProjectReference Include="..\..\src\AvaUnion.DataGrid\AvaUnion.DataGrid.csproj" />
   </ItemGroup>
 

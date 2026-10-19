@@ -3,7 +3,6 @@
                     xmlns:union="https://github.com/avaunion"
                     x:ClassModifier="internal">
   <ControlTheme x:Key="{x:Type ButtonSpinner}" TargetType="ButtonSpinner" BasedOn="{StaticResource UnionInnerButtonSpinner}">
-    <Setter Property="ClipToBounds" Value="False" />
     <Setter Property="union:Union.Type" Value="spinbox" />
     <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=View.Foreground.Text}" />
     <Setter Property="FocusAdorner" Value="{x:Null}" />
@@ -11,11 +10,24 @@
       <ControlTemplate>
         <Panel>
           <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
-          <ButtonSpinner Theme="{StaticResource UnionInnerButtonSpinner}"
-                         Content="{TemplateBinding Content}"
-                         ContentTemplate="{TemplateBinding ContentTemplate}"
-                         AllowSpin="{TemplateBinding AllowSpin}"
-                         ShowButtonSpinner="{TemplateBinding ShowButtonSpinner}" />
+          <union:UnionPositioner>
+            <RepeatButton Name="PART_DecreaseButton"
+                          Theme="{StaticResource UnionIndicatorButton}"
+                          union:Union.Hints="decrease"
+                          union:PositionedItem.Source="Layout"
+                          IsVisible="{TemplateBinding ShowButtonSpinner}" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              union:PositionedItem.Source="Layout"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              HorizontalContentAlignment="Stretch"
+                              VerticalContentAlignment="Center" />
+            <RepeatButton Name="PART_IncreaseButton"
+                          Theme="{StaticResource UnionIndicatorButton}"
+                          union:Union.Hints="increase"
+                          union:PositionedItem.Source="Layout"
+                          IsVisible="{TemplateBinding ShowButtonSpinner}" />
+          </union:UnionPositioner>
         </Panel>
       </ControlTemplate>
     </Setter>

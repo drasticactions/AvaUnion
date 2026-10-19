@@ -5,5 +5,6 @@
   <Application.Styles>
     <union:UnionTheme />
     <union:UnionDataGridTheme />
+    <union:UnionControlsTheme />
   </Application.Styles>
 </Application>

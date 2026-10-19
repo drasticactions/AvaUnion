@@ -1,0 +1,142 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:union="https://github.com/avaunion"
+        xmlns:primitives="using:AvaUnion.Controls.Primitives"
+        x:Class="AvaUnion.Controls.Themes.ControlStyles"
+        x:ClassModifier="internal">
+  <Styles.Resources>
+    <ControlTheme x:Key="{x:Type primitives:TabCloseButton}" TargetType="primitives:TabCloseButton">
+      <Setter Property="union:Union.Type" Value="closebutton" />
+      <Setter Property="union:PositionedItem.Source" Value="Layout" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Panel Background="Transparent">
+            <union:UnionBox />
+            <union:UnionIcon Width="{union:Style Icon.Width, Fallback=16}" Height="{union:Style Icon.Height, Fallback=16}" />
+          </Panel>
+        </ControlTemplate>
+      </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="{x:Type primitives:TableRowHeader}" TargetType="primitives:TableRowHeader">
+      <Setter Property="union:Union.Type" Value="headerviewdelegate" />
+      <Setter Property="union:Union.Hints" Value="vertical" />
+      <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+      <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+      <Setter Property="MinWidth" Value="{union:Style Layout.Width, Fallback=0}" />
+      <Setter Property="HorizontalContentAlignment" Value="{union:Style Text.Alignment.Horizontal, Fallback=Center}" />
+      <Setter Property="VerticalContentAlignment" Value="{union:Style Text.Alignment.Vertical, Fallback=Center}" />
+      <Setter Property="ClipToBounds" Value="False" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Panel>
+            <union:UnionBox Margin="{union:Style Layout.Inset}" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              Margin="{TemplateBinding Padding}"
+                              Content="{TemplateBinding Content}"
+                              HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+          </Panel>
+        </ControlTemplate>
+      </Setter>
+    </ControlTheme>
+
+    <ControlTheme x:Key="UnionRowHeaderScrollViewer" TargetType="ScrollViewer">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="AllowAutoHide" Value="False" />
+      <Setter Property="Template">
+        <ControlTemplate>
+          <Grid ColumnDefinitions="*,Auto" RowDefinitions="*,Auto">
+            <DockPanel Name="ContentPanel">
+              <Grid DockPanel.Dock="Top">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" SharedSizeGroup="UnionTableRowHeader" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <primitives:TableRowHeader Opacity="0" IsHitTestVisible="False" Focusable="False" />
+                <Border Grid.Column="1"
+                        union:Union.Type="headerview"
+                        union:Union.Hints="horizontal"
+                        union:Union.StateSource="None">
+                  <Panel>
+                    <union:UnionBox Margin="{union:Style Layout.Inset}" />
+                    <TableViewColumnHeadersPresenter />
+                  </Panel>
+                </Border>
+              </Grid>
+              <ScrollContentPresenter Name="PART_ContentPresenter"
+                                      Background="{TemplateBinding Background}"
+                                      Padding="{TemplateBinding Padding}"
+                                      ScrollViewer.IsScrollInertiaEnabled="{TemplateBinding IsScrollInertiaEnabled}" />
+            </DockPanel>
+            <ScrollBar Name="PART_HorizontalScrollBar" Orientation="Horizontal" Grid.Row="1" />
+            <ScrollBar Name="PART_VerticalScrollBar" Orientation="Vertical" Grid.Column="1" />
+          </Grid>
+        </ControlTemplate>
+      </Setter>
+    </ControlTheme>
+  </Styles.Resources>
+
+  <Style Selector="TabItem[(union|ClosableTabs.IsEnabled)=True]">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="{TemplateBinding Background}">
+          <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+          <LayoutTransformControl Name="PART_HeaderTransform">
+            <union:UnionPositioner>
+              <union:UnionIcon union:PositionedItem.Source="Icon" />
+              <ContentPresenter Name="PART_ContentPresenter"
+                                union:PositionedItem.Source="Text"
+                                Content="{TemplateBinding Header}"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                RecognizesAccessKey="True"
+                                TextWrapping="NoWrap"
+                                VerticalContentAlignment="Center" />
+              <primitives:TabCloseButton Name="PART_CloseButton" />
+            </union:UnionPositioner>
+          </LayoutTransformControl>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="TableView[(union|TableRowHeaders.IsVisible)=True]">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Grid.IsSharedSizeScope="True">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <ScrollViewer Name="PART_ScrollViewer"
+                        Theme="{StaticResource UnionRowHeaderScrollViewer}"
+                        Margin="{union:Style Border}"
+                        HorizontalScrollBarVisibility="{TemplateBinding (ScrollViewer.HorizontalScrollBarVisibility)}"
+                        VerticalScrollBarVisibility="{TemplateBinding (ScrollViewer.VerticalScrollBarVisibility)}"
+                        IsScrollChainingEnabled="{TemplateBinding (ScrollViewer.IsScrollChainingEnabled)}"
+                        IsDeferredScrollingEnabled="{TemplateBinding (ScrollViewer.IsDeferredScrollingEnabled)}">
+            <ItemsPresenter Name="PART_ItemsPresenter" ItemsPanel="{TemplateBinding ItemsPanel}" Margin="{TemplateBinding Padding}" />
+          </ScrollViewer>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+
+  <Style Selector="TableViewRow[(union|TableRowHeaders.IsVisible)=True]">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Grid>
+          <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" SharedSizeGroup="UnionTableRowHeader" />
+            <ColumnDefinition Width="*" />
+          </Grid.ColumnDefinitions>
+          <primitives:TableRowHeader Name="PART_RowHeader" />
+          <Panel Grid.Column="1">
+            <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+            <TableViewCellsPresenter Name="PART_CellsPresenter"
+                                     Margin="{TemplateBinding Padding}"
+                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" />
+          </Panel>
+        </Grid>
+      </ControlTemplate>
+    </Setter>
+  </Style>
+</Styles>

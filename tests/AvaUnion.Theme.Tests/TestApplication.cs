@@ -15,6 +15,7 @@ public class TestApplication : Application
         Theme = new UnionTheme { Engine = UnionEngineKind.Managed };
         Styles.Add(Theme);
         Styles.Add(new DataGrid.UnionDataGridTheme());
+        Styles.Add(new Controls.UnionControlsTheme());
     }
 
     public UnionTheme Theme { get; }

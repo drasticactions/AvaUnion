@@ -30,8 +30,8 @@
         <DataTemplate x:DataType="sys:String"><TextBlock Text="{Binding StringFormat='Disabled Combobox: {0}'}" /></DataTemplate>
       </ComboBox.SelectionBoxItemTemplate>
     </ComboBox>
-    <ComboBox Tag="letters" IsEditable="True" Text="Editable Combobox: BBBBBBBBBBB" />
-    <ComboBox Tag="disabled-letters" IsEditable="True" IsEnabled="False" Text="Disabled Editable Combobox: BBBBBBBBBBB" />
+    <ComboBox Tag="letters" IsEditable="True" Text="BBBBBBBBBBB" />
+    <ComboBox Tag="disabled-letters" IsEditable="True" IsEnabled="False" Text="BBBBBBBBBBB" />
     <ComboBox Tag="letters" Classes="flat">
       <ComboBox.SelectionBoxItemTemplate>
         <DataTemplate x:DataType="sys:String"><TextBlock Text="{Binding StringFormat='Flat Combobox: {0}'}" /></DataTemplate>
@@ -42,7 +42,8 @@
         <DataTemplate x:DataType="sys:String"><TextBlock Text="{Binding StringFormat='Disabled Flat Combobox: {0}'}" /></DataTemplate>
       </ComboBox.SelectionBoxItemTemplate>
     </ComboBox>
-    <ComboBox Tag="letters" Classes="flat" IsEditable="True" Text="Flat Editable Combobox: BBBBBBBBBBB" />
-    <ComboBox Tag="disabled-letters" Classes="flat" IsEditable="True" IsEnabled="False" Text="Disabled Flat Editable Combobox: BBBBBBBBBBB" />
+    <ComboBox Tag="letters" Classes="flat" IsEditable="True" Text="BBBBBBBBBBB" />
+    <ComboBox Tag="disabled-letters" Classes="flat" IsEditable="True" IsEnabled="False" Text="BBBBBBBBBBB" />
+    <union:DelayButton><g:IconLabel Icon="document-save" Text="Delay button" /></union:DelayButton>
   </StackPanel>
 </UserControl>

@@ -1,39 +1,25 @@
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using AvaUnion.Elements;
-using AvaUnion.Engine;
+using AvaUnion.Controls;
 
 namespace AvaUnion.Gallery.Pages;
 
 public partial class QmlTextPage : UserControl
 {
-    public QmlTextPage() => AvaloniaXamlLoader.Load(this);
-
-    protected override void OnAttachedToVisualTree(VisualTreeAttachmentEventArgs e)
+    public QmlTextPage()
     {
-        base.OnAttachedToVisualTree(e);
-        UnionEnvironment.Changed += OnUnionChanged;
-        UpdateHeadings();
-    }
-
-    protected override void OnDetachedFromVisualTree(VisualTreeAttachmentEventArgs e)
-    {
-        UnionEnvironment.Changed -= OnUnionChanged;
-        base.OnDetachedFromVisualTree(e);
-    }
-
-    private void OnUnionChanged(UnionChange change) => UpdateHeadings();
-
-    private void UpdateHeadings()
-    {
-        if (!UnionEnvironment.IsReady)
+        AvaloniaXamlLoader.Load(this);
+        var password = this.FindControl<ActionTextField>("Password")!;
+        var reveal = password.RightActions[0];
+        reveal.Triggered += (_, _) =>
         {
-            return;
-        }
+            password.RevealPassword = !password.RevealPassword;
+            reveal.IconName = password.RevealPassword ? "password-show-off" : "password-show-on";
+            reveal.Text = password.RevealPassword ? "Hide Password" : "Show Password";
+        };
 
-        var size = UnionEnvironment.Engine.Fonts.General.SizeInDips * 1.35;
-        this.FindControl<Label>("Heading")!.FontSize = size;
-        this.FindControl<Label>("DisabledHeading")!.FontSize = size;
+        var actions = this.FindControl<ActionTextField>("Actions")!;
+        var confirm = actions.RightActions[1];
+        actions.TextChanged += (_, _) => confirm.IsVisible = !string.IsNullOrEmpty(actions.Text);
     }
 }

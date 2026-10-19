@@ -24,5 +24,23 @@
     <ToggleSwitch union:Union.Type="switchdelegate" Content="SwitchDelegate with Text" />
     <ToggleSwitch union:Union.Type="switchdelegate" Content="Disabled SwitchDelegate with Text" IsEnabled="False" />
     <ToggleSwitch union:Union.Type="switchdelegate"><g:IconLabel Icon="document-save" Text="SwitchDelegate TextUnderIcon" Orientation="Vertical" /></ToggleSwitch>
+    <union:SwipeDelegate Content="Swipe me!">
+      <union:SwipeDelegate.RightContent>
+        <Rectangle Fill="Blue" />
+      </union:SwipeDelegate.RightContent>
+    </union:SwipeDelegate>
+    <union:SwipeDelegate Content="Disabled Swipe delegate" IsEnabled="False">
+      <union:SwipeDelegate.RightContent>
+        <Rectangle Fill="Blue" />
+      </union:SwipeDelegate.RightContent>
+    </union:SwipeDelegate>
+    <Panel union:Union.Type="frame" union:Union.StateSource="None" HorizontalAlignment="Left">
+      <union:UnionBox />
+      <StackPanel Orientation="Horizontal" Margin="{union:Style Layout.Padding}">
+        <union:Tumbler Name="Hours" />
+        <union:Tumbler Name="Minutes" />
+        <union:Tumbler Name="AmPm" />
+      </StackPanel>
+    </Panel>
   </StackPanel>
 </UserControl>

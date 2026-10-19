@@ -1,5 +1,11 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
              x:Class="AvaUnion.Gallery.Pages.QmlCalendarPage">
-  <Calendar HorizontalAlignment="Center" />
+  <Grid ColumnDefinitions="Auto,*" RowDefinitions="Auto,*" ColumnSpacing="5" RowSpacing="5"
+        MaxWidth="800" MaxHeight="800" MinHeight="500">
+    <union:DayOfWeekRow Grid.Column="1" />
+    <union:WeekNumberColumn Grid.Row="1" />
+    <union:MonthGrid Grid.Row="1" Grid.Column="1" />
+  </Grid>
 </UserControl>

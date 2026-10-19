@@ -1,0 +1,30 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type union:DateTimeEditBase}" TargetType="union:DateTimeEditBase">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="spinbox" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=View.Foreground.Text}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox ImplicitSize="True" Margin="{union:Style Layout.Inset}" />
+          <ButtonSpinner Name="PART_Spinner" Theme="{DynamicResource UnionInnerButtonSpinner}" IsTabStop="False">
+            <TextBox Name="PART_TextBox"
+                     Theme="{DynamicResource UnionInnerTextBox}"
+                     Foreground="{TemplateBinding Foreground}"
+                     TextAlignment="{union:Style Text.Alignment.Horizontal, Fallback=Start}"
+                     AcceptsReturn="False"
+                     TextWrapping="NoWrap" />
+          </ButtonSpinner>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{union:Style Text.Color, FallbackColor=Disabled.View.Foreground.Text}" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

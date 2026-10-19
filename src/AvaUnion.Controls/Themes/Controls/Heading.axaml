@@ -1,0 +1,29 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type union:Heading}" TargetType="union:Heading">
+    <Setter Property="union:Union.Type" Value="heading" />
+    <Setter Property="Foreground" Value="{union:SchemeColor Window, Foreground, Text}" />
+    <Setter Property="FontSize" Value="{union:Style Text.Font, Fallback=18}" />
+    <Setter Property="FontWeight" Value="{union:Style Text.Font, Fallback=Normal}" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                          Background="{TemplateBinding Background}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          Content="{TemplateBinding Content}"
+                          Padding="{TemplateBinding Padding}"
+                          RecognizesAccessKey="True"
+                          TextWrapping="{union:Style Text.WrapMode, Fallback=NoWrap}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{union:SchemeColor Window, Foreground, Text, Group=Disabled}" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

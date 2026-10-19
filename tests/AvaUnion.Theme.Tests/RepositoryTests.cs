@@ -42,10 +42,13 @@ public partial class RepositoryTests
         Assert.True(offenders.Count == 0, string.Join("\n", offenders));
     }
 
-    [Fact]
-    public void Every_Public_Namespace_Is_Mapped()
+    [Theory]
+    [InlineData(typeof(UnionTheme))]
+    [InlineData(typeof(Controls.UnionControlsTheme))]
+    [InlineData(typeof(DataGrid.UnionDataGridTheme))]
+    public void Every_Public_Namespace_Is_Mapped(Type type)
     {
-        var assembly = typeof(UnionTheme).Assembly;
+        var assembly = type.Assembly;
         var mapped = assembly.GetCustomAttributes<XmlnsDefinitionAttribute>()
             .Where(a => a.XmlNamespace == "https://github.com/avaunion")
             .Select(a => a.ClrNamespace)

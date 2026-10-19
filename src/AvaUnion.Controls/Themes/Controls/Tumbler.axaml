@@ -1,0 +1,47 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    xmlns:primitives="using:AvaUnion.Controls.Primitives"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type union:TumblerItem}" TargetType="union:TumblerItem">
+    <Setter Property="union:Union.Type" Value="text" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="HorizontalContentAlignment" Value="{union:Style Text.Alignment.Horizontal, Fallback=Center}" />
+    <Setter Property="VerticalContentAlignment" Value="{union:Style Text.Alignment.Vertical, Fallback=Center}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                          Content="{TemplateBinding Content}"
+                          ContentTemplate="{TemplateBinding ContentTemplate}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type union:Tumbler}" TargetType="union:Tumbler">
+    <Setter Property="union:Union.Type" Value="tumbler" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="FontSize" Value="{union:Style Text.Font, Fallback=13}" />
+    <Setter Property="FocusAdorner" Value="{x:Null}" />
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Top" />
+    <Setter Property="ItemsPanel">
+      <ItemsPanelTemplate>
+        <primitives:TumblerPanel />
+      </ItemsPanelTemplate>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="Transparent">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <ItemsPresenter Name="PART_ItemsPresenter"
+                          Margin="{TemplateBinding Padding}"
+                          MinWidth="{union:Style Layout.Width, Fallback=0}"
+                          MinHeight="{union:Style Layout.Height, Fallback=0}"
+                          ItemsPanel="{TemplateBinding ItemsPanel}" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

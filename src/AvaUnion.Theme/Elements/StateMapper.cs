@@ -61,6 +61,9 @@ public static class StateMapper
                 case ":focus-visible":
                     states |= UnionStates.VisualFocus | UnionStates.ActiveFocus;
                     break;
+                case ":focus-within" when type is "spinbox" or "combobox":
+                    states |= UnionStates.ActiveFocus;
+                    break;
                 case ":pressed":
                     states |= UnionStates.Pressed;
                     break;

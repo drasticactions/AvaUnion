@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>AvaUnion.Controls</RootNamespace>
+    <PackageId>AvaUnion.Controls</PackageId>
+    <Description>Controls that Qt Quick Controls, Kirigami and QtWidgets have and Avalonia does not, with KDE Union ControlThemes: dial, range slider, delay button, busy indicator, tumbler, swipe delegate, dialog, date and time spin boxes, heading, action text field, calendar parts and a tree with columns. Use with AvaUnion.Theme.</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AvaUnion.Theme\AvaUnion.Theme.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="AvaUnion.Theme.Tests" />
+  </ItemGroup>
+
+  <Import Project="..\SharedThemes.targets" />
+
+</Project>

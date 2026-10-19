@@ -1,7 +1,12 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
              x:Class="AvaUnion.Gallery.Pages.QmlProgressSliderPage">
   <StackPanel Spacing="5" HorizontalAlignment="Left">
+    <StackPanel Orientation="Horizontal" Spacing="5">
+      <union:BusyIndicator />
+      <union:BusyIndicator />
+    </StackPanel>
     <ProgressBar Width="200" Minimum="0" Maximum="100" Value="{Binding #Slider.Value}" />
     <ProgressBar Width="200" Minimum="0" Maximum="100" Value="{Binding #Slider.Value}" IsEnabled="False" />
     <ProgressBar Width="200" IsIndeterminate="True" />
@@ -9,11 +14,16 @@
     <Slider Name="Slider" Width="200" Minimum="0" Maximum="100" SmallChange="10" TickFrequency="10" IsSnapToTickEnabled="True" Value="50" />
     <Slider Width="200" Minimum="0" Maximum="100" Value="{Binding #Slider.Value}" IsEnabled="False" />
     <Slider Width="200" Minimum="0" Maximum="100" SmallChange="10" TickFrequency="20" TickPlacement="BottomRight" Value="50" />
+    <union:RangeSlider Name="Range" Width="200" HorizontalAlignment="Left" LowerValue="25" UpperValue="75" IsSnapToTickEnabled="True" TickFrequency="1" />
+    <union:RangeSlider Width="200" HorizontalAlignment="Left" LowerValue="{Binding #Range.LowerValue}" UpperValue="{Binding #Range.UpperValue}" IsEnabled="False" />
     <StackPanel Orientation="Horizontal" Spacing="5">
       <Slider Orientation="Vertical" Height="200" Minimum="0" Maximum="100" SmallChange="10" TickFrequency="10" IsSnapToTickEnabled="True" Value="50" />
       <Slider Orientation="Vertical" Height="200" Minimum="0" Maximum="100" Value="50" IsEnabled="False" />
       <Slider Orientation="Vertical" Height="200" Minimum="0" Maximum="100" SmallChange="10" TickFrequency="20" TickPlacement="TopLeft" Value="50" />
+      <union:RangeSlider Orientation="Vertical" Height="200" LowerValue="25" UpperValue="75" IsEnabled="False" />
+      <union:RangeSlider Orientation="Vertical" Height="200" LowerValue="25" UpperValue="75" IsSnapToTickEnabled="True" TickFrequency="1" />
     </StackPanel>
     <ScrollBar Orientation="Vertical" Height="100" HorizontalAlignment="Left" Minimum="0" Maximum="60" ViewportSize="40" Visibility="Visible" />
+    <union:Dial />
   </StackPanel>
 </UserControl>

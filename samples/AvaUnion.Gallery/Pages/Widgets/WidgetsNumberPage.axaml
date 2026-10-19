@@ -1,5 +1,6 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:union="https://github.com/avaunion"
              x:Class="AvaUnion.Gallery.Pages.WidgetsNumberPage">
   <StackPanel Spacing="6" HorizontalAlignment="Left">
     <Grid ColumnDefinitions="Auto,Auto,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="6">
@@ -11,7 +12,10 @@
       <Slider Grid.Row="1" Grid.Column="2" Height="200" Orientation="Vertical" HorizontalAlignment="Left" Minimum="0" Maximum="5" IsSnapToTickEnabled="True" TickFrequency="1" TickPlacement="TopLeft" />
       <ProgressBar Grid.Row="2" Grid.Column="0" Minimum="0" Maximum="100" Value="50" ShowProgressText="True" />
     </Grid>
-    <NumericUpDown Value="0" Minimum="0" Maximum="99" Width="46" HorizontalAlignment="Left" />
-    <NumericUpDown Value="0" Minimum="0" Maximum="99" FormatString="'prefix '0' suffix'" Width="120" HorizontalAlignment="Left" />
+    <NumericUpDown Value="0" Minimum="0" Maximum="99" Width="46" HorizontalAlignment="Left" union:Union.Hints="constrained" />
+    <NumericUpDown Value="0" Minimum="0" Maximum="99" FormatString="'prefix '0' suffix'" Width="120" HorizontalAlignment="Left" union:Union.Hints="constrained" />
+    <union:TimeEdit />
+    <union:DateEdit />
+    <union:DateTimeEdit />
   </StackPanel>
 </UserControl>

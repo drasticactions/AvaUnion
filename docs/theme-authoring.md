@@ -153,6 +153,25 @@ part; hints in parentheses are added automatically when they apply.
 | DataGridRowHeader | `headerviewdelegate.vertical` (`selected`, `current`, `editing`) |
 | DataGridRowGroupHeader | `treeviewdelegate` (`expanded`) › `indicator` as the expander |
 
+`AvaUnion.Controls` adds:
+
+| Avalonia | Chain |
+|---|---|
+| BusyIndicator | `busyindicator` with its icon turning |
+| DelayButton | `delaybutton` › `fill` (`with-icon`, `[display]`) |
+| Dial | `dial` › `handle` |
+| RangeSlider | `rangeslider.horizontal`/`.vertical` › `fill`, `handle.first`, `handle.second` |
+| Tumbler, TumblerItem | `tumbler` › `text` (`:highlighted` for the selected item) |
+| MonthGrid, DayOfWeekRow, WeekNumberColumn | `monthgrid`, `dayofweekrow`, `weeknumbercolumn` › `label` (`current-month`, `today`) |
+| Heading | `heading.level-N` (`primary`, `secondary`) |
+| ActionTextField | `textfield` › `toolbutton[display=icon-only]` for each action |
+| TimeEdit, DateEdit, DateTimeEdit | `spinbox.editable.constrained` › `indicator` |
+| SwipeDelegate | `swipedelegate.hover-enabled` |
+| Dialog | `dialog` › `label.header`, `dialogbuttonbox[position=footer]` › `button[role]`; `overlay.dialog.modal` when modal |
+| ColumnTreeView | `scrollview` › `headerview.horizontal` › `headerviewdelegate.horizontal`; `treeviewdelegate` (`expanded`, `selected`, `alternating-colors`) › `indentation`, `indicator` |
+| ClosableTabs.IsEnabled | `tabbutton` › `closebutton` |
+| TableRowHeaders.IsVisible | `headerviewdelegate.vertical` before each `tableviewdelegate` |
+
 Control libraries describe their own controls the same way through
 `UnionHintProviders`: `MapPseudoClass<T>(":sortascending", "sort-ascending")`
 makes a pseudo-class a hint instead of a state, and `Register<T>(provider,

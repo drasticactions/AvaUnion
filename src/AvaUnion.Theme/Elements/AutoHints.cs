@@ -367,13 +367,18 @@ public static class AutoHints
             return false;
         }
 
+        var spacing = (Union.GetStyle(spin) ?? Engine.ResolvedStyle.Unmatched).Layout.Spacing ?? 0.0;
+        return LimitTextWidth(spin) + (UnconstrainedIndicatorWidth() * 2) + (spacing * 2) > limit;
+    }
+
+    internal static double LimitTextWidth(NumericUpDown spin)
+    {
         var to = spin.Maximum.ToString(spin.FormatString, spin.NumberFormat);
         var from = spin.Minimum.ToString(spin.FormatString, spin.NumberFormat);
         var text = to.Length >= from.Length ? to : from;
         using var layout = new Avalonia.Media.TextFormatting.TextLayout(
             text, new Typeface(spin.FontFamily, spin.FontStyle, spin.FontWeight), spin.FontSize, null);
-        var spacing = (Union.GetStyle(spin) ?? Engine.ResolvedStyle.Unmatched).Layout.Spacing ?? 0.0;
-        return layout.Width + (UnconstrainedIndicatorWidth() * 2) + (spacing * 2) > limit;
+        return layout.Width;
     }
 
     private static (int Epoch, double Width)? s_indicatorWidth;
@@ -414,7 +419,8 @@ public static class AutoHints
         return false;
     }
 
-    private static string DisplayOf(object? content)
+    /// <summary>The Union display of button content: icon-only, text-under-icon or text-beside-icon.</summary>
+    public static string DisplayOf(object? content)
     {
         if (IsIcon(content))
         {

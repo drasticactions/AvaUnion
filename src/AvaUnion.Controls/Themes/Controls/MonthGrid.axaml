@@ -1,0 +1,71 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    xmlns:primitives="using:AvaUnion.Controls.Primitives"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type primitives:CalendarCell}" TargetType="primitives:CalendarCell">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="label" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="HorizontalContentAlignment" Value="{union:Style Text.Alignment.Horizontal, Fallback=Center}" />
+    <Setter Property="VerticalContentAlignment" Value="{union:Style Text.Alignment.Vertical, Fallback=Center}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel Background="Transparent">
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Margin="{TemplateBinding Padding}"
+                            Content="{TemplateBinding Content}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type union:MonthGrid}" TargetType="union:MonthGrid">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="monthgrid" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="FontSize" Value="{union:Style Text.Font, Fallback=13}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <primitives:CellGrid Name="PART_Cells" Margin="{TemplateBinding Padding}" Spacing="{union:Style Layout.Spacing, Fallback=0}" Rows="6" Columns="7" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type union:DayOfWeekRow}" TargetType="union:DayOfWeekRow">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="dayofweekrow" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="FontSize" Value="{union:Style Text.Font, Fallback=13}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <primitives:CellGrid Name="PART_Cells" Margin="{TemplateBinding Padding}" Spacing="{union:Style Layout.Spacing, Fallback=0}" Rows="1" Columns="7" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type union:WeekNumberColumn}" TargetType="union:WeekNumberColumn">
+    <Setter Property="ClipToBounds" Value="False" />
+    <Setter Property="union:Union.Type" Value="weeknumbercolumn" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="FontSize" Value="{union:Style Text.Font, Fallback=13}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <primitives:CellGrid Name="PART_Cells" Margin="{TemplateBinding Padding}" Spacing="{union:Style Layout.Spacing, Fallback=0}" Rows="6" Columns="1" />
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

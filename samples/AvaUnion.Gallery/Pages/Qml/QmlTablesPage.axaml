@@ -1,10 +1,11 @@
 <UserControl xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:pages="using:AvaUnion.Gallery.Pages"
+             xmlns:union="https://github.com/avaunion"
              x:Class="AvaUnion.Gallery.Pages.QmlTablesPage">
   <StackPanel Spacing="5">
     <CheckBox Name="Enabled" Content="Tableview enabled" IsChecked="True" />
-    <TableView Name="Table" IsEnabled="{Binding #Enabled.IsChecked}" Height="200" HorizontalAlignment="Left">
+    <TableView Name="Table" union:TableRowHeaders.IsVisible="True" IsEnabled="{Binding #Enabled.IsChecked}" Height="200" HorizontalAlignment="Left">
       <TableView.Columns>
         <TableViewColumn Header="1" Width="96" Binding="{Binding Name}" x:DataType="pages:TableAnimal" />
         <TableViewColumn Header="2" Width="248" Binding="{Binding Color}" x:DataType="pages:TableAnimal" />

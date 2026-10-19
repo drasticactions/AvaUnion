@@ -1,0 +1,36 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:union="https://github.com/avaunion"
+                    x:ClassModifier="internal">
+  <ControlTheme x:Key="{x:Type union:Dialog}" TargetType="union:Dialog">
+    <Setter Property="union:Union.Type" Value="dialog" />
+    <Setter Property="Foreground" Value="{union:Style Text.Color}" />
+    <Setter Property="Padding" Value="{union:Style Layout.Padding}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <union:UnionBox Margin="{union:Style Layout.Inset}" />
+          <DockPanel>
+            <Panel Name="PART_HeaderPanel"
+                   DockPanel.Dock="Top"
+                   Margin="{union:Style Layout.Spacing, Sides=Bottom}"
+                   IsVisible="{TemplateBinding Title, Converter={x:Static StringConverters.IsNotNullOrEmpty}}">
+              <Label Name="PART_Header"
+                     union:Union.Hints="header"
+                     Content="{TemplateBinding Title}"
+                     FontSize="{union:Style Text.Font, Fallback=20}" />
+            </Panel>
+            <Panel Name="PART_ButtonBox" DockPanel.Dock="Bottom" Margin="{union:Style Layout.Spacing, Sides=Top}" />
+            <ContentPresenter Name="PART_ContentPresenter"
+                              Margin="{TemplateBinding Padding}"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}" />
+          </DockPanel>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:windowed /template/ Panel#PART_HeaderPanel">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+  </ControlTheme>
+</ResourceDictionary>

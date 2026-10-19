@@ -39,7 +39,7 @@ lower() {
     printf '%s' "$1" | tr '[:upper:]' '[:lower:]'
 }
 
-ids=(AvaUnion.Native AvaUnion.Theme AvaUnion.DataGrid)
+ids=(AvaUnion.Native AvaUnion.Theme AvaUnion.DataGrid AvaUnion.Controls)
 version=9999.0.0-localbuild
 cache=
 out=

@@ -1,6 +1,7 @@
 <ResourceDictionary xmlns="https://github.com/avaloniaui"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:union="https://github.com/avaunion"
+                    xmlns:markup="clr-namespace:AvaUnion.Markup"
                     x:ClassModifier="internal">
   <ControlTheme x:Key="{x:Type NumericUpDown}" TargetType="NumericUpDown">
     <Setter Property="ClipToBounds" Value="False" />
@@ -26,9 +27,21 @@
                        PlaceholderText="{TemplateBinding PlaceholderText}"
                        IsReadOnly="{TemplateBinding IsReadOnly}"
                        Text="{TemplateBinding Text}"
-                       TextAlignment="Center"
+                       TextAlignment="{union:Style Text.Alignment.Horizontal, Fallback=Center}"
                        AcceptsReturn="False"
-                       TextWrapping="NoWrap" />
+                       TextWrapping="NoWrap">
+                <TextBox.MinWidth>
+                  <MultiBinding Converter="{x:Static markup:SpinBoxConverters.LimitTextWidth}">
+                    <Binding RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="Minimum" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="Maximum" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="FormatString" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="NumberFormat" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="FontSize" RelativeSource="{RelativeSource TemplatedParent}" />
+                    <Binding Path="FontFamily" RelativeSource="{RelativeSource TemplatedParent}" />
+                  </MultiBinding>
+                </TextBox.MinWidth>
+              </TextBox>
             </ButtonSpinner>
           </Panel>
         </DataValidationErrors>
