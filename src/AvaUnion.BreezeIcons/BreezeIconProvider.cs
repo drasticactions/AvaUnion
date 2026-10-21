@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using Avalonia;
 using Avalonia.Media;
 using AvaUnion.Icons;
@@ -14,69 +13,51 @@ namespace AvaUnion.BreezeIcons;
 /// </summary>
 public sealed class BreezeIconProvider : IIconProvider
 {
-    private const string Prefix = "breeze/";
-
-    private readonly Dictionary<string, SortedDictionary<int, string>> _resources = new(StringComparer.Ordinal);
-    private readonly Dictionary<string, SvgIcon?> _icons = new(StringComparer.Ordinal);
+    private readonly Lazy<BreezeArchive> _archive = new(BreezeArchive.Load);
+    private readonly Dictionary<(int Blob, bool Pad), SvgIcon?> _icons = [];
 
     /// <summary>Creates the provider.</summary>
     public BreezeIconProvider()
     {
-        foreach (var resource in typeof(BreezeIconProvider).Assembly.GetManifestResourceNames())
-        {
-            var path = resource.Replace('\\', '/');
-            if (!path.StartsWith(Prefix, StringComparison.Ordinal) || !path.EndsWith(".svg", StringComparison.Ordinal))
-            {
-                continue;
-            }
-
-            var parts = path[Prefix.Length..^".svg".Length].Split('/');
-            if (parts.Length != 2 || !int.TryParse(parts[0], NumberStyles.Integer, CultureInfo.InvariantCulture, out var size))
-            {
-                continue;
-            }
-
-            if (!_resources.TryGetValue(parts[1], out var sizes))
-            {
-                _resources[parts[1]] = sizes = [];
-            }
-
-            sizes[size] = resource;
-        }
     }
 
     /// <summary>The icon names that the provider has.</summary>
-    public IEnumerable<string> Names => _resources.Keys;
+    public IEnumerable<string> Names => _archive.Value.Icons.Keys;
 
     /// <inheritdoc/>
     public IImage? GetIcon(string name, Color? tint, Size size, double scale)
     {
-        if (!_resources.TryGetValue(name, out var sizes))
+        if (!_archive.Value.Icons.TryGetValue(name, out var sizes))
         {
             return null;
         }
 
         var wanted = Math.Max(size.Width, size.Height);
-        string? resource = null;
+        (int Blob, bool Pad)? entry = null;
         foreach (var (available, candidate) in sizes)
         {
-            resource = candidate;
+            entry = candidate;
             if (available >= wanted)
             {
                 break;
             }
         }
 
-        if (resource is null)
+        if (entry is not { } found)
         {
             return null;
         }
 
-        if (!_icons.TryGetValue(resource, out var icon))
+        if (!_icons.TryGetValue(found, out var icon))
         {
-            using var stream = typeof(BreezeIconProvider).Assembly.GetManifestResourceStream(resource);
-            icon = stream is null ? null : SvgIcon.Read(stream);
-            _icons[resource] = icon;
+            using var stream = _archive.Value.Read(found.Blob);
+            icon = SvgIcon.Read(stream);
+            if (found.Pad)
+            {
+                icon = icon?.Padded(1);
+            }
+
+            _icons[found] = icon;
         }
 
         return icon?.ToImage(tint);

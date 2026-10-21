@@ -7,22 +7,24 @@ usage() {
     cat <<'TEXT'
 update-breeze-icons.sh [OPTIONS]
 
-Copies the Breeze icons named in src/AvaUnion.BreezeIcons/icons.txt from a
-breeze-icons checkout into src/AvaUnion.BreezeIcons/Icons/<size>/<name>.svg,
-at the sizes 16, 22, 32 and 48 that the checkout has. Symbolic links are
-followed. The license files of the icons are copied too.
+Packs every Breeze icon, at every size that a breeze-icons checkout has, into
+src/AvaUnion.BreezeIcons/Icons/breeze-icons.bin, with tools/breeze-icons.
+Symbolic links are followed. The license file of the icons is copied too. It
+fails when a name in src/AvaUnion.BreezeIcons/icons.txt is missing.
 
   --tag TAG     breeze-icons tag to clone, default v6.31.0
   --source DIR  use this breeze-icons checkout instead of cloning
+  --check       only report whether the archive is up to date
   -h            this help
 TEXT
 }
 
-tag=v6.31.0 source=""
+tag=v6.31.0 source="" check=""
 while [ $# -gt 0 ]; do
     case "$1" in
         --tag) tag=${2:?}; shift 2 ;;
         --source) source=${2:?}; shift 2 ;;
+        --check) check=--check; shift ;;
         -h|--help) usage; exit 0 ;;
         *) usage >&2; exit 2 ;;
     esac
@@ -35,27 +37,6 @@ if [ -z "$source" ]; then
     source="$work/breeze-icons"
 fi
 
-out="$root/src/AvaUnion.BreezeIcons/Icons"
-rm -rf "$out"
-mkdir -p "$out"
-missing=0
-while read -r name; do
-    [ -z "$name" ] && continue
-    found=0
-    for size in 16 22 32 48; do
-        file="$(find "$source/icons" -path "*/$size/$name.svg" | sort | head -n 1)"
-        if [ -n "$file" ]; then
-            mkdir -p "$out/$size"
-            cp -L "$file" "$out/$size/$name.svg"
-            found=1
-        fi
-    done
-    if [ "$found" = 0 ]; then
-        echo "missing: $name" >&2
-        missing=1
-    fi
-done < "$root/src/AvaUnion.BreezeIcons/icons.txt"
-
-cp "$source/COPYING-ICONS" "$out/COPYING-ICONS"
-echo "$(git -C "$source" describe --tags --always 2>/dev/null || echo "$tag") $(git -C "$source" rev-parse --short HEAD 2>/dev/null || echo unknown)" > "$out/VERSION"
-exit "$missing"
+version="$(git -C "$source" describe --tags --always 2>/dev/null || echo "$tag") $(git -C "$source" rev-parse --short HEAD 2>/dev/null || echo unknown)"
+cd "$root"
+dotnet run tools/breeze-icons/breeze-icons.cs -- --source "$source" --version "$version" $check

@@ -81,10 +81,10 @@ public sealed class MainView : UserControl
         {
             if (pages.SelectedItem is ListBoxItem { Tag: GalleryPage page })
             {
-                _content.Content = new ScrollViewer { Content = page.Create() };
+                _content.Content = page.Host();
             }
         };
-        _content.Content = new ScrollViewer { Content = GalleryPages.Sections[0].Pages[0].Create() };
+        _content.Content = GalleryPages.Sections[0].Pages[0].Host();
 
         var root = new DockPanel();
         DockPanel.SetDock(header, Dock.Top);

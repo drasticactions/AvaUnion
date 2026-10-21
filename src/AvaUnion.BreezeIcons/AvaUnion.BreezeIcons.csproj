@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Icons\**\*.svg" LogicalName="breeze/%(RecursiveDir)%(Filename)%(Extension)" />
+    <EmbeddedResource Include="Icons\breeze-icons.bin" LogicalName="breeze-icons.bin" />
     <None Include="Icons\COPYING-ICONS;Icons\VERSION;Licenses\LGPL-3.0.txt;Licenses\GPL-3.0.txt" Pack="true" PackagePath="licenses\breeze-icons" />
   </ItemGroup>
 

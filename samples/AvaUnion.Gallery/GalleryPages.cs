@@ -40,6 +40,7 @@ public static class GalleryPages
             new("Popups", () => new PopupsPage()),
             new("Notifications & Bars", () => new NotificationsPage()),
             new("Typography & Icons", () => new TypographyPage()),
+            new("Breeze Icons", () => new BreezeIconsPage(), Scrolls: false),
             new("Scheme", () => new SchemePage()),
         ]),
     ];

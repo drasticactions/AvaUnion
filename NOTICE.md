@@ -136,9 +136,9 @@ Both are licensed under the SIL Open Font License, version 1.1.
 © 2014 Uri Herrera and others, https://invent.kde.org/frameworks/breeze-icons,
 tag `v6.31.0` (`60ca517`).
 
-`src/AvaUnion.BreezeIcons/Icons/<size>/*.svg` are copies, unchanged, of the
-icons listed in `src/AvaUnion.BreezeIcons/icons.txt`, at the sizes 16, 22, 32
-and 48 that breeze-icons has. They are embedded in `AvaUnion.BreezeIcons.dll`.
+`src/AvaUnion.BreezeIcons/Icons/breeze-icons.bin` holds copies, unchanged, of
+every icon in breeze-icons, at every size it has, compressed with Brotli. It is
+embedded in `AvaUnion.BreezeIcons.dll`.
 The icons are licensed under the GNU Lesser General Public License, version 3
 or any later version, with the clarification in breeze-icons' `COPYING-ICONS`.
 The package carries `COPYING-ICONS`, the LGPL-3.0 and the GPL-3.0 in

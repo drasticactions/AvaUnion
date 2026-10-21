@@ -493,3 +493,4 @@ native/build-*/
 native/artifacts/
 
 tools/union-reference/build/
+tools/svg-reference/build/

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Avalonia;
@@ -16,6 +17,16 @@ public class BreezeIconsTests
     private static DrawingGroup Drawing(string name, double size, Color? tint) =>
         (DrawingGroup)((DrawingImage)s_provider.GetIcon(name, tint, new Size(size, size), 1.0)!).Drawing!;
 
+    private static IEnumerable<GeometryDrawing> Parts(string name, double size, Color? tint) =>
+        Flatten(Drawing(name, size, tint)).Skip(1);
+
+    private static IEnumerable<GeometryDrawing> Flatten(Drawing drawing) => drawing switch
+    {
+        GeometryDrawing geometry => [geometry],
+        DrawingGroup group => group.Children.SelectMany(Flatten),
+        _ => [],
+    };
+
     private sealed class Marker(string name) : IIconProvider
     {
         public IImage? GetIcon(string iconName, Color? tint, Size size, double scale) =>
@@ -27,6 +38,23 @@ public class BreezeIconsTests
     {
         var listed = File.ReadAllLines(Path.Combine(TestData.RepoRoot, "src", "AvaUnion.BreezeIcons", "icons.txt")).Where(l => l.Length > 0);
         Assert.Empty(listed.Except(s_provider.Names));
+    }
+
+    [AvaloniaFact]
+    public void Every_Bundled_Icon_Reads()
+    {
+        var archive = BreezeArchive.Load();
+        Assert.True(archive.Icons.Count > 7000, archive.Icons.Count.ToString());
+        var failed = archive.Icons
+            .SelectMany(icon => icon.Value.Select(size => (Name: $"{size.Key}/{icon.Key}", size.Value.Blob)))
+            .Where(entry =>
+            {
+                using var stream = archive.Read(entry.Blob);
+                return SvgIcon.Read(stream) is null;
+            })
+            .Select(entry => entry.Name)
+            .ToList();
+        Assert.Empty(failed);
     }
 
     [AvaloniaFact]
@@ -42,10 +70,10 @@ public class BreezeIconsTests
     public void Text_Parts_Take_The_Tint_And_Other_Parts_Keep_Their_Color()
     {
         var tint = Colors.Lime;
-        var save = Drawing("document-save", 16, tint).Children.OfType<GeometryDrawing>().Skip(1).Single();
+        var save = Parts("document-save", 16, tint).Single();
         Assert.Equal(tint, ((ISolidColorBrush)save.Brush!).Color);
 
-        var colors = Drawing("emblem-error", 16, tint).Children.OfType<GeometryDrawing>().Skip(1).Select(d => ((ISolidColorBrush)d.Brush!).Color).ToList();
+        var colors = Parts("emblem-error", 16, tint).Select(d => ((ISolidColorBrush)d.Brush!).Color).ToList();
         Assert.Contains(Color.Parse("#da4453"), colors);
         Assert.Contains(Colors.White, colors);
         Assert.Contains(colors, c => c.R == tint.R && c.G == tint.G && c.B == tint.B && c.A < 255);
@@ -54,7 +82,7 @@ public class BreezeIconsTests
     [AvaloniaFact]
     public void Parts_Without_A_Fill_Are_Black_As_In_Svg()
     {
-        var colors = Drawing("folder", 32, Colors.White).Children.OfType<GeometryDrawing>().Skip(1).Select(d => ((ISolidColorBrush)d.Brush!).Color).ToList();
+        var colors = Parts("folder", 32, Colors.White).Select(d => ((ISolidColorBrush)d.Brush!).Color).ToList();
         Assert.Equal(Color.Parse("#3daee9"), colors[0]);
         Assert.Equal(Color.FromArgb(84, 0, 0, 0), colors[1]);
         Assert.Equal(Color.FromArgb(51, 255, 255, 255), colors[2]);
@@ -64,8 +92,8 @@ public class BreezeIconsTests
     [AvaloniaFact]
     public void Group_Transforms_Are_Applied()
     {
-        var bounds = Drawing("text-x-generic", 22, null).Children.OfType<GeometryDrawing>().Skip(1).Select(d => d.Geometry!.Bounds);
-        Assert.All(bounds, b => Assert.True(new Rect(0, 0, 22, 22).Contains(b), b.ToString()));
+        var bounds = Drawing("text-x-generic", 22, null).Children[1].GetBounds();
+        Assert.True(bounds.Width > 10 && new Rect(0, 0, 22, 22).Contains(bounds), bounds.ToString());
     }
 
     [AvaloniaFact]
