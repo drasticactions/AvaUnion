@@ -57,12 +57,9 @@ Icons come from the native engine or, with the managed engine on Linux, from
 the installed icon theme. Windows, macOS and the browser have no icon theme.
 For them, add the `AvaUnion.BreezeIcons` package and call `.WithBreezeIcons()`
 on the `AppBuilder`. It holds every Breeze icon, at every size, and on Linux
-it fills in names that the installed theme lacks. Without it, a few simple built-in glyphs are drawn instead. The
-icons are LGPL-3.0-or-later, so the package is
-`LGPL-2.1-only AND LGPL-3.0-or-later`; the other packages stay LGPL-2.1-only.
-`tools/update-breeze-icons.sh` packs them from a breeze-icons release, and
-`tools/compare-breeze-icons.sh` compares how AvaUnion draws each one with
-QtSvg, resvg or rsvg.
+it fills in names that the installed theme lacks.
+
+The icons are LGPL-3.0-or-later.
 
 Classes are Union hints: `<Button Classes="flat" />` matches Breeze's
 `button.flat`. `union:Union.Hints`, `union:Union.Id` and
