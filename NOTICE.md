@@ -137,7 +137,7 @@ Both are licensed under the SIL Open Font License, version 1.1.
 tag `v6.31.0` (`60ca517`).
 
 `src/AvaUnion.BreezeIcons/Icons/breeze-icons.bin` holds copies, unchanged, of
-every icon in breeze-icons, at every size it has, compressed with Brotli. It is
+every icon in breeze-icons, at every size it has, compressed with Deflate. It is
 embedded in `AvaUnion.BreezeIcons.dll`.
 The icons are licensed under the GNU Lesser General Public License, version 3
 or any later version, with the clarification in breeze-icons' `COPYING-ICONS`.

@@ -30,7 +30,7 @@ internal sealed class BreezeArchive
     {
         using var stream = Open();
         using var reader = new BinaryReader(stream, Encoding.UTF8);
-        if (!reader.ReadBytes(4).AsSpan().SequenceEqual("BZI1"u8))
+        if (!reader.ReadBytes(4).AsSpan().SequenceEqual("BZI2"u8))
         {
             throw new InvalidDataException("not a Breeze icon archive");
         }
@@ -94,9 +94,9 @@ internal sealed class BreezeArchive
     private static byte[] Decompress(byte[] data)
     {
         using var output = new MemoryStream();
-        using (var brotli = new BrotliStream(new MemoryStream(data), CompressionMode.Decompress))
+        using (var deflate = new DeflateStream(new MemoryStream(data), CompressionMode.Decompress))
         {
-            brotli.CopyTo(output);
+            deflate.CopyTo(output);
         }
 
         return output.ToArray();

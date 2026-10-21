@@ -109,7 +109,7 @@ var archive = new MemoryStream();
 using (var writer = new BinaryWriter(archive, Encoding.UTF8, leaveOpen: true))
 {
     var compressedIndex = Compress(index.ToArray());
-    writer.Write("BZI1"u8);
+    writer.Write("BZI2"u8);
     writer.Write(compressedIndex.Length);
     writer.Write(compressedIndex);
     foreach (var chunk in chunks)
@@ -160,14 +160,13 @@ static bool Is22(string file)
 
 static byte[] Compress(byte[] data)
 {
-    using var encoder = new BrotliEncoder(11, 22);
-    var buffer = new byte[BrotliEncoder.GetMaxCompressedLength(data.Length)];
-    if (encoder.Compress(data, buffer, out _, out var written, isFinalBlock: true) != System.Buffers.OperationStatus.Done)
+    using var output = new MemoryStream();
+    using (var deflate = new DeflateStream(output, CompressionLevel.SmallestSize, leaveOpen: true))
     {
-        throw new InvalidOperationException("compression failed");
+        deflate.Write(data);
     }
 
-    return buffer[..written];
+    return output.ToArray();
 }
 
 string? Option(string name)
